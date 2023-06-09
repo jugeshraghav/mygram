@@ -1,0 +1,84 @@
+:root {
+  --card-background: #ffffff;
+  --card-background-flat: #f7f8fa;
+  --comment-background: #f0f2f5;
+  --comment-footer-background: #f6f9fa;
+  --ig-secondary-background: rgba(250, 250, 250, 1);
+  --ig-elevated-separator: rgba(219, 219, 219, 1);
+  --ig-primary-button: rgba(0, 149, 246, 0.7);
+}
+
+article {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  margin: 1rem;
+}
+.display-image img {
+  height: 580px;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px;
+}
+form,
+.login-container-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--ig-elevated-separator);
+  border-radius: 1px;
+
+  margin: 0 0 10px;
+  padding: 10px 40px;
+}
+.login-container-signup {
+  font-size: 14px;
+}
+input {
+  background-color: var(--ig-secondary-background);
+  font-size: 12px;
+  width: 100%;
+  margin: 0;
+  color: #1c1e21;
+  line-height: 18px;
+  margin: 6px 0;
+  padding: 9px 0 7px 8px;
+  border: 1px solid var(--ig-elevated-separator);
+  border-radius: 2px;
+}
+.login-container-get-app-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.login-container-get-app-buttons div img {
+  height: 40px;
+}
+.login-container-get-app-buttons span {
+  color: #1c1e21;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 10px 20px 10px 20px;
+}
+button {
+  background-color: var(--ig-primary-button);
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  padding: 7px 16px;
+  margin: 80x 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+}
+.heading {
+  font-family: cursive;
+  font-size: 24px;
+  font-weight: bold;
+}
