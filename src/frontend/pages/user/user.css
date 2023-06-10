@@ -1,0 +1,127 @@
+:root {
+  --card-background: #ffffff;
+  --card-background-flat: #f7f8fa;
+  --comment-background: #f0f2f5;
+  --comment-footer-background: #f6f9fa;
+  --ig-secondary-background: rgba(250, 250, 250, 1);
+  --ig-elevated-separator: rgba(219, 219, 219, 1);
+  --ig-primary-button: rgba(0, 149, 246, 0.7);
+}
+
+/***********Login Page**************/
+article {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+  margin: 32px 0 0 0;
+  padding: 0 0 32px 0;
+}
+
+/**********Login display image*********/
+.display-image img {
+  height: 580px;
+}
+
+/************ Login form *************/
+.login-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  margin-top: 12px;
+  max-width: 350px;
+  color: var(--ig-primary-text);
+}
+.heading {
+  font-family: cursive;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0 15px 0;
+}
+.desc {
+  font-weight: bold;
+  color: grey;
+  /* margin: 0;
+  padding: 0; */
+}
+.login-form,
+.login-container-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--ig-elevated-separator);
+  border-radius: 1px;
+  margin: 0 0 10px;
+  padding: 20px 40px;
+}
+form {
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+.login-input {
+  background-color: var(--ig-secondary-background);
+  font-size: 12px;
+  width: 95%;
+  margin: 0;
+  color: #1c1e21;
+  line-height: 18px;
+  margin: 6px 0;
+  overflow: hidden;
+  padding: 9px 0 7px 8px;
+  text-overflow: ellipsis;
+  border: 1px solid var(--ig-elevated-separator);
+  border-radius: 2px;
+}
+
+/*********** Login buttons**********/
+.primary-button {
+  background-color: var(--ig-primary-button);
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  padding: 7px 16px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.signup-desc {
+  font-size: 12px;
+  color: #1c1e21;
+}
+/******** Login Page- Signup Section **********/
+.login-container-signup {
+  font-size: 14px;
+  padding: 25px 0;
+  margin: 0 0 10px 0;
+}
+.login-container-signup > span > a {
+  color: var(--ig-primary-button);
+  margin: 0 0 0 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/********* get appbuttons ************/
+.login-container-get-app-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.login-container-get-app-buttons div img {
+  height: 40px;
+  margin: 10px 0;
+}
+.login-container-get-app-buttons span {
+  color: #1c1e21;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 10px 20px 10px 20px;
+}

@@ -1,6 +1,6 @@
-import displayImage from "../assets/signin-display-image.png";
+import displayImage from "../../assets/signin-display-image.png";
 import { Link } from "react-router-dom";
-import "./login.css";
+import "./user.css";
 export const Login = () => {
   return (
     <>
@@ -11,10 +11,13 @@ export const Login = () => {
 
         <div className="login-container">
           <div className="login-form">
+            <p className="heading">Mygram</p>
             <form>
-              <p className="heading">Mygram</p>
-              <input placeholder="Phone number,username,email"></input>
-              <input placeholder="Password"></input>
+              <input
+                className="login-input"
+                placeholder="Phone number,username,email"
+              ></input>
+              <input className="login-input" placeholder="Password"></input>
               <button type="submit" className="primary-button">
                 Log in
               </button>
@@ -26,7 +29,7 @@ export const Login = () => {
           </div>
           <div className="login-container-signup">
             <span>
-              Don't have account?<a>Sign up</a>
+              Don't have account?<Link to="/signup">Sign up</Link>
             </span>
           </div>
           <div className="login-container-get-app-buttons">
