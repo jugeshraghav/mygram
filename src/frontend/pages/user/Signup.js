@@ -1,5 +1,5 @@
 import displayImage from "../../assets/signin-display-image.png";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./user.css";
 export const Signup = () => {
   return (

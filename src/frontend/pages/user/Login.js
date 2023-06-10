@@ -1,7 +1,23 @@
 import displayImage from "../../assets/signin-display-image.png";
 import { Link } from "react-router-dom";
 import "./user.css";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../index";
+
 export const Login = () => {
+  const { loginHadler } = useContext(AuthContext);
+  const [userDetails, setUserDetails] = useState({ email: "", password: "" });
+  const guestUserDetails = {
+    email: "adarshbalika@gmail.com",
+    password: "adarshbalika",
+  };
+  const handleInput = (e) => {
+    setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginHadler(userDetails);
+  };
   return (
     <>
       <article>
@@ -16,13 +32,28 @@ export const Login = () => {
               <input
                 className="login-input"
                 placeholder="Phone number,username,email"
+                onChange={handleInput}
+                name="email"
               ></input>
-              <input className="login-input" placeholder="Password"></input>
-              <button type="submit" className="primary-button">
+              <input
+                className="login-input"
+                placeholder="Password"
+                name="password"
+                onChange={handleInput}
+              ></input>
+              <button
+                type="submit"
+                className="primary-button"
+                onClick={handleSubmit}
+              >
                 Log in
               </button>
               <hr></hr>
-              <button type="submit" className="primary-button">
+              <button
+                type="submit"
+                className="primary-button"
+                onClick={() => setUserDetails(guestUserDetails)}
+              >
                 Log in as Guest
               </button>
             </form>

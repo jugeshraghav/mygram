@@ -6,9 +6,9 @@ import { Signup } from "./frontend/pages/user/Signup";
 function App() {
   return (
     <div className="App">
+      <h1>Hello From App</h1>
       <Routes>
         <Route path="/" element={<Login />}></Route>
-        <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
       </Routes>
     </div>
