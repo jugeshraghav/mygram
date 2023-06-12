@@ -1,0 +1,12 @@
+.bookmarks-posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0 0 10rem;
+}
+.bookmarks-page-heading {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  /* margin: 2rem 0 1rem 0; */
+}

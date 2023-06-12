@@ -1,0 +1,9 @@
+.root {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr;
+  gap: 4rem;
+  /* display: flex;
+  width: 100%;
+  justify-content: space-between; */
+  /* grid-template-columns: 1fr auto 2fr; */
+}

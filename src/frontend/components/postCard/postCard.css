@@ -1,0 +1,57 @@
+.post-card {
+  background-color: white;
+  border: 1px solid var(--mg-border-color);
+  margin: 0 0 1rem 0;
+}
+.post-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+  border-bottom: 1px solid var(--mg-border-color);
+}
+.post-card-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-card-user-img {
+  widht: 50px;
+  height: 50px;
+}
+.post-card-user-img img {
+  width: 60%;
+  height: 100%;
+  border-radius: 100%;
+}
+.post-card-user-details {
+  text-align: left;
+}
+.user-name {
+  font-size: 14px;
+}
+.at-user-name {
+  font-size: 12px;
+  color: var(--mg-primary-text);
+}
+.three-dot-icon {
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 5px 10px 0;
+}
+.post-card-content {
+  padding: 5px;
+  font-size: 14px;
+  color: var(--mg-primary-text);
+  border-bottom: 1px solid var(--mg-border-color);
+}
+.post-card-footer {
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.post-card-footer div {
+  display: flex;
+  gap: 1rem;
+}

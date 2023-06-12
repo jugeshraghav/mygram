@@ -1,0 +1,27 @@
+.explore-posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0 0 10rem;
+}
+.explore-page-heading {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+.explore-category-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+.explore-category-btn-container button {
+  border: 2px solid var(--mg-primary-color);
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: var(--mg-primary-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+.explore-category-btn-container button:hover {
+  background-color: var(--mg-primary-color);
+  color: white;
+}

@@ -1,0 +1,60 @@
+.profile-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+/********* User-profile-card*********/
+.user-profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin: 2rem 0 0 0;
+}
+.user-profile-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+/*********user profile name and edit button********/
+.user-profile-name,
+.user-posts-heading {
+  font-size: 20px;
+  font-weight: bold;
+}
+.user-posts-heading {
+  text-align: left;
+}
+/****** user stats*********/
+.user-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  background-color: var(--mg-secondary-color);
+  padding: 1rem;
+}
+.user-stats-number {
+  font-weight: bold;
+}
+
+.user-bio,
+.profile-username {
+  font-size: 14px;
+  color: var(--mg-primary-text);
+}
+.user-website,
+.profile-edit-btn {
+  font-size: 12px;
+}
+
+.user-website {
+  color: var(--mg-primary-color);
+}
+.profile-edit-btn {
+  color: var(--mg-secondary-color);
+  background-color: var(--mg-primary-color);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: 0;
+  border-radius: 8px;
+}

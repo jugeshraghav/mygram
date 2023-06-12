@@ -1,22 +1,27 @@
 import displayImage from "../../assets/signin-display-image.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./user.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../index";
 
 export const Login = () => {
-  const { loginHadler } = useContext(AuthContext);
-  const [userDetails, setUserDetails] = useState({ email: "", password: "" });
+  const { loginHandler } = useContext(AuthContext);
+
+  // console.log(a);
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    password: "",
+  });
   const guestUserDetails = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
+    username: "adarshbalika",
+    password: "adarshBalika123",
   };
   const handleInput = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
-    loginHadler(userDetails);
+    loginHandler(userDetails);
   };
   return (
     <>
@@ -28,24 +33,26 @@ export const Login = () => {
         <div className="login-container">
           <div className="login-form">
             <p className="heading">Mygram</p>
-            <form>
+            <form onSubmit={handleLoginSubmit}>
               <input
                 className="login-input"
                 placeholder="Phone number,username,email"
+                value={userDetails.username}
                 onChange={handleInput}
-                name="email"
+                name="username"
+                autoComplete="on"
+                required
               ></input>
               <input
                 className="login-input"
                 placeholder="Password"
                 name="password"
+                value={userDetails.password}
                 onChange={handleInput}
+                autoComplete="on"
+                required
               ></input>
-              <button
-                type="submit"
-                className="primary-button"
-                onClick={handleSubmit}
-              >
+              <button type="submit" className="primary-button">
                 Log in
               </button>
               <hr></hr>
