@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import {
   allPostService,
   userPostsService,
@@ -8,18 +8,19 @@ import {
   unlikeService,
 } from "../services/like-services/likeServices";
 import { toast } from "react-toastify";
+import { dataReducer, initial_state } from "../reducers/dataReducer";
 
 export const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
-  const [allPosts, setAllPosts] = useState([]);
-  const [userPosts, setUserPosts] = useState([]);
+  const [state, dispatch] = useReducer(dataReducer, initial_state);
+  const { allPosts, userPosts } = state;
+
   const getAllPostsHandler = async () => {
     try {
       const response = await allPostService();
       const postsArray = response?.data?.posts;
-      // console.log(postsArray);
-      setAllPosts([...postsArray]);
+      dispatch({ type: "get_all_posts", payLoad: postsArray });
     } catch (e) {
       console.log(e);
     }
@@ -27,23 +28,24 @@ export const PostProvider = ({ children }) => {
   const getUserPosts = async (username) => {
     try {
       const response = await userPostsService(username);
-      // console.log(response);
-      setUserPosts([...response?.data?.posts]);
+
+      const userPostsArray = response?.data?.posts;
+      dispatch({ type: "get_all_user_posts", payLoad: userPostsArray });
     } catch (e) {
       console.log(e);
     }
   };
-  // console.log(allPosts);
 
   const likeHandler = async (postId, token) => {
     const response = await likeService(postId, token);
-    setAllPosts([...response?.data?.posts]);
+    const postsArray = response?.data?.posts;
+    dispatch({ type: "like_post", payLoad: postsArray });
     toast.success("Post liked successfully!");
-    // console.log(response);
   };
   const unlikeHandler = async (postId, token) => {
     const response = await unlikeService(postId, token);
-    setAllPosts([...response?.data?.posts]);
+    const postsArray = response?.data?.posts;
+    dispatch({ type: "unlike_post", payLoad: postsArray });
     toast.info("Post unliked!");
   };
   useEffect(() => {

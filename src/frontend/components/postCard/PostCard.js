@@ -11,7 +11,7 @@ import {
 import { useContext, useState } from "react";
 import { BookmarksContext, PostContext } from "../../../index";
 export const PostCard = ({ postData }) => {
-  console.log(postData);
+  // console.log(postData);
   const {
     _id,
     content,
@@ -24,7 +24,7 @@ export const PostCard = ({ postData }) => {
     useContext(BookmarksContext);
   const { likeHandler, unlikeHandler } = useContext(PostContext);
 
-  const isInBookmarks = bookmarks.filter((post) => post._id === _id);
+  const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
   // console.log(isInBookmarks, "is product in bookmarks");
 
   const token = localStorage.getItem("token");

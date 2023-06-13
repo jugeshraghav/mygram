@@ -59,6 +59,12 @@
   font-weight: bold;
   cursor: pointer;
 }
+.user-following-link {
+  color: grey;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 .sidebar-central-heading {
   font-weight: bold;

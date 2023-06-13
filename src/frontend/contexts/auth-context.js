@@ -12,8 +12,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await loginService(username, password);
       const { foundUser, encodedToken } = response.data;
-      console.log(foundUser);
-      console.log(encodedToken);
       localStorage.setItem("token", encodedToken);
       localStorage.setItem("userDetails", JSON.stringify(foundUser));
       toast.success("successfully logged in!");
@@ -41,8 +39,6 @@ export const AuthProvider = ({ children }) => {
           username
         );
         const { createdUser, encodedToken } = response.data;
-        console.log(createdUser);
-        console.log(encodedToken);
         toast.success("Successfully signed up! Kindly login to continue.");
         navigate("/");
       } catch (e) {

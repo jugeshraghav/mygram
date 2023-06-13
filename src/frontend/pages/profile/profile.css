@@ -50,11 +50,19 @@
 .user-website {
   color: var(--mg-primary-color);
 }
-.profile-edit-btn {
+.profile-edit-btn,
+.follow-btn,
+.unfollow-btn {
   color: var(--mg-secondary-color);
   background-color: var(--mg-primary-color);
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   border: 0;
   border-radius: 8px;
+  width: 120px;
+}
+.unfollow-btn {
+  color: var(--mg-primary-color);
+  background-color: white;
+  border: 2px solid var(--mg-primary-color);
 }

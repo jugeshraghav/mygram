@@ -4,15 +4,23 @@ import { useParams } from "react-router-dom";
 
 import "./profile.css";
 import { PostCard } from "../../components/postCard/PostCard";
+import { EditUserModal } from "../../modals/editUser/editUserModal";
 
 export const Profile = () => {
   const { username } = useParams();
-  const { allUsers } = useContext(UserContext);
+
+  const { allUsers, followHandler, unfollowHandler, editUserHandler } =
+    useContext(UserContext);
+
   const { userPosts } = useContext(PostContext);
   const selectedUser = allUsers.find((user) => user.username === username);
   //   console.log(selectedUser);
+  const loggedInUserDetails = JSON.parse(localStorage.getItem("userDetails"));
+  const token = localStorage.getItem("token");
+  // console.log(loggedInUserDetails.username);
 
   const {
+    _id,
     avatar,
     firstName,
     lastName,
@@ -32,7 +40,29 @@ export const Profile = () => {
               {firstName} {lastName}
             </p>
             <p className="profile-username">@{userName}</p>
-            <button className="profile-edit-btn">Edit Profile</button>
+            <EditUserModal user={loggedInUserDetails} />
+            {loggedInUserDetails.username === username ? (
+              <button
+                className="profile-edit-btn"
+                onClick={() => editUserHandler(token, selectedUser)}
+              >
+                Edit Profile
+              </button>
+            ) : followers.length === 0 ? (
+              <button
+                className="follow-btn"
+                onClick={() => followHandler(_id, token)}
+              >
+                Follow
+              </button>
+            ) : (
+              <button
+                className="unfollow-btn"
+                onClick={() => unfollowHandler(_id, token)}
+              >
+                Following
+              </button>
+            )}
           </div>
           <p className="user-bio">{bio}</p>
           <p className="user-website">{website}</p>
@@ -42,7 +72,7 @@ export const Profile = () => {
               <p>Followers</p>
             </div>
             <div>
-              <p className="user-stats-number">{0}</p>
+              <p className="user-stats-number">{userPosts.length}</p>
               <p>Posts</p>
             </div>
             <div>

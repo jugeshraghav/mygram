@@ -12,6 +12,9 @@ export const users = [
     lastName: "Balika",
     username: "adarshbalika",
     password: "adarshBalika123",
+    bookmarks: [],
+    bio: " Hi , I am adarsh Balika. Love to connect with people of same mindset",
+    website: "www.adarshbalika.com",
     avatar:
       "https://res.cloudinary.com/anujy0510/image/upload/v1652788469/portrait-young-indian-top-manager-t-shirt-tie-crossed-arms-smiling-white-isolated-wall_496169-1513_ac8h4f.jpg",
     createdAt: formatDate(),
