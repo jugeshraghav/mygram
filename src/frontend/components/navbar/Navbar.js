@@ -3,6 +3,8 @@ import {
   FaBookmark,
   FaCompass,
   FaHome,
+  FaLongArrowAltRight,
+  FaLongArrowAltUp,
   FaPlus,
   FaSearch,
   FaUser,
@@ -10,10 +12,13 @@ import {
 import "./navbar.css";
 import "../../../App.css";
 import { toast } from "react-toastify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext, PostContext, UserContext } from "../../../index";
+import { NewPostModal } from "../../modals/createPost/newPostModal";
 
 export const Navbar = () => {
+  const [showNewPostModal, setShowNewPostModal] = useState(false);
+
   const { getUserPosts } = useContext(PostContext);
   const { logoutHandler } = useContext(AuthContext);
 
@@ -28,6 +33,11 @@ export const Navbar = () => {
   // console.log(username, "logged in user");
   return (
     <>
+      <NewPostModal
+        show={showNewPostModal}
+        onClose={() => setShowNewPostModal(false)}
+        displayName="New"
+      />
       <aside>
         <p className="nav-heading">Mygram</p>
         <nav>
@@ -68,7 +78,7 @@ export const Navbar = () => {
           </div>
           <div
             className="nav-link create-post-btn"
-            onClick={() => toast("Posts can be created")}
+            onClick={() => setShowNewPostModal(true)}
           >
             <span className="nav-icon">
               <FaPlus />
@@ -76,7 +86,9 @@ export const Navbar = () => {
 
             <span className="nav-link-text">Create</span>
           </div>
-          <button onClick={logoutHandler}>Logout</button>
+          <button onClick={logoutHandler}>
+            <FaLongArrowAltRight />
+          </button>
         </nav>
       </aside>
     </>

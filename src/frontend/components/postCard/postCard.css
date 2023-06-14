@@ -34,17 +34,41 @@
   font-size: 12px;
   color: var(--mg-primary-text);
 }
+.post-alter-link {
+  position: relative;
+}
 .three-dot-icon {
   font-size: 25px;
   font-weight: bold;
   cursor: pointer;
   margin: 0 5px 10px 0;
 }
+.three-dot-icon:hover {
+  color: var(--mg-primary-color);
+}
+.post-alter-options {
+  position: absolute;
+  /* top: 1;
+  left: 1; */
+  background-color: white;
+  text-align: left;
+  border: 1px solid var(--mg-border-color);
+  width: 100px;
+}
+.post-alter-options p {
+  border-bottom: 1px solid var(--mg-border-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.post-alter-options p:hover {
+  background-color: lightgrey;
+}
 .post-card-content {
-  padding: 5px;
+  padding: 0.5rem;
   font-size: 14px;
   color: var(--mg-primary-text);
   border-bottom: 1px solid var(--mg-border-color);
+  text-align: left;
 }
 .post-card-footer {
   padding: 15px 10px;

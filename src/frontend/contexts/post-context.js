@@ -1,6 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
 import {
   allPostService,
+  createPostService,
+  deletePostService,
+  editPostService,
   userPostsService,
 } from "../services/post-services/postServices";
 import {
@@ -48,12 +51,46 @@ export const PostProvider = ({ children }) => {
     dispatch({ type: "unlike_post", payLoad: postsArray });
     toast.info("Post unliked!");
   };
+
+  const createPostHandler = async (post, token) => {
+    const response = await createPostService(post, token);
+    const newPostsArr = response?.data?.posts;
+    dispatch({ type: "add_new_post", payLoad: newPostsArr });
+    toast.success("New post created.");
+  };
+
+  const deletePostHandler = async (postId, token) => {
+    const response = await deletePostService(postId, token);
+    const newPostsArr = response?.data?.posts;
+    dispatch({ type: "delete_post", payLoad: newPostsArr });
+    toast.info("Post successfully deleted.");
+  };
+
+  const editPostHandler = async (postId, post, token) => {
+    try {
+      const response = await editPostService(postId, post, token);
+      const newPostsArr = response?.data?.posts;
+      dispatch({ type: "edit_post", payLoad: newPostsArr });
+      toast.info("Post successfully edited.");
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
   useEffect(() => {
     getAllPostsHandler();
   }, []);
   return (
     <PostContext.Provider
-      value={{ allPosts, getUserPosts, userPosts, likeHandler, unlikeHandler }}
+      value={{
+        allPosts,
+        getUserPosts,
+        userPosts,
+        likeHandler,
+        unlikeHandler,
+        createPostHandler,
+        deletePostHandler,
+        editPostHandler,
+      }}
     >
       {children}
     </PostContext.Provider>

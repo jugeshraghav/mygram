@@ -43,6 +43,7 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: "update_followed_by_user_details", payLoad: followedBy });
   };
   const editUserHandler = async (token, user) => {
+    console.log(token, user);
     const response = await editUserService(token, user);
     console.log(response);
   };

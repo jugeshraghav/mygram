@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PostContext, UserContext } from "../../../index";
 import { useParams } from "react-router-dom";
 
@@ -8,9 +8,9 @@ import { EditUserModal } from "../../modals/editUser/editUserModal";
 
 export const Profile = () => {
   const { username } = useParams();
+  const [showEditModal, setShowEditModal] = useState(false);
 
-  const { allUsers, followHandler, unfollowHandler, editUserHandler } =
-    useContext(UserContext);
+  const { allUsers, followHandler, unfollowHandler } = useContext(UserContext);
 
   const { userPosts } = useContext(PostContext);
   const selectedUser = allUsers.find((user) => user.username === username);
@@ -40,11 +40,17 @@ export const Profile = () => {
               {firstName} {lastName}
             </p>
             <p className="profile-username">@{userName}</p>
-            <EditUserModal user={loggedInUserDetails} />
+            <EditUserModal
+              user={loggedInUserDetails}
+              show={showEditModal}
+              onClose={() => setShowEditModal(false)}
+            />
             {loggedInUserDetails.username === username ? (
               <button
                 className="profile-edit-btn"
-                onClick={() => editUserHandler(token, selectedUser)}
+                onClick={() => {
+                  setShowEditModal(true);
+                }}
               >
                 Edit Profile
               </button>

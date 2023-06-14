@@ -38,6 +38,12 @@ export const dataReducer = (state, action) => {
           user._id === payLoad._id ? payLoad : user
         ),
       };
+    case "add_new_post":
+      return { ...state, allPosts: payLoad };
+    case "delete_post":
+      return { ...state, allPosts: payLoad };
+    case "edit_post":
+      return { ...state, allPosts: payLoad };
     default:
       return state;
   }

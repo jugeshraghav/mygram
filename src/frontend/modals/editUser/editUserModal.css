@@ -1,21 +1,18 @@
-/* .edit-modal-container {
-  width: 100%;
-  height: 100%;
+.edit-modal-container {
   background: rgba(1, 2, 3, 0.1);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 .edit-modal-form-container {
   background-color: white;
   padding: 2rem;
-  position: absolute;
-  top: 20%;
-  left: 28%;
 }
 .edit-modal-heading {
   font-size: 24px;
@@ -65,6 +62,12 @@
 .update-btn:hover {
   color: white;
   background-color: var(--mg-primary-color);
+}
+
+.update-btn:disabled {
+  color: grey;
+  background-color: lightgrey;
+  border: 2px solid grey;
 }
 
 .edit-modal-username,

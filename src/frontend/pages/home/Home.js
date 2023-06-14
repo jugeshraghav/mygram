@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { PostContext } from "../../../index";
 import { PostCard } from "../../components/postCard/PostCard";
 import "./home.css";
+import { NewPostModal } from "../../modals/createPost/newPostModal";
 
 export const Home = () => {
   const { allPosts } = useContext(PostContext);

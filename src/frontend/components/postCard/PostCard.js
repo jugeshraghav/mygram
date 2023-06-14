@@ -10,8 +10,8 @@ import {
 } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { BookmarksContext, PostContext } from "../../../index";
+import { NewPostModal } from "../../modals/createPost/newPostModal";
 export const PostCard = ({ postData }) => {
-  // console.log(postData);
   const {
     _id,
     content,
@@ -20,17 +20,29 @@ export const PostCard = ({ postData }) => {
   } = postData;
 
   const [isLiked, setIsLiked] = useState(false);
+  const [showPostAlterOptions, setShowAlterOptions] = useState(false);
+  const [showEditPostModal, setShowEditPostModal] = useState(false);
   const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
     useContext(BookmarksContext);
-  const { likeHandler, unlikeHandler } = useContext(PostContext);
+  const { likeHandler, unlikeHandler, deletePostHandler } =
+    useContext(PostContext);
 
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
   // console.log(isInBookmarks, "is product in bookmarks");
 
   const token = localStorage.getItem("token");
+  const { username: currentLoggedInUsername } = JSON.parse(
+    localStorage.getItem("userDetails")
+  );
 
   return (
     <>
+      <NewPostModal
+        show={showEditPostModal}
+        onClose={() => setShowEditPostModal(false)}
+        displayName="Edit"
+        post={postData}
+      />
       <div className="post-card">
         <div className="post-card-header">
           <div className="post-card-user">
@@ -48,10 +60,31 @@ export const PostCard = ({ postData }) => {
           <div className="post-alter-link">
             <div
               className="three-dot-icon"
-              onClick={() => toast("I am Working")}
+              onClick={() => setShowAlterOptions(!showPostAlterOptions)}
             >
               ...
             </div>
+            {showPostAlterOptions ? (
+              currentLoggedInUsername === username ? (
+                <div className="post-alter-options">
+                  <p
+                    onClick={() => {
+                      setShowEditPostModal(true);
+                      setShowAlterOptions(false);
+                    }}
+                  >
+                    Edit
+                  </p>
+                  <p onClick={() => deletePostHandler(_id, token)}>Delete</p>
+                </div>
+              ) : (
+                <div className="post-alter-options">
+                  <p>Unfollow</p>
+                </div>
+              )
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="post-card-content">{content}</div>
