@@ -39,16 +39,18 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const likeHandler = async (postId, token) => {
+  const likeHandler = async (postId, username, token) => {
     const response = await likeService(postId, token);
     const postsArray = response?.data?.posts;
     dispatch({ type: "like_post", payLoad: postsArray });
+    getUserPosts(username);
     toast.success("Post liked successfully!");
   };
-  const unlikeHandler = async (postId, token) => {
+  const unlikeHandler = async (postId, username, token) => {
     const response = await unlikeService(postId, token);
     const postsArray = response?.data?.posts;
     dispatch({ type: "unlike_post", payLoad: postsArray });
+    getUserPosts(username);
     toast.info("Post unliked!");
   };
 
@@ -78,7 +80,15 @@ export const PostProvider = ({ children }) => {
   };
 
   const filtersHandler = (currentFilter) => {
-    dispatch({ type: "apply_filter", payLoad: currentFilter });
+    console.log(currentFilter);
+    const filteredPosts =
+      currentFilter === "Trending"
+        ? allPosts.sort((a, b) => b.likes.likeCount - a.likes.likeCount)
+        : allPosts.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+
+    dispatch({ type: "apply_filter", payLoad: filteredPosts });
   };
   useEffect(() => {
     getAllPostsHandler();

@@ -10,6 +10,7 @@ export const Filter = () => {
   const handleCurrentFilterClick = (currentFilter) => {
     setAppliedFilter(currentFilter);
     filtersHandler(currentFilter);
+    setShowFilterOptions(false);
   };
   return (
     <>
@@ -34,6 +35,12 @@ export const Filter = () => {
               >
                 Trending
               </p>
+              {/* <p
+                className="filter-option"
+                onClick={() => handleCurrentFilterClick("All")}
+              >
+                All Posts
+              </p> */}
             </div>
           )}
         </div>

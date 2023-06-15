@@ -24,8 +24,9 @@ export const Stories = () => {
   return (
     <>
       <div className="stories-container">
-        {usersToBeDisplayed.map(({ avatar, username }) => (
+        {usersToBeDisplayed.map(({ _id, avatar, username }) => (
           <NavLink
+            key={_id}
             to={`/mygram/profile/${username}`}
             // onClick={() => getUserPosts(username)}
             style={getStyle}

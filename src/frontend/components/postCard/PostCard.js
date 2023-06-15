@@ -16,10 +16,10 @@ export const PostCard = ({ postData }) => {
     _id,
     content,
     username,
-    likes: { likeCount },
+    likes: { likeCount, likedBy },
   } = postData;
 
-  const [isLiked, setIsLiked] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
   const [showPostAlterOptions, setShowAlterOptions] = useState(false);
   const [showEditPostModal, setShowEditPostModal] = useState(false);
   const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
@@ -90,11 +90,11 @@ export const PostCard = ({ postData }) => {
         <div className="post-card-content">{content}</div>
         <div className="post-card-footer">
           <div>
-            {isLiked ? (
+            {likedBy.length > 0 ? (
               <div
                 onClick={() => {
-                  unlikeHandler(_id, token);
-                  setIsLiked(!isLiked);
+                  unlikeHandler(_id, username, token);
+                  // setIsLiked(!isLiked);
                 }}
               >
                 <FaHeart style={{ color: "red" }} />
@@ -102,8 +102,8 @@ export const PostCard = ({ postData }) => {
             ) : (
               <div
                 onClick={() => {
-                  likeHandler(_id, token);
-                  setIsLiked(!isLiked);
+                  likeHandler(_id, username, token);
+                  // setIsLiked(!isLiked);
                 }}
               >
                 <FaRegHeart />
