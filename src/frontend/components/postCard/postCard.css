@@ -42,6 +42,7 @@
   font-weight: bold;
   cursor: pointer;
   margin: 0 5px 10px 0;
+  z-index: -10;
 }
 .three-dot-icon:hover {
   color: var(--mg-primary-color);

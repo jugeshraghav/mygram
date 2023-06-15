@@ -44,6 +44,9 @@ export const dataReducer = (state, action) => {
       return { ...state, allPosts: payLoad };
     case "edit_post":
       return { ...state, allPosts: payLoad };
+
+    // case "apply_filter":
+    //   return { ...state, allPosts: };
     default:
       return state;
   }

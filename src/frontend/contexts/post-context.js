@@ -76,6 +76,10 @@ export const PostProvider = ({ children }) => {
       console.log(e.message);
     }
   };
+
+  const filtersHandler = (currentFilter) => {
+    dispatch({ type: "apply_filter", payLoad: currentFilter });
+  };
   useEffect(() => {
     getAllPostsHandler();
   }, []);
@@ -90,6 +94,7 @@ export const PostProvider = ({ children }) => {
         createPostHandler,
         deletePostHandler,
         editPostHandler,
+        filtersHandler,
       }}
     >
       {children}

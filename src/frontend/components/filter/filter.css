@@ -1,0 +1,39 @@
+.filter-box {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--mg-border-color);
+  border-radius: 8px;
+}
+.current-applied-filter {
+  font-size: 20px;
+  font-weight: bold;
+}
+.filter-container {
+  position: relative;
+}
+.filter-icon {
+  cursor: pointer;
+}
+.filter-options-container {
+  position: absolute;
+  top: 2.5rem;
+  left: -3.5rem;
+  background-color: white;
+  border: 1px solid var(--mg-border-color);
+  border-radius: 8px;
+  z-index: 10;
+}
+.filter-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid var(--mg-border-color);
+}
+.filter-option:hover {
+  background-color: lightgrey;
+  border-radius: 8px;
+}
