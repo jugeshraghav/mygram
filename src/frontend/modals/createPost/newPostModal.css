@@ -13,7 +13,9 @@
   background-color: white;
   text-align: left;
   padding: 2rem;
-  /* justify-content: space-between; */
+
+  /* justify-content: space
+  -between; */
 }
 .new-post-modal-content {
   display: flex;
@@ -44,6 +46,7 @@
 .new-post-modal-icon-button-container {
   display: flex;
   justify-content: space-between;
+  /* position: relative; */
 }
 .new-post-modal-icons {
   display: flex;
@@ -66,4 +69,9 @@
   color: grey;
   background-color: lightgrey;
   border: 2px solid grey;
+}
+
+.emoji-picker-container {
+  position: absolute;
+  right: 1rem;
 }
