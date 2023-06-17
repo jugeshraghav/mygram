@@ -3,6 +3,7 @@ import {
   FaBookmark,
   FaCompass,
   FaHome,
+  FaInstagram,
   FaLongArrowAltRight,
   FaLongArrowAltUp,
   FaPlus,
@@ -39,7 +40,10 @@ export const Navbar = () => {
         displayName="New"
       />
       <aside>
-        <p className="nav-heading">Mygram</p>
+        <p className="nav-heading-primary">Mygram</p>
+        <p className="nav-heading-secondary">
+          <FaInstagram />
+        </p>
         <nav>
           <NavLink to="/mygram/home" style={getStyle} className="nav-link">
             <span className="nav-icon">
@@ -86,9 +90,9 @@ export const Navbar = () => {
 
             <span className="nav-link-text">Create</span>
           </div>
-          <button onClick={logoutHandler}>
+          {/* <button onClick={logoutHandler}>
             <FaLongArrowAltRight />
-          </button>
+          </button> */}
         </nav>
       </aside>
     </>

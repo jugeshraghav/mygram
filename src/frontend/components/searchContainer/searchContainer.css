@@ -1,0 +1,7 @@
+.search-container {
+  background-color: white;
+  border: 1px solid VAR(--mg-border-color);
+  border-radius: 0 10px 10px 0;
+  width: 200px;
+  height: 100%;
+}

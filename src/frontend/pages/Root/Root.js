@@ -7,8 +7,14 @@ export const Root = () => {
     <>
       <div className="root">
         <Navbar />
-        <Outlet />
-        <Sidebar />
+        <div className="main-content-container">
+          <div className="main-content-center">
+            <Outlet />
+          </div>
+          <div className="main-content-sidebar">
+            <Sidebar />
+          </div>
+        </div>
       </div>
     </>
   );

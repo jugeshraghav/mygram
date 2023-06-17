@@ -6,17 +6,23 @@ aside {
   flex-direction: column;
   padding: 12px 0 0 24px;
 }
-.nav-heading {
+.nav-heading-primary {
   font-size: 24px;
   font-weight: bold;
   font-family: cursive;
   padding: 12px 10px;
 }
+.nav-heading-secondary {
+  color: black;
+  font-size: 24px;
+  font-weight: black;
+  padding: 12px 10px;
+  display: none;
+}
 nav {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* padding: 12px 0 0 24px; */
 }
 .nav-link {
   text-decoration: none;
@@ -42,4 +48,36 @@ nav {
 .create-post-btn,
 .search-btn {
   cursor: pointer;
+}
+
+/**************Responsive Screens**************/
+@media (max-width: 1264px) {
+  aside {
+    width: 50px;
+    padding: 12px;
+  }
+  .nav-heading-primary {
+    display: none;
+  }
+  .nav-heading-secondary {
+    display: block;
+    padding: 12px;
+    margin: 4px;
+  }
+  .nav-link-text {
+    display: none;
+  }
+  .nav-link {
+    width: 25px;
+    height: 25px;
+    margin: 4px;
+    padding: 12px;
+  }
+  .nav-link:hover {
+    background-color: grey;
+    border-radius: 100%;
+  }
+}
+
+@media (max-width: 768px) {
 }

@@ -3,7 +3,7 @@ import "./filter.css";
 import { useContext, useState } from "react";
 import { PostContext } from "../../../index";
 export const Filter = () => {
-  const [appliedFilter, setAppliedFilter] = useState("All");
+  const [appliedFilter, setAppliedFilter] = useState("Latest");
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const { filtersHandler } = useContext(PostContext);
 

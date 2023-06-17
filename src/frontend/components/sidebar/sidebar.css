@@ -1,5 +1,5 @@
 .sidebar {
-  padding: 2rem 6rem 0 0;
+  /* padding: 2rem 12rem 0 0; */
 }
 .my-profile,
 .sidebar-central-heading {
@@ -70,3 +70,25 @@
   font-weight: bold;
   color: var(--mg-primary-text);
 }
+
+/*************Responsive Screens*********/
+/* @media (max-width: 1360px) {
+  .sidebar {
+    padding: 2rem 8rem 0 0;
+  }
+}
+@media (max-width: 1264px) {
+  .sidebar {
+    padding: 2rem 8rem 0 0;
+  }
+}
+@media (max-width: 1160px) {
+  .sidebar {
+    padding: 2rem 4rem 0 0;
+  }
+}
+@media (max-width: 1100px) {
+  .sidebar {
+    padding: 2rem 2rem 0 0;
+  }
+} */

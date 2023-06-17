@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { PostContext } from "../../../index";
 import { PostCard } from "../../components/postCard/PostCard";
 import "./home.css";
-import { NewPostModal } from "../../modals/createPost/newPostModal";
 import { Stories } from "../../components/stories/Stories";
 import { Filter } from "../../components/filter/Filter";
 

@@ -13,6 +13,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
   const [newPostContent, setNewPostContent] = useState(
     post ? post.content : ""
   );
+
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const handleNewPostClick = () => {
