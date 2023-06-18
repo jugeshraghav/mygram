@@ -1,0 +1,23 @@
+.secondary-navbar-container {
+  display: none;
+}
+.secondary-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 0.5rem 0; */
+  background-color: white;
+  border-top: 1px solid var(--mg-border-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  /* display: none; */
+}
+
+/******** small screen *********/
+@media (max-width: 768px) {
+  .secondary-navbar-container {
+    display: block;
+  }
+}

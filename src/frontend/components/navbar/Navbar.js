@@ -4,8 +4,6 @@ import {
   FaCompass,
   FaHome,
   FaInstagram,
-  FaLongArrowAltRight,
-  FaLongArrowAltUp,
   FaPlus,
   FaSearch,
   FaUser,
@@ -31,7 +29,7 @@ export const Navbar = () => {
   };
 
   const { username } = JSON.parse(localStorage.getItem("userDetails"));
-  // console.log(username, "logged in user");
+
   return (
     <>
       <NewPostModal
@@ -94,6 +92,10 @@ export const Navbar = () => {
             <FaLongArrowAltRight />
           </button> */}
         </nav>
+        <div className="navbar-search-container">
+          <input className="navbar-search-input" placeholder="Search" />
+          <FaSearch className="navbar-search-icon" />
+        </div>
       </aside>
     </>
   );

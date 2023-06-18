@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Navbar } from "../../components/navbar/Navbar";
 import "./root.css";
 import { Sidebar } from "../../components/sidebar/Sidebar";
+import { SecondaryNavbar } from "../../components/navbar/secondaryNavbar/SecondaryNavbar";
 export const Root = () => {
   return (
     <>
@@ -15,6 +16,7 @@ export const Root = () => {
             <Sidebar />
           </div>
         </div>
+        <SecondaryNavbar className="secondary-navbar" />
       </div>
     </>
   );
