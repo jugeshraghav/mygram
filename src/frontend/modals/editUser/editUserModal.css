@@ -26,6 +26,7 @@
   display: grid;
   grid-template-columns: 0.5fr 3fr;
   align-items: center;
+  justify-content: space-between;
   text-align: left;
   gap: 2rem;
   margin: 2rem 0;
@@ -86,4 +87,36 @@
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
+}
+
+/******** Responsive Screens ***********/
+
+@media (max-width: 768px) {
+  .edit-modal-form-container {
+    padding: 1rem;
+  }
+  .edit-modal-form {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 525px) {
+  .edit-modal-form {
+    padding: 0rem;
+  }
+  .edit-modal-profile img {
+    margin-left: 0;
+  }
+  .edit-modal-form > div {
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .edit-modal-input {
+    width: 250px;
+  }
+}
+@media (max-width: 400px) {
+  .edit-modal-input {
+    width: 200px;
+  }
 }

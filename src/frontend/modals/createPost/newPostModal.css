@@ -14,9 +14,6 @@
   background-color: white;
   text-align: left;
   padding: 2rem;
-
-  /* justify-content: space
-  -between; */
 }
 .new-post-modal-content {
   display: flex;
@@ -26,7 +23,6 @@
 }
 .new-post-modal-heading {
   font-size: 24px;
-  /* font-weight: bold; */
 }
 .new-post-modal img {
   width: 50px;
@@ -47,11 +43,13 @@
 .new-post-modal-icon-button-container {
   display: flex;
   justify-content: space-between;
-  /* position: relative; */
 }
 .new-post-modal-icons {
   display: flex;
   gap: 0.5rem;
+}
+.new-post-modal-icon {
+  cursor: pointer;
 }
 
 .new-post-btn {
@@ -75,4 +73,33 @@
 .emoji-picker-container {
   position: absolute;
   right: 1rem;
+}
+
+/******** Responsive Screens ***********/
+
+@media (max-width: 768px) {
+  .new-post-modal {
+    padding: 1rem;
+  }
+  .new-post-modal-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .new-post-input-area textarea {
+    padding: 0.5rem;
+    width: 300px;
+  }
+}
+@media (max-width: 450px) {
+  .new-post-input-area textarea {
+    width: 250px;
+  }
+}
+@media (max-width: 400px) {
+  .new-post-input-area textarea {
+    width: 200px;
+    height: 100px;
+  }
 }

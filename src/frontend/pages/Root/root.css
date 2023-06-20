@@ -95,20 +95,32 @@
   .main-content-container {
     margin: 5rem 6rem;
   }
+  .secondary-navbar {
+    display: block;
+  }
 }
 
 @media (max-width: 600px) {
   .main-content-container {
     margin: 5rem 4rem;
   }
+  .secondary-navbar {
+    display: block;
+  }
 }
 @media (max-width: 525px) {
   .main-content-container {
     margin: 5rem 2rem;
   }
+  .secondary-navbar {
+    display: block;
+  }
 }
 @media (max-width: 400px) {
   .main-content-container {
     margin: 5rem 0rem;
+  }
+  .secondary-navbar {
+    display: block;
   }
 }

@@ -115,3 +115,11 @@ form {
   line-height: 18px;
   margin: 10px 20px 10px 20px;
 }
+
+/************ Responsive Screens **********/
+/*****************small (mobile screen)*********/
+@media (max-width: 768px) {
+  .display-image img {
+    display: none;
+  }
+}

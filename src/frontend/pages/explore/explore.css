@@ -8,6 +8,7 @@
   font-size: 20px;
   font-weight: bold;
   text-align: left;
+  margin: 0 0.2rem;
 }
 .explore-category-btn-container {
   display: flex;
@@ -24,4 +25,27 @@
 .explore-category-btn-container button:hover {
   background-color: var(--mg-primary-color);
   color: white;
+}
+
+/******Responsive Screens***********/
+/********* small Screen **********/
+@media (max-width: 768px) {
+  .explore-category-btn-container button {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 525px) {
+  .explore-category-btn-container {
+    padding: 0 0.3rem;
+  }
+  .explore-category-btn-container button {
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .explore-category-btn-container button {
+    padding: 0.2rem;
+  }
 }

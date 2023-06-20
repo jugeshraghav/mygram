@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import "./postCard.css";
 import {
   FaBookmark,
@@ -15,6 +14,7 @@ export const PostCard = ({ postData }) => {
   const {
     _id,
     content,
+    image,
     username,
     likes: { likeCount, likedBy },
   } = postData;
@@ -87,7 +87,19 @@ export const PostCard = ({ postData }) => {
             )}
           </div>
         </div>
-        <div className="post-card-content">{content}</div>
+        <div className="post-card-content-container">
+          {image && (
+            <img
+              src={image}
+              alt={username}
+              className="post-card-content-image"
+            />
+          )}
+
+          <div className="post-card-content-text">
+            {content.length > 100 ? `${content.substring(0, 100)}...` : content}
+          </div>
+        </div>
         <div className="post-card-footer">
           <div>
             {likedBy.length > 0 ? (
