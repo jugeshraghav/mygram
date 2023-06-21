@@ -1,0 +1,12 @@
+.search-card-container {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 4.7rem;
+  background-color: white;
+  border-right: 1px solid var(--mg-border-color);
+  height: 100vh;
+  padding: 2rem;
+  margin: 0;
+}

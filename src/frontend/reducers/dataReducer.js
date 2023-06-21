@@ -48,10 +48,16 @@ export const dataReducer = (state, action) => {
     case "apply_filter":
       return { ...state, allPosts: payLoad };
 
-    case "  found_users_on_search":
+    case "found_users_on_search":
+      console.log(payLoad, "from found users case");
       return {
         ...state,
-        foundUsers: state.allUsers.filter((user) => console.log(user.username)),
+        foundUsers: state.allUsers.filter(
+          ({ firstName, lastName, username }) =>
+            firstName?.toLowerCase().includes(payLoad?.toLowerCase()) ||
+            lastName?.toLowerCase().includes(payLoad?.toLowerCase()) ||
+            username?.toLowerCase().includes(payLoad?.toLowerCase())
+        ),
       };
     default:
       return state;

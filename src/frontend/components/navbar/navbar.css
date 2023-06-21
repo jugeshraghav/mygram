@@ -5,7 +5,6 @@ aside {
   display: flex;
   flex-direction: column;
   padding: 12px 0 0 24px;
-  /* position: relative; */
 }
 .nav-heading-primary {
   font-size: 24px;
@@ -83,11 +82,8 @@ nav {
 /** navbar search input for mobile screen **/
 .navbar-search-container {
   display: none;
-  position: relative;
 }
-.navbar-search-card-mobile {
-  position: absolute;
-}
+
 /********* small Screen **********/
 @media (max-width: 768px) {
   aside {
@@ -124,10 +120,5 @@ nav {
 @media (max-width: 400px) {
   .nav-heading-primary {
     padding: 0;
-  }
-  .navbar-search-input {
-    padding: 0.5rem 0rem 0.5rem 2rem;
-    margin-right: 1rem;
-    font-size: 14px;
   }
 }

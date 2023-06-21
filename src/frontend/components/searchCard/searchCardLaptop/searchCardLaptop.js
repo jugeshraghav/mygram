@@ -1,20 +1,22 @@
 import { useContext } from "react";
 import { UserContext } from "../../../../index";
 
-import "./searchCardMobile.css";
+import "./searchCardLaptop.css";
+import { SearchInput } from "../../searchInput/SearchInput";
 
-export const SearchCardMobile = ({ onClose, show }) => {
+export const SearchCardLaptop = ({ onClose, show }) => {
   const { foundUsers } = useContext(UserContext);
 
   console.log(foundUsers, "found-user");
   return (
     <>
-      {show && (
-        <div className="search-card-modal" onClick={onClose}>
+      <div className="search-card-modal-laptop" onClick={onClose}>
+        {show && (
           <div
-            className="search-card-container"
+            className="search-card-container-laptop"
             onClick={(e) => e.stopPropagation()}
           >
+            <SearchInput />
             <p>Recent</p>
             {foundUsers.length > 0 ? (
               foundUsers.map(({ username }) => <p>{username}</p>)
@@ -22,8 +24,8 @@ export const SearchCardMobile = ({ onClose, show }) => {
               <p>No Recent Searches</p>
             )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };

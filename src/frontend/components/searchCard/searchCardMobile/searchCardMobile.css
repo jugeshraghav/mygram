@@ -1,6 +1,9 @@
 .search-card-modal {
-  width: 50vw;
-  height: 100vh;
+  /* width: 32vw; */
+  /* height: 100vh; */
+  position: absolute;
+  top: 3rem;
+  left: 0;
 }
 .search-card-container {
   width: 100%;
