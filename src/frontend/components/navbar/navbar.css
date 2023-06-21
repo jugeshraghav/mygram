@@ -5,6 +5,7 @@ aside {
   display: flex;
   flex-direction: column;
   padding: 12px 0 0 24px;
+  /* position: relative; */
 }
 .nav-heading-primary {
   font-size: 24px;
@@ -84,19 +85,8 @@ nav {
   display: none;
   position: relative;
 }
-.navbar-search-input {
-  border: 1px solid var(--mg-border-color);
-  border-radius: 8px;
-  padding: 0.5rem 0rem 0.5rem 3rem;
-  margin-right: 2rem;
-  font-size: 16px;
-}
-.navbar-search-icon {
-  color: grey;
-  font-weight: normal;
+.navbar-search-card-mobile {
   position: absolute;
-  top: 10px;
-  left: 10px;
 }
 /********* small Screen **********/
 @media (max-width: 768px) {
@@ -126,7 +116,6 @@ nav {
     display: none;
   }
 
-  /***************/
   .navbar-search-container {
     display: block;
   }

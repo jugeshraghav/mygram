@@ -1,27 +1,30 @@
+/********* Post Card  **********/
+
 .post-card {
   background-color: white;
   border: 1px solid var(--mg-border-color);
+  border-radius: 8px;
   margin: 0 0 1rem 0;
 }
+
+/************ post card header ********/
 .post-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px;
+  padding: 0.2rem 0.5rem;
   border-bottom: 1px solid var(--mg-border-color);
 }
 .post-card-user {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 }
-.post-card-user-img {
-  /* width: 50px; */
-  height: 50px;
-}
+.post-card-user-img,
 .post-card-user-img img {
-  width: 50%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
 }
 .post-card-user-details {
@@ -49,8 +52,6 @@
 }
 .post-alter-options {
   position: absolute;
-  /* top: 1;
-  left: 1; */
   background-color: white;
   text-align: left;
   border: 1px solid var(--mg-border-color);
@@ -65,26 +66,52 @@
   background-color: lightgrey;
 }
 
-/****** content *********/
-.post-card-content-container {
-  padding: 0.5rem;
-  font-size: 14px;
-  color: var(--mg-primary-text);
-  border-bottom: 1px solid var(--mg-border-color);
-  text-align: left;
-}
-
+/*************** content **************/
 .post-card-content-image {
   width: 100%;
-  height: 80%;
+  height: 500px;
 }
-
-.post-card-footer {
-  padding: 15px 10px;
+.post-card-content-text {
+  font-size: 14px;
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--mg-border-color);
+}
+/************* Post Card Icons *********/
+.post-card-icons {
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
 }
-.post-card-footer div {
+.post-card-icons-leftgroup {
   display: flex;
   gap: 1rem;
+}
+.post-card-icon {
+  font-size: 20px;
+}
+.post-card-like-count-container {
+  text-align: left;
+  padding: 0 0 0.5rem 0.5rem;
+  font-size: 14px;
+}
+.post-card-like-count {
+  font-weight: bold;
+}
+
+/********* Responsive Screens *********/
+
+@media (max-width: 600px) {
+  .post-alter-options {
+    left: -3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .post-card-content-image {
+    height: 400px;
+  }
+  .post-alter-options {
+    left: -4.5rem;
+  }
 }

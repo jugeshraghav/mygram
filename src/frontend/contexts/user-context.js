@@ -13,7 +13,9 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial_state);
 
-  const { allUsers } = state;
+  console.log(state, "from user context");
+
+  const { allUsers, foundUsers } = state;
 
   const getAllUserHandler = async () => {
     try {
@@ -48,12 +50,22 @@ export const UserProvider = ({ children }) => {
     console.log(response);
   };
 
+  const foundUserHandler = (searchText) => {
+    dispatch({ type: "found_users_on_search", payLoad: searchText });
+  };
   useEffect(() => {
     getAllUserHandler();
   }, []);
   return (
     <UserContext.Provider
-      value={{ allUsers, followHandler, unfollowHandler, editUserHandler }}
+      value={{
+        allUsers,
+        foundUsers,
+        followHandler,
+        unfollowHandler,
+        editUserHandler,
+        foundUserHandler,
+      }}
     >
       {children}
     </UserContext.Provider>

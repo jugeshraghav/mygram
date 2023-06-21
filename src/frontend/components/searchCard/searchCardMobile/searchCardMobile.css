@@ -1,0 +1,13 @@
+.search-card-modal {
+  width: 50vw;
+  height: 100vh;
+}
+.search-card-container {
+  width: 100%;
+  min-height: 20%;
+  background-color: white;
+  border: 1px solid var(--mg-border-color);
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}

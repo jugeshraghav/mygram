@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 import { useContext, useState } from "react";
 import { AuthContext, PostContext, UserContext } from "../../../index";
 import { NewPostModal } from "../../modals/createPost/newPostModal";
+import { SearchInput } from "../searchInput/SearchInput";
+import { SearchCardMobile } from "../searchCard/searchCardMobile/searchCardMobile";
 
 export const Navbar = () => {
   const [showNewPostModal, setShowNewPostModal] = useState(false);
@@ -93,8 +95,8 @@ export const Navbar = () => {
           </button> */}
         </nav>
         <div className="navbar-search-container">
-          <input className="navbar-search-input" placeholder="Search" />
-          <FaSearch className="navbar-search-icon" />
+          <SearchInput from="top-nav" />
+          <SearchCardMobile className="navbar-search-card-mobile" />
         </div>
       </aside>
     </>

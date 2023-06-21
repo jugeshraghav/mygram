@@ -3,10 +3,11 @@ export const initial_state = {
   userPosts: [],
   bookmarks: [],
   allUsers: [],
+  foundUsers: [],
 };
 
 export const dataReducer = (state, action) => {
-  console.log(state);
+  // console.log(state);
   const { type, payLoad } = action;
   console.log(type, payLoad);
   switch (type) {
@@ -46,6 +47,12 @@ export const dataReducer = (state, action) => {
       return { ...state, allPosts: payLoad };
     case "apply_filter":
       return { ...state, allPosts: payLoad };
+
+    case "  found_users_on_search":
+      return {
+        ...state,
+        foundUsers: state.allUsers.filter((user) => console.log(user.username)),
+      };
     default:
       return state;
   }

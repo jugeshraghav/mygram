@@ -1,0 +1,17 @@
+.search-input-container {
+  position: relative;
+}
+.navbar-search-input {
+  border: 1px solid var(--mg-border-color);
+  border-radius: 8px;
+  padding: 0.5rem 0rem 0.5rem 2rem;
+  margin-right: 1.5rem;
+  font-size: 14px;
+}
+.navbar-search-icon {
+  color: grey;
+  font-weight: normal;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

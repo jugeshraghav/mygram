@@ -19,7 +19,6 @@ export const PostCard = ({ postData }) => {
     likes: { likeCount, likedBy },
   } = postData;
 
-  // const [isLiked, setIsLiked] = useState(false);
   const [showPostAlterOptions, setShowAlterOptions] = useState(false);
   const [showEditPostModal, setShowEditPostModal] = useState(false);
   const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
@@ -28,7 +27,6 @@ export const PostCard = ({ postData }) => {
     useContext(PostContext);
 
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
-  // console.log(isInBookmarks, "is product in bookmarks");
 
   const token = localStorage.getItem("token");
   const { username: currentLoggedInUsername } = JSON.parse(
@@ -87,55 +85,55 @@ export const PostCard = ({ postData }) => {
             )}
           </div>
         </div>
-        <div className="post-card-content-container">
-          {image && (
-            <img
-              src={image}
-              alt={username}
-              className="post-card-content-image"
-            />
-          )}
 
-          <div className="post-card-content-text">
-            {content.length > 100 ? `${content.substring(0, 100)}...` : content}
-          </div>
+        {image && (
+          <img src={image} alt={username} className="post-card-content-image" />
+        )}
+
+        <div className="post-card-content-text">
+          {content.length > 100 ? `${content.substring(0, 100)}...` : content}
         </div>
-        <div className="post-card-footer">
-          <div>
+
+        <div className="post-card-icons">
+          <div className="post-card-icons-leftgroup">
             {likedBy.length > 0 ? (
-              <div
+              <span
                 onClick={() => {
                   unlikeHandler(_id, username, token);
-                  // setIsLiked(!isLiked);
                 }}
               >
-                <FaHeart style={{ color: "red" }} />
-              </div>
+                <FaHeart style={{ color: "red" }} className="post-card-icon" />
+              </span>
             ) : (
-              <div
+              <span
                 onClick={() => {
                   likeHandler(_id, username, token);
-                  // setIsLiked(!isLiked);
                 }}
               >
-                <FaRegHeart />
-              </div>
+                <FaRegHeart className="post-card-icon" />
+              </span>
             )}
-
-            <FaRegComment />
-            <FaShare />
+            <span>
+              <FaRegComment className="post-card-icon" />
+            </span>
+            <span>
+              <FaShare className="post-card-icon" />
+            </span>
           </div>
+
           {isInBookmarks.length !== 0 ? (
             <div onClick={() => removeFromBookmarkHandler(_id, token)}>
-              <FaBookmark />
+              <FaBookmark className="post-card-icon" />
             </div>
           ) : (
             <div onClick={() => addToBookmarkHandler(_id, token)}>
-              <FaRegBookmark />
+              <FaRegBookmark className="post-card-icon" />
             </div>
           )}
         </div>
-        <p>{likeCount} likes</p>
+        <p className="post-card-like-count-container">
+          <span className="post-card-like-count">{likeCount}</span> likes
+        </p>
       </div>
     </>
   );
