@@ -7,7 +7,9 @@ export const Root = () => {
   return (
     <>
       <div className="root">
-        <Navbar />
+        <div className="primary-navbar">
+          <Navbar />
+        </div>
         <div className="main-content-container">
           <div className="main-content-center">
             <Outlet />
@@ -16,7 +18,9 @@ export const Root = () => {
             <Sidebar />
           </div>
         </div>
-        <SecondaryNavbar className="secondary-navbar" />
+        <div className="secondary-navbar">
+          <SecondaryNavbar />
+        </div>
       </div>
     </>
   );
