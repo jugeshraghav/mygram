@@ -10,17 +10,38 @@ export const SearchCardMobile = ({ onClose, show }) => {
   return (
     <>
       {show && (
-        <div className="search-card-modal" onClick={onClose}>
+        <div className="search-card-mobile-modal" onClick={onClose}>
           <div
-            className="search-card-container"
+            className="search-card-mobile-container"
             onClick={(e) => e.stopPropagation()}
           >
-            <p>Recent</p>
-            {foundUsers.length > 0 ? (
-              foundUsers.map(({ username }) => <p>{username}</p>)
-            ) : (
-              <p>No Recent Searches</p>
-            )}
+            <div className="search-card-mobile-content">
+              {foundUsers.length > 0 ? (
+                foundUsers.map(
+                  ({ _id, avatar, firstName, lastName, username }) => (
+                    <div key={_id} className="search-card-mobile-found-user">
+                      <img src={avatar} alt={username} />
+                      <div>
+                        <p className="search-card-mobile-fullname">
+                          {firstName} {lastName}
+                        </p>
+                        <p className="search-card-mobile-username">
+                          {" "}
+                          {username}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                )
+              ) : (
+                <div className="search-card-mobile-user-not-found-container">
+                  <p className="search-card-mobile-not-found-heading">Recent</p>
+                  <p className="search-card-mobile-not-found-subheading">
+                    No Recent Searches
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

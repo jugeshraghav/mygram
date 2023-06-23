@@ -1,16 +1,47 @@
-.search-card-modal {
-  /* width: 32vw; */
-  /* height: 100vh; */
-  position: absolute;
+.search-card-mobile-modal {
+  position: fixed;
   top: 3rem;
   left: 0;
+  right: 0;
+  bottom: 0;
 }
-.search-card-container {
+.search-card-mobile-container {
   width: 100%;
   min-height: 20%;
   background-color: white;
   border: 1px solid var(--mg-border-color);
-  border-radius: 8px;
+  border-radius-bottom: 8px;
   margin: 0.5rem 0;
   padding: 0.5rem;
+  z-index: 10;
+}
+
+.search-card-mobile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+.search-card-mobile-found-user {
+  display: flex;
+  gap: 0.5rem;
+  text-align: left;
+}
+.search-card-mobile-found-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+.search-card-mobile-fullname {
+  font-size: 16px;
+}
+
+.search-card-mobile-not-found-heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+.search-card-mobile-username,
+.search-card-mobile-not-found-subheading {
+  font-size: 14px;
+  color: grey;
 }

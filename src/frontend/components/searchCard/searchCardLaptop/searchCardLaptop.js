@@ -17,12 +17,37 @@ export const SearchCardLaptop = ({ onClose, show }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <SearchInput />
-            <p>Recent</p>
-            {foundUsers.length > 0 ? (
-              foundUsers.map(({ username }) => <p>{username}</p>)
-            ) : (
-              <p>No Recent Searches</p>
-            )}
+            <div className="search-card-container-laptop-content">
+              <div className="search-card-laptop-found-users-container">
+                {foundUsers.length > 0 ? (
+                  foundUsers.map(
+                    ({ _id, avatar, firstName, lastName, username }) => (
+                      <div key={_id} className="search-card-laptop-found-user">
+                        <img src={avatar} alt={username} />
+                        <div>
+                          <p className="search-card-laptop-fullname">
+                            {firstName} {lastName}
+                          </p>
+                          <p className="search-card-laptop-username">
+                            {" "}
+                            {username}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  )
+                ) : (
+                  <div className="search-card-laptop-user-not-found-container">
+                    <p className="search-card-container-laptop-heading">
+                      Recent
+                    </p>
+                    <p className="search-card-container-subheading">
+                      No Recent Searches
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>

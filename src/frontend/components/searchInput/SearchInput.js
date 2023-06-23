@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 
 import "./searchInput.css";
 
-export const SearchInput = ({ from, showSearchCard }) => {
+export const SearchInput = ({ from, showSearchCardMobile }) => {
   const [searchText, setSearchText] = useState();
 
   console.log(searchText, "search name");
@@ -25,10 +25,12 @@ export const SearchInput = ({ from, showSearchCard }) => {
             setSearchText(e.target.value);
             foundUserHandler(searchText);
           }}
-          onClick={showSearchCard}
+          onClick={showSearchCardMobile}
         />
         <FaSearch className="navbar-search-icon" />
       </div>
+
+      {from !== "top-nav" && <hr style={{ margin: "2rem 0" }}></hr>}
     </>
   );
 };

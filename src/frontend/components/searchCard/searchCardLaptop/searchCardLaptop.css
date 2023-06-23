@@ -1,12 +1,71 @@
-.search-card-container {
-  width: 300px;
-  height: 100%;
-  position: absolute;
+.search-card-modal-laptop {
+  position: fixed;
   top: 0;
-  left: 4.7rem;
+  left: 13.7rem;
+  right: 0;
+  bottom: 0;
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: start;
+}
+.search-card-container-laptop {
   background-color: white;
+  width: 30%;
+  height: 100%;
+  /* margin: 0 0 0 13.7rem; */
   border-right: 1px solid var(--mg-border-color);
-  height: 100vh;
-  padding: 2rem;
-  margin: 0;
+  text-align: left;
+}
+.search-card-container-laptop-content {
+  margin: 1rem;
+}
+
+.search-card-laptop-found-users-container {
+  width: 100%;
+  /* background-color: pink; */
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.search-card-laptop-found-user {
+  display: flex;
+  gap: 0.5rem;
+}
+.search-card-laptop-found-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+.search-card-laptop-fullname {
+  font-size: 14px;
+}
+.search-card-laptop-username {
+  font-size: 12px;
+  color: grey;
+}
+
+.search-card-laptop-user-not-found-container {
+  height: 80dvh;
+  width: 100%;
+  display: flex;
+}
+.search-card-container-laptop-heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+.search-card-container-subheading {
+  font-size: 14px;
+  color: grey;
+  align-self: center;
+  margin-left: 2.5rem;
+  /* text-align: center; */
+}
+
+/************* Responsive Screens**********/
+@media (max-width: 1264px) {
+  .search-card-modal-laptop {
+    left: 4.7rem;
+  }
 }
