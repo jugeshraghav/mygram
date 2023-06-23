@@ -1,14 +1,17 @@
 .root {
   display: grid;
   grid-template-columns: 0.5fr auto;
-  position: relative;
+  align-items: start;
 }
 .main-content-container {
   display: grid;
   grid-template-columns: 1fr 0.7fr;
+  align-items: start;
   gap: 2rem;
-  justify-content: space-around;
-  margin: 2rem 12rem;
+  margin: 0 12rem;
+}
+.main-content-center {
+  margin: 2rem 0;
 }
 .secondary-navbar {
   display: none;
@@ -16,10 +19,12 @@
 .primary-navbar {
   position: sticky;
   top: 0;
+  height: 100dvh;
 }
 .main-content-sidebar {
   position: sticky;
-  right: 0;
+  top: 0;
+  height: 100dvh;
 }
 
 /********* Responsive Screens **********/

@@ -119,6 +119,9 @@ form {
 /************ Responsive Screens **********/
 /*****************small (mobile screen)*********/
 @media (max-width: 768px) {
+  article {
+    gap: 0;
+  }
   .display-image img {
     display: none;
   }
