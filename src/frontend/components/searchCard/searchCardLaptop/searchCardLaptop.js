@@ -10,8 +10,8 @@ export const SearchCardLaptop = ({ onClose, show }) => {
   console.log(foundUsers, "found-user");
   return (
     <>
-      <div className="search-card-modal-laptop" onClick={onClose}>
-        {show && (
+      {show && (
+        <div className="search-card-modal-laptop" onClick={onClose}>
           <div
             className="search-card-container-laptop"
             onClick={(e) => e.stopPropagation()}
@@ -49,8 +49,8 @@ export const SearchCardLaptop = ({ onClose, show }) => {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

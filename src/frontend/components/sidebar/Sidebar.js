@@ -22,6 +22,25 @@ export const Sidebar = () => {
   return (
     <>
       <div className="sidebar">
+        <NavLink
+          to={`/mygram/profile/${username}`}
+          onClick={() => getUserPosts(username)}
+          style={getStyle}
+        >
+          <div className="my-profile">
+            {" "}
+            <img
+              src="https://images.unsplash.com/photo-1680296280129-84da3c59727b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              alt="my-profile"
+            />
+            <div className="my-profile-content">
+              <p className="my-profile-fullname">
+                {firstName} {lastName}
+              </p>
+              <p className="my-profile-username">@{username}</p>
+            </div>
+          </div>
+        </NavLink>
         <div className="sidebar-central-heading">
           <p>Suggested for you</p>
           <p>See All</p>
