@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { PostContext, UserContext } from "../../../index";
+import { AuthContext, PostContext, UserContext } from "../../../index";
 import { useParams } from "react-router-dom";
 
 import "./profile.css";
@@ -7,17 +7,22 @@ import { PostCard } from "../../components/postCard/PostCard";
 import { EditUserModal } from "../../modals/editUser/editUserModal";
 
 export const Profile = () => {
+  //get username from useParams
   const { username } = useParams();
+
+  //get handlers and values from Contexts
+  const { allUsers, followHandler, unfollowHandler } = useContext(UserContext);
+  const { userPosts } = useContext(PostContext);
+  const { token, loggedInUserDetails } = useContext(AuthContext);
+
+  //state variables
   const [showEditModal, setShowEditModal] = useState(false);
 
-  const { allUsers, followHandler, unfollowHandler } = useContext(UserContext);
-
-  const { userPosts } = useContext(PostContext);
+  //calculated values and variables
   const selectedUser = allUsers.find((user) => user.username === username);
-  //   console.log(selectedUser);
-  const loggedInUserDetails = JSON.parse(localStorage.getItem("userDetails"));
-  const token = localStorage.getItem("token");
-  // console.log(loggedInUserDetails.username);
+  console.log(username, "slelected user name");
+  console.log(allUsers, "all users");
+  console.log(selectedUser, "selected user data");
 
   const {
     _id,

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import {
   allPostService,
   createPostService,
@@ -12,12 +12,15 @@ import {
 } from "../services/like-services/likeServices";
 import { toast } from "react-toastify";
 import { dataReducer, initial_state } from "../reducers/dataReducer";
+import { AuthContext } from "../../index";
 
 export const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial_state);
-  const { allPosts, userPosts } = state;
+  const { allPosts, userPosts, postsOfUsersFollowed } = state;
+
+  const { loggedInUserDetails } = useContext(AuthContext);
 
   const getAllPostsHandler = async () => {
     try {
@@ -31,13 +34,25 @@ export const PostProvider = ({ children }) => {
   const getUserPosts = async (username) => {
     try {
       const response = await userPostsService(username);
-
       const userPostsArray = response?.data?.posts;
       dispatch({ type: "get_all_user_posts", payLoad: userPostsArray });
     } catch (e) {
       console.log(e);
     }
   };
+
+  // const getPostsOfUsersFollowedByLoggedInUser = (loggedInUserDetails) => {
+  //   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
+  //     (post) =>
+  //       loggedInUserDetails?.following.some(
+  //         (followingUser) => followingUser.username === post.username
+  //       ) || loggedInUserDetails.username === post.username
+  //   );
+  //   dispatch({
+  //     type: "get_posts_of_users_followed_by_logged_in_user",
+  //     payLoad: postsOfFollowedUsersByLoggedInUser,
+  //   });
+  // };
 
   const likeHandler = async (postId, username, token) => {
     const response = await likeService(postId, token);
@@ -92,6 +107,7 @@ export const PostProvider = ({ children }) => {
   };
   useEffect(() => {
     getAllPostsHandler();
+    // getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
   }, []);
   return (
     <PostContext.Provider
@@ -99,6 +115,7 @@ export const PostProvider = ({ children }) => {
         allPosts,
         getUserPosts,
         userPosts,
+        postsOfUsersFollowed,
         likeHandler,
         unlikeHandler,
         createPostHandler,

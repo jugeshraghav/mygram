@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { loginService } from "../services/auth-services/loginService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,6 +8,15 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+
+  ///////////////////////// user Details //////////////////////////////////
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loggedInUserDetails, setLoggedInUserDetails] = useState(
+    JSON.parse(localStorage.getItem("userDetails"))
+  );
+
+  ////////////////////// Auth Handlers /////////////////////////////////////
+
   const loginHandler = async ({ username, password }) => {
     try {
       const response = await loginService(username, password);
@@ -38,7 +47,7 @@ export const AuthProvider = ({ children }) => {
           password,
           username
         );
-        const { createdUser, encodedToken } = response.data;
+        // const { createdUser, encodedToken } = response.data;
         toast.success("Successfully signed up! Kindly login to continue.");
         navigate("/");
       } catch (e) {
@@ -50,12 +59,20 @@ export const AuthProvider = ({ children }) => {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userDetails");
+    setLoggedInUserDetails(null);
+    setToken(null);
     navigate("/");
   };
 
   return (
     <AuthContext.Provider
-      value={{ loginHandler, signupHandler, logoutHandler }}
+      value={{
+        loginHandler,
+        signupHandler,
+        logoutHandler,
+        token,
+        loggedInUserDetails,
+      }}
     >
       {children}
     </AuthContext.Provider>

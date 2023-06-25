@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import {
   allUsersService,
   editUserService,
@@ -11,12 +11,13 @@ import { dataReducer, initial_state } from "../reducers/dataReducer";
 
 export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
+  ///////////////////// User Reducer //////////////////////////////////
   const [state, dispatch] = useReducer(dataReducer, initial_state);
 
-  console.log(state, "from user context");
-
+  /////////////////// Values from State //////////////////////////////
   const { allUsers, foundUsers } = state;
 
+  ////////////////// Handlers //////////////////////////////////////
   const getAllUserHandler = async () => {
     try {
       const response = await allUsersService();
@@ -33,8 +34,6 @@ export const UserProvider = ({ children }) => {
     const followedBy = response.data.user;
     dispatch({ type: "update_user_followed_details", payLoad: userFollowed });
     dispatch({ type: "update_followed_by_user_details", payLoad: followedBy });
-    // console.log(userFollowed);
-    // console.log(followedBy);
   };
 
   const unfollowHandler = async (folllowUserId, token) => {

@@ -1,9 +1,13 @@
 export const initial_state = {
-  allPosts: [],
+  //post
+  allPosts: [], ///initially we get all posts
   userPosts: [],
-  bookmarks: [],
-  allUsers: [],
-  foundUsers: [],
+  postsOfUsersFollowed: [],
+  //user
+  allUsers: [], ///initially we get all users
+  bookmarks: [], ///this array contains the id of posts that are bookmarked.
+  foundUsers: [], ///after searching users we get this array filtered from allUsers
+  selectedUser: {},
 };
 
 export const dataReducer = (state, action) => {
@@ -11,10 +15,15 @@ export const dataReducer = (state, action) => {
   const { type, payLoad } = action;
   console.log(type, payLoad);
   switch (type) {
+    //////Post Reducer///////
     case "get_all_posts":
       return { ...state, allPosts: payLoad };
     case "get_all_user_posts":
       return { ...state, userPosts: payLoad };
+    case "get_posts_of_users_followed_by_logged_in_user":
+      return { ...state, postsOfUsersFollowed: payLoad };
+
+    //////User Reducer//////
     case "get_all_users":
       return { ...state, allUsers: payLoad };
     case "add_to_bookmarks":
