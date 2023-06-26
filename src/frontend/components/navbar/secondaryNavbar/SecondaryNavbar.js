@@ -11,6 +11,7 @@ export const SecondaryNavbar = () => {
 
   const { getUserPosts } = useContext(PostContext);
   const { logoutHandler } = useContext(AuthContext);
+  const { loggedInUserDetails } = useContext(AuthContext);
 
   const getStyle = ({ isActive }) => {
     return {
@@ -19,7 +20,7 @@ export const SecondaryNavbar = () => {
     };
   };
 
-  const { username } = JSON.parse(localStorage.getItem("userDetails"));
+  const username = loggedInUserDetails?.username;
 
   return (
     <>

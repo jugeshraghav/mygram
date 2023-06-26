@@ -2,13 +2,14 @@ import { useContext, useState } from "react";
 import Picker from "emoji-picker-react";
 import "./newPostModal.css";
 import { FaCamera, FaSmile } from "react-icons/fa";
-import { PostContext } from "../../../index";
+import { AuthContext, PostContext } from "../../../index";
 import { toast } from "react-toastify";
 
 export const NewPostModal = ({ show, onClose, displayName, post }) => {
-  const currentLoggedInUser = JSON.parse(localStorage.getItem("userDetails"));
-  const token = localStorage.getItem("token");
-  const { avatar, username: currentLoggedInUsername } = currentLoggedInUser;
+  // const currentLoggedInUser = JSON.parse(localStorage.getItem("userDetails"));
+  // const token = localStorage.getItem("token");
+  // const { avatar, username: currentLoggedInUsername } = currentLoggedInUser;
+  const { token, loggedInUserDetails } = useContext(AuthContext);
   const { createPostHandler, editPostHandler } = useContext(PostContext);
   const [newPostContent, setNewPostContent] = useState(
     post ? post.content : ""
@@ -78,7 +79,10 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
           <div className="new-post-modal" onClick={(e) => e.stopPropagation()}>
             <p className="new-post-modal-heading">{displayName} Post</p>
             <div className="new-post-modal-content">
-              <img src={avatar} alt={currentLoggedInUsername}></img>
+              <img
+                src={loggedInUserDetails?.avatar}
+                alt={loggedInUserDetails?.username}
+              ></img>
               <div className="new-post-input-area">
                 <textarea
                   rows="8"

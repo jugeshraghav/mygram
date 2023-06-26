@@ -1,20 +1,19 @@
 import { useContext, useState } from "react";
 import "./editUserModal.css";
-import { UserContext } from "../../../index";
-export const EditUserModal = ({
-  user: { avatar, username, website, bio },
-  show,
-  onClose,
-}) => {
+import { AuthContext, UserContext } from "../../../index";
+export const EditUserModal = ({ user, show, onClose }) => {
+  //Contexts
   const { editUserHandler } = useContext(UserContext);
-  const [updatedUser, setUpdatedUser] = useState({
-    website: website,
-    bio: bio,
-  });
-  const token = localStorage.getItem("token");
+  const { token } = useContext(AuthContext);
+
+  //state variable
+  const [updatedUser, setUpdatedUser] = useState(user);
+  console.log(updatedUser, "user details from edit modal initial");
+
+  // const token = localStorage.getItem("token");
   const handleUpdateUserOnSubmit = (e, token, updatedUser) => {
     e.preventDefault();
-    console.log(updatedUser);
+    console.log(updatedUser, "inside handle update user");
     editUserHandler(token, updatedUser);
   };
   if (!show) {
@@ -34,9 +33,9 @@ export const EditUserModal = ({
               onSubmit={(e) => handleUpdateUserOnSubmit(e, token, updatedUser)}
             >
               <div className="edit-modal-profile">
-                <img src={avatar} alt={username} />
+                <img src={updatedUser.avatar} alt={updatedUser.username} />
                 <div>
-                  <p className="edit-modal-username">{username}</p>
+                  <p className="edit-modal-username">{updatedUser.username}</p>
                   <p className="edit-modal-change-profile-pic-link">
                     Change profile Photo
                   </p>

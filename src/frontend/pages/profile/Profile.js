@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
-import { AuthContext, PostContext, UserContext } from "../../../index";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { AuthContext, PostContext, UserContext } from "../../../index";
 
 import "./profile.css";
 import { PostCard } from "../../components/postCard/PostCard";
@@ -11,18 +12,25 @@ export const Profile = () => {
   const { username } = useParams();
 
   //get handlers and values from Contexts
-  const { allUsers, followHandler, unfollowHandler } = useContext(UserContext);
-  const { userPosts } = useContext(PostContext);
+  const {
+    allUsers,
+    selectedUser,
+    getSingleUserHandler,
+    followHandler,
+    unfollowHandler,
+  } = useContext(UserContext);
+  const { allPosts, userPosts, getUserPosts, dispatch } =
+    useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
 
   //state variables
   const [showEditModal, setShowEditModal] = useState(false);
 
-  //calculated values and variables
-  const selectedUser = allUsers.find((user) => user.username === username);
-  console.log(username, "slelected user name");
-  console.log(allUsers, "all users");
-  console.log(selectedUser, "selected user data");
+  // calculated values and variables
+  useEffect(() => {
+    getSingleUserHandler(username);
+    getUserPosts(username);
+  }, [username, allPosts, dispatch]);
 
   const {
     _id,
@@ -37,6 +45,11 @@ export const Profile = () => {
   } = selectedUser;
   return (
     <>
+      <EditUserModal
+        user={loggedInUserDetails}
+        show={showEditModal}
+        onClose={() => setShowEditModal(false)}
+      />
       <div className="profile-page-container">
         <div className="user-profile-card">
           <img src={avatar} alt={userName}></img>
@@ -45,11 +58,6 @@ export const Profile = () => {
               {firstName} {lastName}
             </p>
             <p className="profile-username">@{userName}</p>
-            <EditUserModal
-              user={loggedInUserDetails}
-              show={showEditModal}
-              onClose={() => setShowEditModal(false)}
-            />
             {loggedInUserDetails.username === username ? (
               <button
                 className="profile-edit-btn"
@@ -59,7 +67,7 @@ export const Profile = () => {
               >
                 Edit Profile
               </button>
-            ) : followers.length === 0 ? (
+            ) : followers?.length === 0 ? (
               <button
                 className="follow-btn"
                 onClick={() => followHandler(_id, token)}
@@ -79,15 +87,15 @@ export const Profile = () => {
           <p className="user-website">{website}</p>
           <div className="user-stats">
             <div>
-              <p className="user-stats-number">{followers.length}</p>
+              <p className="user-stats-number">{followers?.length}</p>
               <p>Followers</p>
             </div>
             <div>
-              <p className="user-stats-number">{userPosts.length}</p>
+              <p className="user-stats-number">{userPosts?.length}</p>
               <p>Posts</p>
             </div>
             <div>
-              <p className="user-stats-number">{following.length}</p>
+              <p className="user-stats-number">{following?.length}</p>
               <p>Following</p>
             </div>
           </div>

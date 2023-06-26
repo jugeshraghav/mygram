@@ -41,31 +41,33 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  // const getPostsOfUsersFollowedByLoggedInUser = (loggedInUserDetails) => {
-  //   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
-  //     (post) =>
-  //       loggedInUserDetails?.following.some(
-  //         (followingUser) => followingUser.username === post.username
-  //       ) || loggedInUserDetails.username === post.username
-  //   );
-  //   dispatch({
-  //     type: "get_posts_of_users_followed_by_logged_in_user",
-  //     payLoad: postsOfFollowedUsersByLoggedInUser,
-  //   });
-  // };
+  const getPostsOfUsersFollowedByLoggedInUser = (loggedInUserDetails) => {
+    console.log(loggedInUserDetails, "from getPostsOfUser function");
+    console.log(allPosts, "from getPostsOfUser function");
+    const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
+      (post) =>
+        loggedInUserDetails?.following.some(
+          (followingUser) => followingUser.username === post.username
+        ) || loggedInUserDetails.username === post.username
+    );
+    dispatch({
+      type: "get_posts_of_users_followed_by_logged_in_user",
+      payLoad: postsOfFollowedUsersByLoggedInUser,
+    });
+  };
 
   const likeHandler = async (postId, username, token) => {
     const response = await likeService(postId, token);
     const postsArray = response?.data?.posts;
     dispatch({ type: "like_post", payLoad: postsArray });
-    getUserPosts(username);
+    // getUserPosts(username);
     toast.success("Post liked successfully!");
   };
   const unlikeHandler = async (postId, username, token) => {
     const response = await unlikeService(postId, token);
     const postsArray = response?.data?.posts;
     dispatch({ type: "unlike_post", payLoad: postsArray });
-    getUserPosts(username);
+    // getUserPosts(username);
     toast.info("Post unliked!");
   };
 
@@ -107,8 +109,10 @@ export const PostProvider = ({ children }) => {
   };
   useEffect(() => {
     getAllPostsHandler();
-    // getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
+    getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <PostContext.Provider
       value={{

@@ -6,19 +6,20 @@ import { Stories } from "../../components/stories/Stories";
 import { Filter } from "../../components/filter/Filter";
 
 export const Home = () => {
-  const { allPosts } = useContext(PostContext);
+  const { allPosts, postsOfUsersFollowed } = useContext(PostContext);
   const { loggedInUserDetails } = useContext(AuthContext);
 
+  console.log(loggedInUserDetails, "logged in user details from home");
   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
     (post) =>
       loggedInUserDetails?.following.some(
-        (followingUser) => followingUser.username === post.username
-      ) || loggedInUserDetails.username === post.username
+        (followingUser) => followingUser?.username === post?.username
+      ) || loggedInUserDetails?.username === post?.username
   );
-  console.log(
-    postsOfFollowedUsersByLoggedInUser,
-    "posts of users followed by logged in user"
-  );
+  // console.log(
+  //   postsOfUsersFollowed,
+  //   "posts of users followed by logged in user"
+  // );
 
   return (
     <>

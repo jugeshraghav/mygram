@@ -24,11 +24,9 @@ export const Navbar = () => {
   const [showSearchCardMobile, setShowSearchCardMobile] = useState(false);
 
   const { getUserPosts } = useContext(PostContext);
-  const { logoutHandler } = useContext(AuthContext);
+  const { logoutHandler, loggedInUserDetails } = useContext(AuthContext);
 
-  const { _id, firstName, lastName, username } = JSON.parse(
-    localStorage.getItem("userDetails")
-  );
+  // const { _id, firstName, lastName, username } = loggedInUserDetails;
   const getStyle = ({ isActive }) => {
     return {
       fontWeight: isActive ? "bold" : "normal",
@@ -111,9 +109,9 @@ export const Navbar = () => {
               <span className="nav-link-text">Search</span>
             </div>
             <NavLink
-              to={`/mygram/profile/${username}`}
+              to={`/mygram/profile/${loggedInUserDetails?.username}`}
               onClick={() => {
-                getUserPosts(username);
+                // getUserPosts(username);
                 setShowSearchCardLaptop(false);
                 setShowSearchCardMobile(false);
               }}
@@ -142,9 +140,9 @@ export const Navbar = () => {
           </div>
           <div className="navbar-user-profile">
             <NavLink
-              to={`/mygram/profile/${username}`}
+              to={`/mygram/profile/${loggedInUserDetails?.username}`}
               onClick={() => {
-                getUserPosts(username);
+                // getUserPosts(username);
                 setShowSearchCardLaptop(false);
                 setShowSearchCardMobile(false);
               }}
@@ -158,9 +156,12 @@ export const Navbar = () => {
                 />
                 <div className="navbar-my-profile-content">
                   <p className="navbar-my-profile-fullname">
-                    {firstName} {lastName}
+                    {loggedInUserDetails?.firstName}{" "}
+                    {loggedInUserDetails?.lastName}
                   </p>
-                  <p className="navbar-my-profile-username">@{username}</p>
+                  <p className="navbar-my-profile-username">
+                    @{loggedInUserDetails?.username}
+                  </p>
                 </div>
               </div>
             </NavLink>
