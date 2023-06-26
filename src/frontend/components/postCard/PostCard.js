@@ -8,7 +8,7 @@ import {
   FaShare,
 } from "react-icons/fa";
 import { useContext, useState } from "react";
-import { BookmarksContext, PostContext } from "../../../index";
+import { AuthContext, BookmarksContext, PostContext } from "../../../index";
 import { NewPostModal } from "../../modals/createPost/newPostModal";
 export const PostCard = ({ postData }) => {
   const {
@@ -25,13 +25,14 @@ export const PostCard = ({ postData }) => {
     useContext(BookmarksContext);
   const { likeHandler, unlikeHandler, deletePostHandler } =
     useContext(PostContext);
+  const { token, loggedInUserDetails } = useContext(AuthContext);
 
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
 
-  const token = localStorage.getItem("token");
-  const { username: currentLoggedInUsername } = JSON.parse(
-    localStorage.getItem("userDetails")
-  );
+  // const token = localStorage.getItem("token");
+  // const { username: currentLoggedInUsername } = JSON.parse(
+  //   localStorage.getItem("userDetails")
+  // );
 
   return (
     <>
@@ -63,7 +64,7 @@ export const PostCard = ({ postData }) => {
               ...
             </div>
             {showPostAlterOptions ? (
-              currentLoggedInUsername === username ? (
+              loggedInUserDetails.username === username ? (
                 <div className="post-alter-options">
                   <p
                     onClick={() => {

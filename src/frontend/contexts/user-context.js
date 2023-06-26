@@ -61,10 +61,14 @@ export const UserProvider = ({ children }) => {
   };
 
   console.log(allUsers, "all users from user-context");
+
   const editUserHandler = async (token, user) => {
-    console.log(user, "from edit user handler");
+    // console.log(user, "from edit user handler");
     const response = await editUserService(token, user);
-    console.log(response.data.user);
+    const updatedUserDetails = response?.data?.user;
+    // console.log(updatedUserDetails);
+    setLoggedInUserDetails(updatedUserDetails);
+    dispatch({ type: "edit_user", payLoad: updatedUserDetails });
   };
 
   const foundUserHandler = (searchText) => {

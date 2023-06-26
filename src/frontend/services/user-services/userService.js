@@ -7,24 +7,11 @@ export const singleUserService = async (userId) => {
   return await axios.get(`/api/users/${userId}`);
 };
 
-export const editUserService = async (token, user) => {
-  console.log(user, "from edit user services");
+export const editUserService = async (token, userData) => {
+  // console.log(user, "from edit user services");
   return await axios.post(
     "/api/users/edit",
-    { user },
+    { userData },
     { headers: { authorization: token } }
   );
 };
-
-// export const editUser = async (userData, token) =>
-//   await axios.post(
-//     "/api/users/edit",
-//     {
-//       userData,
-//     },
-//     {
-//       headers: {
-//         authorization: token,
-//       },
-//     }
-//   );

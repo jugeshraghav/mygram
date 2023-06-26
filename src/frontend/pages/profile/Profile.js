@@ -22,6 +22,7 @@ export const Profile = () => {
   const { allPosts, userPosts, getUserPosts, dispatch } =
     useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
+  // console.log(loggedInUserDetails);
 
   //state variables
   const [showEditModal, setShowEditModal] = useState(false);

@@ -37,6 +37,14 @@ export const dataReducer = (state, action) => {
       return { ...state, allUsers: payLoad };
     case "set_single_user":
       return { ...state, selectedUser: payLoad };
+    case "edit_user":
+      console.log(payLoad);
+      return {
+        ...state,
+        allUsers: state.allUsers.map((user) =>
+          user?._id === payLoad?._id ? payLoad : user
+        ),
+      };
     case "add_to_bookmarks":
       return { ...state, bookmarks: [...payLoad] };
     case "remove_from_bookmarks":

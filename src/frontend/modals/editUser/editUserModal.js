@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "./editUserModal.css";
 import { AuthContext, UserContext } from "../../../index";
 export const EditUserModal = ({ user, show, onClose }) => {
+  // console.log(user);
   //Contexts
   const { editUserHandler } = useContext(UserContext);
   const { token } = useContext(AuthContext);
@@ -15,6 +16,7 @@ export const EditUserModal = ({ user, show, onClose }) => {
     e.preventDefault();
     console.log(updatedUser, "inside handle update user");
     editUserHandler(token, updatedUser);
+    onClose();
   };
   if (!show) {
     return null;
