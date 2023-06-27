@@ -31,7 +31,7 @@ export const Profile = () => {
   useEffect(() => {
     getSingleUserHandler(username);
     getUserPosts(username);
-  }, [username, allPosts, dispatch]);
+  }, [username, allPosts, allUsers]);
 
   const {
     _id,

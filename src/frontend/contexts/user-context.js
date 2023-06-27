@@ -76,7 +76,7 @@ export const UserProvider = ({ children }) => {
   };
   useEffect(() => {
     getAllUserHandler();
-  }, [dispatch]);
+  }, []);
   return (
     <UserContext.Provider
       value={{
