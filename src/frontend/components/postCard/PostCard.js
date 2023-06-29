@@ -5,11 +5,13 @@ import {
   FaRegBookmark,
   FaRegComment,
   FaRegHeart,
+  FaRegSmile,
   FaShare,
 } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext, BookmarksContext, PostContext } from "../../../index";
 import { NewPostModal } from "../../modals/createPost/newPostModal";
+import { NavLink } from "react-router-dom";
 export const PostCard = ({ postData }) => {
   const {
     _id,
@@ -17,13 +19,14 @@ export const PostCard = ({ postData }) => {
     image,
     username,
     likes: { likeCount, likedBy },
+    comments,
   } = postData;
 
   const [showPostAlterOptions, setShowAlterOptions] = useState(false);
   const [showEditPostModal, setShowEditPostModal] = useState(false);
   const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
     useContext(BookmarksContext);
-  const { likeHandler, unlikeHandler, deletePostHandler } =
+  const { likeHandler, unlikeHandler, deletePostHandler, postCommentHandler } =
     useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
 
@@ -33,6 +36,9 @@ export const PostCard = ({ postData }) => {
   // const { username: currentLoggedInUsername } = JSON.parse(
   //   localStorage.getItem("userDetails")
   // );
+
+  const [commentData, setCommentData] = useState("");
+  console.log(commentData);
 
   return (
     <>
@@ -135,6 +141,33 @@ export const PostCard = ({ postData }) => {
         <p className="post-card-like-count-container">
           <span className="post-card-like-count">{likeCount}</span> likes
         </p>
+        {/* comments */}
+        <div className="post-card-comments-container">
+          <NavLink to={`/post/${_id}`} style={{ textDecoration: "none" }}>
+            {comments?.length > 0 && (
+              <p className="post-card-comment-display-text">
+                View all {comments?.length} comments
+              </p>
+            )}
+          </NavLink>
+          <div className="comment-input-container">
+            <div>
+              <FaRegSmile className="post-card-icon post-comment-smile" />
+              <input
+                value={commentData}
+                placeholder="Add a comment..."
+                className="post-comment-input"
+                onChange={(e) => setCommentData(e.target.value)}
+              ></input>
+            </div>
+            <p
+              className="post-comment-btn"
+              onClick={() => postCommentHandler(_id, commentData, token)}
+            >
+              Post
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -24,6 +24,7 @@ function App() {
           <Route path="/mygram/explore" element={<Explore />} />
           <Route path="/mygram/bookmarks" element={<Bookmarks />} />
           <Route path="/mygram/profile/:username" element={<Profile />} />
+          <Route path="/mygram/post/:postId" element={<Profile />} />
         </Route>
       </Routes>
     </div>

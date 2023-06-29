@@ -13,6 +13,10 @@ import {
 import { toast } from "react-toastify";
 import { dataReducer, initial_state } from "../reducers/dataReducer";
 import { AuthContext } from "../../index";
+import {
+  getCommentsServices,
+  addPostCommentsServices,
+} from "../services/comments-services/commentsServices";
 
 export const PostContext = createContext();
 
@@ -107,6 +111,19 @@ export const PostProvider = ({ children }) => {
 
     dispatch({ type: "apply_filter", payLoad: filteredPosts });
   };
+
+  //////Comments Handler//////////////////////////////
+  const getAllPostCommentsHandler = async (postId, token) => {
+    const response = await getCommentsServices(postId, token);
+    console.log(response);
+  };
+
+  const postCommentHandler = async (postId, commentData, token) => {
+    console.log(postId, commentData, token);
+    const response = await addPostCommentsServices(postId, commentData, token);
+    console.log(response);
+  };
+
   useEffect(() => {
     getAllPostsHandler();
     getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
@@ -126,6 +143,8 @@ export const PostProvider = ({ children }) => {
         deletePostHandler,
         editPostHandler,
         filtersHandler,
+        getAllPostCommentsHandler,
+        postCommentHandler,
       }}
     >
       {children}
