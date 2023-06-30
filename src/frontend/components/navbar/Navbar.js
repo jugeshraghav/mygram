@@ -86,7 +86,7 @@ export const Navbar = () => {
               <span className="nav-link-text">Explore</span>
             </NavLink>
             <NavLink
-              to="bookmarks"
+              to="/mygram/bookmarks"
               style={getStyle}
               className="nav-link"
               onClick={() => {

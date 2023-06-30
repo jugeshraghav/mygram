@@ -143,7 +143,10 @@ export const PostCard = ({ postData }) => {
         </p>
         {/* comments */}
         <div className="post-card-comments-container">
-          <NavLink to={`/post/${_id}`} style={{ textDecoration: "none" }}>
+          <NavLink
+            to={`/mygram/post/${_id}`}
+            style={{ textDecoration: "none" }}
+          >
             {comments?.length > 0 && (
               <p className="post-card-comment-display-text">
                 View all {comments?.length} comments

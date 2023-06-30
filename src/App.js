@@ -10,6 +10,7 @@ import { Root } from "./frontend/pages/Root/Root";
 import { Profile } from "./frontend/pages/profile/Profile";
 import { Explore } from "./frontend/pages/explore/Explore";
 import { Bookmarks } from "./frontend/pages/bookmarks/Bookmarks";
+import { SinglePost } from "./frontend/pages/singlePost/SinglePost";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path="/mygram/explore" element={<Explore />} />
           <Route path="/mygram/bookmarks" element={<Bookmarks />} />
           <Route path="/mygram/profile/:username" element={<Profile />} />
-          <Route path="/mygram/post/:postId" element={<Profile />} />
+          <Route path="/mygram/post/:postId" element={<SinglePost />} />
         </Route>
       </Routes>
     </div>

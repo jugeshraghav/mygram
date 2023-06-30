@@ -13,8 +13,8 @@ export const Login = () => {
     password: "",
   });
   const guestUserDetails = {
-    username: "emilysmith",
-    password: "emily@123Smith",
+    username: "jugeshRaghav01",
+    password: "jugesh15",
   };
   const handleInput = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });

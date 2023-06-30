@@ -49,7 +49,7 @@ export const SecondaryNavbar = () => {
               <FaPlus />
             </span>
           </div>
-          <NavLink to="bookmarks" style={getStyle} className="nav-link">
+          <NavLink to="/mygram/bookmarks" style={getStyle} className="nav-link">
             <span className="nav-icon">
               <FaBookmark />
             </span>
