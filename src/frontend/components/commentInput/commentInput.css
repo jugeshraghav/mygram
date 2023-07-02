@@ -1,0 +1,25 @@
+/***************comment***********/
+.comment-input-container {
+  padding: 1rem 0.5rem;
+  display: grid;
+  grid-template-columns: auto 50px;
+  align-items: center;
+  border-top: 1px solid var(--mg-border-color);
+}
+.comment-input-container div {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.post-card-comment-display-text {
+  color: grey;
+  font-size: 14px;
+  text-align: left;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.post-comment-input {
+  border: none;
+  width: 100%;
+  padding: 0.5rem;
+}

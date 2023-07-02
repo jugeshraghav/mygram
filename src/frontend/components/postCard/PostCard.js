@@ -11,7 +11,7 @@ import {
 import { useContext, useState } from "react";
 import { AuthContext, BookmarksContext, PostContext } from "../../../index";
 import { NewPostModal } from "../../modals/createPost/newPostModal";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 export const PostCard = ({ postData }) => {
   const {
     _id,
@@ -39,6 +39,8 @@ export const PostCard = ({ postData }) => {
 
   const [commentData, setCommentData] = useState("");
   console.log(commentData);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -121,7 +123,13 @@ export const PostCard = ({ postData }) => {
               </span>
             )}
             <span>
-              <FaRegComment className="post-card-icon" />
+              <div
+                onClick={() =>
+                  navigate(`/mygram/post/${_id}`, { state: { from: location } })
+                }
+              >
+                <FaRegComment className="post-card-icon" />
+              </div>
             </span>
             <span>
               <FaShare className="post-card-icon" />
@@ -143,16 +151,17 @@ export const PostCard = ({ postData }) => {
         </p>
         {/* comments */}
         <div className="post-card-comments-container">
-          <NavLink
-            to={`/mygram/post/${_id}`}
-            style={{ textDecoration: "none" }}
+          <div
+            onClick={() =>
+              navigate(`/mygram/post/${_id}`, { state: { from: location } })
+            }
           >
             {comments?.length > 0 && (
               <p className="post-card-comment-display-text">
                 View all {comments?.length} comments
               </p>
             )}
-          </NavLink>
+          </div>
           <div className="comment-input-container">
             <div>
               <FaRegSmile className="post-card-icon post-comment-smile" />
