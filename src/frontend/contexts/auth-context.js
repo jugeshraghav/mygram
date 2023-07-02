@@ -14,21 +14,25 @@ export const AuthProvider = ({ children }) => {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState(
     JSON.parse(localStorage.getItem("userDetails"))
   );
+  const [loading, setLoading] = useState(false);
 
   ////////////////////// Auth Handlers /////////////////////////////////////
 
   const loginHandler = async ({ username, password }) => {
+    setLoading(true);
     try {
       const response = await loginService(username, password);
-      const { foundUser, encodedToken } = response.data;
+      const { foundUser, encodedToken } = response?.data;
       localStorage.setItem("token", encodedToken);
       localStorage.setItem("userDetails", JSON.stringify(foundUser));
       setToken(encodedToken);
       setLoggedInUserDetails(foundUser);
-      toast.success("successfully logged in!");
       navigate("/mygram/home");
+      toast.success("successfully logged in!");
     } catch (e) {
       toast.error(e.response.data.errors[0]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     password,
     confirmPassword,
   }) => {
+    setLoading(true);
     if (password !== confirmPassword) {
       toast.error("Password fileds are not matching!");
     } else {
@@ -54,6 +59,8 @@ export const AuthProvider = ({ children }) => {
         navigate("/");
       } catch (e) {
         toast.error(e.response.data.errors[0]);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -73,6 +80,7 @@ export const AuthProvider = ({ children }) => {
         signupHandler,
         logoutHandler,
         token,
+        loading,
         loggedInUserDetails,
         setLoggedInUserDetails,
       }}

@@ -4,10 +4,10 @@ import { PostCard } from "../../components/postCard/PostCard";
 import "./home.css";
 import { Stories } from "../../components/stories/Stories";
 import { Filter } from "../../components/filter/Filter";
-
+import ClipLoader from "react-spinners/ClipLoader";
 export const Home = () => {
   const { allPosts, postsOfUsersFollowed } = useContext(PostContext);
-  const { loggedInUserDetails } = useContext(AuthContext);
+  const { loggedInUserDetails, loading } = useContext(AuthContext);
 
   console.log(loggedInUserDetails, "logged in user details from home");
   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
@@ -21,14 +21,28 @@ export const Home = () => {
   //   "posts of users followed by logged in user"
   // );
 
+  console.log(loading);
   return (
     <>
       <div className="home-posts-container">
-        <Stories />
-        <Filter />
-        {postsOfFollowedUsersByLoggedInUser?.map((postData) => (
-          <PostCard postData={postData} key={postData._id} />
-        ))}
+        {loading ? (
+          <ClipLoader
+            color="black"
+            loading={loading}
+            // cssOverride={override}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <>
+            <Stories />
+            <Filter />
+            {postsOfFollowedUsersByLoggedInUser?.map((postData) => (
+              <PostCard postData={postData} key={postData._id} />
+            ))}
+          </>
+        )}
       </div>
     </>
   );

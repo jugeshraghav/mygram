@@ -56,6 +56,7 @@
   text-align: left;
   border: 1px solid var(--mg-border-color);
   width: 100px;
+  z-index: 10;
 }
 .post-alter-options p {
   border-bottom: 1px solid var(--mg-border-color);

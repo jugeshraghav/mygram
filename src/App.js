@@ -11,7 +11,7 @@ import { Profile } from "./frontend/pages/profile/Profile";
 import { Explore } from "./frontend/pages/explore/Explore";
 import { Bookmarks } from "./frontend/pages/bookmarks/Bookmarks";
 import { SinglePost } from "./frontend/pages/singlePost/SinglePost";
-import { RequiresAuth } from "./frontend/authentication/RequiresAuth/RequiresAuth";
+import { RequiresAuth } from "./frontend/auth/RequiresAuth";
 
 function App() {
   return (
@@ -21,7 +21,14 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
 
-        <Route path="/mygram" element={<Root />}>
+        <Route
+          path="/mygram"
+          element={
+            <RequiresAuth>
+              <Root />
+            </RequiresAuth>
+          }
+        >
           <Route
             path="/mygram/home"
             element={

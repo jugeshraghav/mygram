@@ -1,5 +1,6 @@
 import displayImage from "../../assets/signin-display-image.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import "./user.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../index";
@@ -7,7 +8,6 @@ import { AuthContext } from "../../../index";
 export const Login = () => {
   const { loginHandler } = useContext(AuthContext);
 
-  // console.log(a);
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
