@@ -16,7 +16,7 @@ import { RequiresAuth } from "./frontend/auth/RequiresAuth";
 function App() {
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer autoClose={500} />
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

@@ -59,19 +59,23 @@ export const Sidebar = () => {
                     </div>
                   </div>
                 </NavLink>
-                {followers.length === 0 ? (
-                  <div
-                    className="user-follow-link"
-                    onClick={() => followHandler(_id, token)}
-                  >
-                    Follow +
-                  </div>
-                ) : (
+
+                {followers?.find(
+                  (currentUser) =>
+                    currentUser?.username === loggedInUserDetails?.username
+                ) ? (
                   <div
                     className="user-following-link"
                     onClick={() => unfollowHandler(_id, token)}
                   >
                     Following
+                  </div>
+                ) : (
+                  <div
+                    className="user-follow-link"
+                    onClick={() => followHandler(_id, token)}
+                  >
+                    Follow +
                   </div>
                 )}
               </div>

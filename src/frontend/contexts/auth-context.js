@@ -21,12 +21,19 @@ export const AuthProvider = ({ children }) => {
   const loginHandler = async ({ username, password }) => {
     setLoading(true);
     try {
+      setLoading(true);
       const response = await loginService(username, password);
       const { foundUser, encodedToken } = response?.data;
+      const updatedFoundUser = {
+        ...foundUser,
+        avatar: !foundUser.avatar
+          ? "https://img.freepik.com/free-icon/user_318-644324.jpg?size=626&ext=jpg&ga=GA1.2.1704512721.1672676438&semt=sph"
+          : foundUser?.avatar,
+      };
       localStorage.setItem("token", encodedToken);
-      localStorage.setItem("userDetails", JSON.stringify(foundUser));
+      localStorage.setItem("userDetails", JSON.stringify(updatedFoundUser));
       setToken(encodedToken);
-      setLoggedInUserDetails(foundUser);
+      setLoggedInUserDetails(updatedFoundUser);
       navigate("/mygram/home");
       toast.success("successfully logged in!");
     } catch (e) {

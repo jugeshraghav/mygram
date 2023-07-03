@@ -9,7 +9,12 @@ import {
   FaShare,
 } from "react-icons/fa";
 import { useContext, useState } from "react";
-import { AuthContext, BookmarksContext, PostContext } from "../../../index";
+import {
+  AuthContext,
+  BookmarksContext,
+  PostContext,
+  UserContext,
+} from "../../../index";
 import { NewPostModal } from "../../modals/createPost/newPostModal";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 export const PostCard = ({ postData }) => {
@@ -29,19 +34,16 @@ export const PostCard = ({ postData }) => {
   const { likeHandler, unlikeHandler, deletePostHandler, postCommentHandler } =
     useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
+  const { allUsers, unfollowHandler } = useContext(UserContext);
 
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
-
-  // const token = localStorage.getItem("token");
-  // const { username: currentLoggedInUsername } = JSON.parse(
-  //   localStorage.getItem("userDetails")
-  // );
 
   const [commentData, setCommentData] = useState("");
   console.log(commentData);
   const location = useLocation();
   const navigate = useNavigate();
 
+  const currentPostUser = allUsers?.find((user) => user?.username === username);
   return (
     <>
       <NewPostModal
@@ -54,10 +56,7 @@ export const PostCard = ({ postData }) => {
         <div className="post-card-header">
           <div className="post-card-user">
             <div className="post-card-user-img">
-              <img
-                src="https://images.unsplash.com/photo-1680296280129-84da3c59727b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                alt={username}
-              />
+              <img src={currentPostUser?.avatar} alt={username} />
             </div>
             <div className="post-card-user-details">
               <p className="user-name">{username}</p>
@@ -86,7 +85,11 @@ export const PostCard = ({ postData }) => {
                 </div>
               ) : (
                 <div className="post-alter-options">
-                  <p>Unfollow</p>
+                  <p
+                    onClick={() => unfollowHandler(currentPostUser?._id, token)}
+                  >
+                    Unfollow
+                  </p>
                 </div>
               )
             ) : (

@@ -1,6 +1,8 @@
 .home-posts-container {
   display: flex;
   flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
   gap: 2rem;
   /* padding: 2rem 0 0 10rem; */
 }

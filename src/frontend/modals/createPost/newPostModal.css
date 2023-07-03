@@ -8,13 +8,13 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(1, 1, 1, 0.5);
-  z-index: 10;
+  z-index: 100;
 }
 .new-post-modal {
   background-color: white;
   text-align: left;
   padding: 2rem;
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 .new-post-modal-content {

@@ -5,6 +5,7 @@ aside {
   display: flex;
   flex-direction: column;
   padding: 12px 0 0 24px;
+  width: 194px;
 }
 .nav-heading-primary {
   font-size: 24px;

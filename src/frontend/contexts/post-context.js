@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import {
   allPostService,
   createPostService,
@@ -12,7 +18,7 @@ import {
 } from "../services/like-services/likeServices";
 import { toast } from "react-toastify";
 import { dataReducer, initial_state } from "../reducers/dataReducer";
-import { AuthContext } from "../../index";
+import { AuthContext, UserContext } from "../../index";
 import {
   getCommentsServices,
   addPostCommentsServices,
@@ -23,19 +29,24 @@ export const PostContext = createContext();
 export const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial_state);
   const { allPosts, userPosts, postsOfUsersFollowed } = state;
-
-  const { loggedInUserDetails } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  // const { loggedInUserDetails } = useContext(AuthContext);
+  // const { followHandler, unfollowHandler } = useContext(UserContext);
 
   const getAllPostsHandler = async () => {
+    setIsLoading(true);
     try {
       const response = await allPostService();
       const postsArray = response?.data?.posts;
       dispatch({ type: "get_all_posts", payLoad: postsArray });
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsLoading(false);
     }
   };
   const getUserPosts = async (username) => {
+    // setIsLoading(true);
     try {
       const response = await userPostsService(username);
       const userPostsArray = response?.data?.posts;
@@ -45,27 +56,31 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const getPostsOfUsersFollowedByLoggedInUser = (loggedInUserDetails) => {
-    console.log(loggedInUserDetails, "from getPostsOfUser function");
-    console.log(allPosts, "from getPostsOfUser function");
-    const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
-      (post) =>
-        loggedInUserDetails?.following.some(
-          (followingUser) => followingUser.username === post.username
-        ) || loggedInUserDetails.username === post.username
-    );
-    dispatch({
-      type: "get_posts_of_users_followed_by_logged_in_user",
-      payLoad: postsOfFollowedUsersByLoggedInUser,
-    });
-  };
+  // const getPostsOfUsersFollowedByLoggedInUser = (loggedInUserDetails) => {
+  //   console.log(loggedInUserDetails, "from getPostsOfUser function");
+  //   console.log(allPosts, "from getPostsOfUser function");
+  //   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
+  //     (post) =>
+  //       loggedInUserDetails?.following.some(
+  //         (followingUser) => followingUser.username === post.username
+  //       ) || loggedInUserDetails.username === post.username
+  //   );
+  //   dispatch({
+  //     type: "get_posts_of_users_followed_by_logged_in_user",
+  //     payLoad: postsOfFollowedUsersByLoggedInUser,
+  //   });
+  // };
 
   const likeHandler = async (postId, username, token) => {
-    const response = await likeService(postId, token);
-    const postsArray = response?.data?.posts;
-    dispatch({ type: "like_post", payLoad: postsArray });
-    // getUserPosts(username);
-    toast.success("Post liked successfully!");
+    try {
+      const response = await likeService(postId, token);
+      const postsArray = response?.data?.posts;
+      dispatch({ type: "like_post", payLoad: postsArray });
+      // getUserPosts(username);
+      toast.success("Post liked successfully!");
+    } catch (e) {
+      console.log(e);
+    }
   };
   const unlikeHandler = async (postId, username, token) => {
     const response = await unlikeService(postId, token);
@@ -83,13 +98,21 @@ export const PostProvider = ({ children }) => {
   };
 
   const deletePostHandler = async (postId, token) => {
-    const response = await deletePostService(postId, token);
-    const newPostsArr = response?.data?.posts;
-    dispatch({ type: "delete_post", payLoad: newPostsArr });
-    toast.info("Post successfully deleted.");
+    setIsLoading(true);
+    try {
+      const response = await deletePostService(postId, token);
+      const newPostsArr = response?.data?.posts;
+      dispatch({ type: "delete_post", payLoad: newPostsArr });
+      toast.info("Post successfully deleted.");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const editPostHandler = async (postId, post, token) => {
+    setIsLoading(true);
     try {
       const response = await editPostService(postId, post, token);
       const newPostsArr = response?.data?.posts;
@@ -97,6 +120,8 @@ export const PostProvider = ({ children }) => {
       toast.info("Post successfully edited.");
     } catch (e) {
       console.log(e.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -126,13 +151,14 @@ export const PostProvider = ({ children }) => {
 
   useEffect(() => {
     getAllPostsHandler();
-    getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
+    // getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <PostContext.Provider
       value={{
+        isLoading,
         allPosts,
         getUserPosts,
         userPosts,

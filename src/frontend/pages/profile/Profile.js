@@ -44,6 +44,8 @@ export const Profile = () => {
     following,
     website,
   } = selectedUser;
+  console.log(selectedUser, "from profile");
+  console.log(allUsers, "from profile");
   return (
     <>
       <EditUserModal
@@ -103,9 +105,16 @@ export const Profile = () => {
         </div>
         <p className="user-posts-heading">Your Posts</p>
         <div className="user-posts">
-          {userPosts.map((postData) => (
-            <PostCard postData={postData} key={postData._id} />
-          ))}
+          {userPosts.length > 0 ? (
+            userPosts.map((postData) => (
+              <PostCard postData={postData} key={postData._id} />
+            ))
+          ) : (
+            <>
+              <h2>No Posts to be displayed...</h2>
+              <h4>Start Posting</h4>
+            </>
+          )}
         </div>
       </div>
     </>

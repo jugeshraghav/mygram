@@ -5,6 +5,7 @@ import "../../../../App.css";
 import { useContext, useState } from "react";
 import { AuthContext, PostContext } from "../../../../index";
 import { NewPostModal } from "../../../modals/createPost/newPostModal";
+import { IoLogOut } from "react-icons/io5";
 
 export const SecondaryNavbar = () => {
   const [showNewPostModal, setShowNewPostModal] = useState(false);
@@ -64,6 +65,11 @@ export const SecondaryNavbar = () => {
               <FaUser />
             </span>
           </NavLink>
+          <IoLogOut
+            className="nav-icon"
+            style={{ fontSize: "32px" }}
+            onClick={() => logoutHandler()}
+          />
         </nav>
       </section>
     </>

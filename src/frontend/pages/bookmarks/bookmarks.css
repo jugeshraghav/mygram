@@ -10,7 +10,20 @@
   text-align: left;
   margin: 0 0.2rem;
 }
-
+.bookmark-page-btn {
+  width: 100px;
+  padding: 0.5rem 1rem;
+  color: var(--mg-primary-color);
+  background-color: var(--mg-secondary-color);
+  border: 1px solid var(--mg-primary-color);
+  border-radius: 8px;
+  cursor: pointer;
+  margin: auto;
+}
+.bookmark-page-btn:hover {
+  background-color: var(--mg-primary-color);
+  color: var(--mg-secondary-color);
+}
 /******Responsive Screens***********/
 /********* small Screen **********/
 /* @media (max-width: 768px) {

@@ -9,6 +9,7 @@ import {
   FaUnlock,
   FaUser,
 } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import "./navbar.css";
 import "../../../App.css";
 import { useContext, useState } from "react";
@@ -150,10 +151,7 @@ export const Navbar = () => {
             >
               <div className="navbar-my-profile">
                 {" "}
-                <img
-                  src="https://images.unsplash.com/photo-1680296280129-84da3c59727b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt="my-profile"
-                />
+                <img src={loggedInUserDetails?.avatar} alt="my-profile" />
                 <div className="navbar-my-profile-content">
                   <p className="navbar-my-profile-fullname">
                     {loggedInUserDetails?.firstName}{" "}
@@ -166,7 +164,7 @@ export const Navbar = () => {
               </div>
             </NavLink>
             <div className="logout-btn nav-icon">
-              <FaUnlock onClick={logoutHandler} title="Logout" />
+              <FiLogOut onClick={logoutHandler} title="Logout" />
             </div>
           </div>
         </nav>
