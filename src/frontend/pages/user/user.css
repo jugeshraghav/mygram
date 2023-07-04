@@ -66,7 +66,19 @@ form {
   border: 1px solid var(--mg-border-color);
   border-radius: 2px;
 }
-
+.login-form-pwd-input-container {
+  position: relative;
+}
+.login-form-eye-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
 /*********** Login buttons**********/
 .primary-button {
   background-color: var(--mg-primary-color);

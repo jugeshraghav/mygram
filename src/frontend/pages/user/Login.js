@@ -5,6 +5,8 @@ import "./user.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../index";
 
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+
 export const Login = () => {
   const { loginHandler } = useContext(AuthContext);
 
@@ -12,6 +14,7 @@ export const Login = () => {
     username: "",
     password: "",
   });
+  const [showLoginPwd, setShowLoginPwd] = useState(false);
   const guestUserDetails = {
     username: "jugeshRaghav01",
     password: "jugesh15",
@@ -34,24 +37,44 @@ export const Login = () => {
           <div className="login-form">
             <p className="heading">Mygram</p>
             <form onSubmit={handleLoginSubmit}>
-              <input
-                className="login-input"
-                placeholder="Phone number,username,email"
-                value={userDetails.username}
-                onChange={handleInput}
-                name="username"
-                autoComplete="on"
-                required
-              ></input>
-              <input
-                className="login-input"
-                placeholder="Password"
-                name="password"
-                value={userDetails.password}
-                onChange={handleInput}
-                autoComplete="on"
-                required
-              ></input>
+              .
+              <div className="login-form-pwd-input-container">
+                <input
+                  type="text"
+                  className="login-input"
+                  placeholder="Phone number,username,email"
+                  value={userDetails.username}
+                  onChange={handleInput}
+                  name="username"
+                  required
+                ></input>
+
+                <input
+                  type={showLoginPwd ? "text" : "password"}
+                  className="login-input"
+                  placeholder="Password"
+                  name="password"
+                  value={userDetails.password}
+                  onChange={handleInput}
+                  required
+                ></input>
+
+                {userDetails?.password ? (
+                  showLoginPwd ? (
+                    <AiOutlineEye
+                      className="login-form-eye-icon"
+                      onClick={() => setShowLoginPwd(!showLoginPwd)}
+                    />
+                  ) : (
+                    <AiOutlineEyeInvisible
+                      className="login-form-eye-icon"
+                      onClick={() => setShowLoginPwd(!showLoginPwd)}
+                    />
+                  )
+                ) : (
+                  ""
+                )}
+              </div>
               <button type="submit" className="primary-button">
                 Log in
               </button>

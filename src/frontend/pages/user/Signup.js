@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./user.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../index";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 export const Signup = () => {
   const { signupHandler } = useContext(AuthContext);
   const [userSignupDetails, setUserSignupDetails] = useState({
@@ -12,6 +13,8 @@ export const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+  const [showSignUpPwd, setShowSignUpPwd] = useState(false);
+  const [showSignUpConfirmPwd, setShowSignUpConfirmPwd] = useState(false);
   const handleSignupInput = (e) => {
     setUserSignupDetails({
       ...userSignupDetails,
@@ -58,20 +61,61 @@ export const Signup = () => {
                 required
                 onChange={handleSignupInput}
               ></input>
-              <input
-                className="login-input"
-                placeholder="Password"
-                name="password"
-                required
-                onChange={handleSignupInput}
-              ></input>
-              <input
-                className="login-input"
-                placeholder="Confirm password"
-                name="confirmPassword"
-                required
-                onChange={handleSignupInput}
-              ></input>
+              <div className="login-form-pwd-input-container">
+                <input
+                  type={showSignUpPwd ? "text" : "password"}
+                  className="login-input"
+                  placeholder="Password"
+                  name="password"
+                  required
+                  onChange={handleSignupInput}
+                ></input>
+                {userSignupDetails?.password ? (
+                  showSignUpPwd ? (
+                    <AiOutlineEye
+                      className="login-form-eye-icon"
+                      onClick={() => setShowSignUpPwd(!showSignUpPwd)}
+                    />
+                  ) : (
+                    <AiOutlineEyeInvisible
+                      className="login-form-eye-icon"
+                      onClick={() => setShowSignUpPwd(!showSignUpPwd)}
+                    />
+                  )
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="login-form-pwd-input-container">
+                <input
+                  type={showSignUpConfirmPwd ? "text" : "password"}
+                  className="login-input"
+                  placeholder="Confirm password"
+                  name="confirmPassword"
+                  required
+                  onChange={handleSignupInput}
+                ></input>
+
+                {userSignupDetails?.confirmPassword ? (
+                  showSignUpConfirmPwd ? (
+                    <AiOutlineEye
+                      className="login-form-eye-icon"
+                      onClick={() =>
+                        setShowSignUpConfirmPwd(!showSignUpConfirmPwd)
+                      }
+                    />
+                  ) : (
+                    <AiOutlineEyeInvisible
+                      className="login-form-eye-icon"
+                      onClick={() =>
+                        setShowSignUpConfirmPwd(!showSignUpConfirmPwd)
+                      }
+                    />
+                  )
+                ) : (
+                  ""
+                )}
+              </div>
 
               <button type="submit" className="primary-button">
                 Signup

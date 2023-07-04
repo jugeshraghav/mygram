@@ -7,18 +7,11 @@ export const CommentInput = () => {
         <div>
           <FaRegSmile className="post-card-icon post-comment-smile" />
           <input
-            // value={commentData}
             placeholder="Add a comment..."
             className="post-comment-input"
-            // onChange={(e) => setCommentData(e.target.value)}
           ></input>
         </div>
-        <p
-          className="post-comment-btn"
-          // onClick={() => postCommentHandler(_id, commentData, token)}
-        >
-          Post
-        </p>
+        <p className="post-comment-btn">Post</p>
       </div>
     </>
   );
