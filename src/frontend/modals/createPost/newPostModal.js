@@ -6,9 +6,6 @@ import { AuthContext, PostContext } from "../../../index";
 import { toast } from "react-toastify";
 
 export const NewPostModal = ({ show, onClose, displayName, post }) => {
-  // const currentLoggedInUser = JSON.parse(localStorage.getItem("userDetails"));
-  // const token = localStorage.getItem("token");
-  // const { avatar, username: currentLoggedInUsername } = currentLoggedInUser;
   const { token, loggedInUserDetails } = useContext(AuthContext);
   const { createPostHandler, editPostHandler } = useContext(PostContext);
   const [newPostContent, setNewPostContent] = useState(

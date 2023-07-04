@@ -18,6 +18,22 @@ export const EditUserModal = ({ user, show, onClose }) => {
     editUserHandler(token, updatedUser);
     onClose();
   };
+  const handleChangeUserImage = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "iamge/*";
+    input.onchange = (e) => {
+      const image = e.target.files[0];
+      const imageName = e.target.files[0].name;
+      const imageURL = URL.createObjectURL(image);
+
+      setUpdatedUser((pre) => ({
+        ...pre,
+        avatar: imageURL,
+      }));
+    };
+    input.click();
+  };
   if (!show) {
     return null;
   } else {
@@ -38,7 +54,10 @@ export const EditUserModal = ({ user, show, onClose }) => {
                 <img src={updatedUser.avatar} alt={updatedUser.username} />
                 <div>
                   <p className="edit-modal-username">{updatedUser.username}</p>
-                  <p className="edit-modal-change-profile-pic-link">
+                  <p
+                    className="edit-modal-change-profile-pic-link"
+                    onClick={handleChangeUserImage}
+                  >
                     Change profile Photo
                   </p>
                 </div>
