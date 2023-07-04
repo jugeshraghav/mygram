@@ -69,15 +69,16 @@ export const dataReducer = (state, action) => {
       };
 
     case "found_users_on_search":
-      console.log(payLoad, "from found users case");
       return {
         ...state,
-        foundUsers: state.allUsers.filter(
-          ({ firstName, lastName, username }) =>
-            firstName?.toLowerCase().includes(payLoad?.toLowerCase()) ||
-            lastName?.toLowerCase().includes(payLoad?.toLowerCase()) ||
-            username?.toLowerCase().includes(payLoad?.toLowerCase())
-        ),
+        foundUsers: payLoad
+          ? state.allUsers.filter(
+              ({ firstName, lastName, username }) =>
+                firstName?.toLowerCase().includes(payLoad?.toLowerCase()) ||
+                lastName?.toLowerCase().includes(payLoad?.toLowerCase()) ||
+                username?.toLowerCase().includes(payLoad?.toLowerCase())
+            )
+          : "",
       };
     default:
       return state;

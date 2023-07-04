@@ -5,9 +5,6 @@ import { FaSearch } from "react-icons/fa";
 import "./searchInput.css";
 
 export const SearchInput = ({ from, showSearchCardMobile }) => {
-  const [searchText, setSearchText] = useState();
-
-  console.log(searchText, "search name");
   const { foundUserHandler } = useContext(UserContext);
   return (
     <>
@@ -20,10 +17,9 @@ export const SearchInput = ({ from, showSearchCardMobile }) => {
           className="navbar-search-input"
           type="text"
           placeholder="Search"
-          value={searchText}
+          // value={searchText}
           onChange={(e) => {
-            setSearchText(e.target.value);
-            foundUserHandler(searchText);
+            foundUserHandler(e.target.value);
           }}
           onClick={showSearchCardMobile}
         />

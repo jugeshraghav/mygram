@@ -72,6 +72,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const foundUserHandler = (searchText) => {
+    console.log(searchText, "from found-user-handler");
     dispatch({ type: "found_users_on_search", payLoad: searchText });
   };
   useEffect(() => {
