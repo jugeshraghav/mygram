@@ -10,6 +10,7 @@ import {
 } from "../services/follow-services/followServices";
 import { dataReducer, initial_state } from "../reducers/dataReducer";
 import { AuthContext, PostContext } from "../../index";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
@@ -47,6 +48,9 @@ export const UserProvider = ({ children }) => {
     const userFollowed = response.data.followUser;
     const followedBy = response.data.user;
     setLoggedInUserDetails(followedBy);
+    toast.success(
+      `you are now following ${userFollowed?.firstName} ${userFollowed?.lastName}`
+    );
     dispatch({ type: "update_user_followed_details", payLoad: userFollowed });
     dispatch({ type: "update_followed_by_user_details", payLoad: followedBy });
   };
@@ -56,6 +60,9 @@ export const UserProvider = ({ children }) => {
     const userFollowed = response.data.followUser;
     const followedBy = response.data.user;
     setLoggedInUserDetails(followedBy);
+    toast.info(
+      `you unfollowed ${userFollowed?.firstName} ${userFollowed?.lastName}`
+    );
     dispatch({ type: "update_user_followed_details", payLoad: userFollowed });
     dispatch({ type: "update_followed_by_user_details", payLoad: followedBy });
   };

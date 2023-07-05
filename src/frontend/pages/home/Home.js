@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { AuthContext, PostContext } from "../../../index";
 import { PostCard } from "../../components/postCard/PostCard";
-import ClipLoader from "react-spinners/ClipLoader";
+// import ClipLoader from "react-spinners/ClipLoader";
 import "./home.css";
 import { Stories } from "../../components/stories/Stories";
 import { Filter } from "../../components/filter/Filter";
 export const Home = () => {
-  const { allPosts, postsOfUsersFollowed, isLoading } = useContext(PostContext);
-  const { loggedInUserDetails, loading } = useContext(AuthContext);
+  const { allPosts, isLoading } = useContext(PostContext);
+  const { loggedInUserDetails } = useContext(AuthContext);
 
   console.log(loggedInUserDetails, "logged in user details from home");
   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(

@@ -34,7 +34,7 @@ export const PostCard = ({ postData }) => {
   const { likeHandler, unlikeHandler, deletePostHandler, postCommentHandler } =
     useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
-  const { allUsers, unfollowHandler } = useContext(UserContext);
+  const { allUsers, unfollowHandler, followHandler } = useContext(UserContext);
 
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
 
@@ -85,11 +85,23 @@ export const PostCard = ({ postData }) => {
                 </div>
               ) : (
                 <div className="post-alter-options">
-                  <p
-                    onClick={() => unfollowHandler(currentPostUser?._id, token)}
-                  >
-                    Unfollow
-                  </p>
+                  {loggedInUserDetails?.following?.find(
+                    (user) => user.username === username
+                  ) ? (
+                    <p
+                      onClick={() =>
+                        unfollowHandler(currentPostUser?._id, token)
+                      }
+                    >
+                      Unfollow
+                    </p>
+                  ) : (
+                    <p
+                      onClick={() => followHandler(currentPostUser?._id, token)}
+                    >
+                      Follow
+                    </p>
+                  )}
                 </div>
               )
             ) : (

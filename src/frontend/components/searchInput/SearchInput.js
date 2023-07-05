@@ -6,6 +6,7 @@ import "./searchInput.css";
 
 export const SearchInput = ({ from, showSearchCardMobile }) => {
   const { foundUserHandler } = useContext(UserContext);
+  const [searchText, setSearchText] = useState("");
   return (
     <>
       {from !== "top-nav" && (
@@ -17,9 +18,10 @@ export const SearchInput = ({ from, showSearchCardMobile }) => {
           className="navbar-search-input"
           type="text"
           placeholder="Search"
-          // value={searchText}
+          value={searchText}
           onChange={(e) => {
             foundUserHandler(e.target.value);
+            setSearchText(e.target.value);
           }}
           onClick={showSearchCardMobile}
         />

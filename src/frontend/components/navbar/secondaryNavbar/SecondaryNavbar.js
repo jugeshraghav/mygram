@@ -7,8 +7,8 @@ import { AuthContext, PostContext } from "../../../../index";
 import { NewPostModal } from "../../../modals/createPost/newPostModal";
 import { IoLogOut } from "react-icons/io5";
 
-export const SecondaryNavbar = () => {
-  const [showNewPostModal, setShowNewPostModal] = useState(false);
+export const SecondaryNavbar = ({ setShowNewPostModal }) => {
+  // const [showNewPostModal, setShowNewPostModal] = useState(false);
 
   const { getUserPosts } = useContext(PostContext);
   const { logoutHandler } = useContext(AuthContext);
@@ -25,11 +25,11 @@ export const SecondaryNavbar = () => {
 
   return (
     <>
-      <NewPostModal
+      {/* <NewPostModal
         show={showNewPostModal}
         onClose={() => setShowNewPostModal(false)}
         displayName="New"
-      />
+      /> */}
       <section className="secondary-navbar-container">
         <nav className="secondary-navbar">
           <NavLink to="/mygram/home" style={getStyle} className="nav-link">

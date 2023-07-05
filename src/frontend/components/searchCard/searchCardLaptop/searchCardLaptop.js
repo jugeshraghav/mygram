@@ -3,10 +3,11 @@ import { UserContext } from "../../../../index";
 
 import "./searchCardLaptop.css";
 import { SearchInput } from "../../searchInput/SearchInput";
+import { useNavigate } from "react-router-dom";
 
 export const SearchCardLaptop = ({ onClose, show }) => {
   const { foundUsers } = useContext(UserContext);
-
+  const navigate = useNavigate();
   console.log(foundUsers, "found-user");
   return (
     <>
@@ -22,7 +23,14 @@ export const SearchCardLaptop = ({ onClose, show }) => {
                 {foundUsers.length > 0 ? (
                   foundUsers.map(
                     ({ _id, avatar, firstName, lastName, username }) => (
-                      <div key={_id} className="search-card-laptop-found-user">
+                      <div
+                        key={_id}
+                        className="search-card-laptop-found-user"
+                        onClick={() => {
+                          navigate(`/mygram/profile/${username}`);
+                          onClose();
+                        }}
+                      >
                         <img src={avatar} alt={username} />
                         <div>
                           <p className="search-card-laptop-fullname">

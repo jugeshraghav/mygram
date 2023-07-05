@@ -6,7 +6,6 @@ import {
   FaInstagram,
   FaPlus,
   FaSearch,
-  FaUnlock,
   FaUser,
 } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
@@ -14,20 +13,17 @@ import "./navbar.css";
 import "../../../App.css";
 import { useContext, useState } from "react";
 import { AuthContext, PostContext } from "../../../index";
-import { NewPostModal } from "../../modals/createPost/newPostModal";
 import { SearchInput } from "../searchInput/SearchInput";
-import { SearchCardLaptop } from "../searchCard/searchCardLaptop/searchCardLaptop";
-import { SearchCardMobile } from "../searchCard/searchCardMobile/searchCardMobile";
 
-export const Navbar = () => {
-  const [showNewPostModal, setShowNewPostModal] = useState(false);
-  const [showSearchCardLaptop, setShowSearchCardLaptop] = useState(false);
-  const [showSearchCardMobile, setShowSearchCardMobile] = useState(false);
-
-  const { getUserPosts } = useContext(PostContext);
+export const Navbar = ({
+  showSearchCardLaptop,
+  showSearchCardMobile,
+  setShowNewPostModal,
+  setShowSearchCardLaptop,
+  setShowSearchCardMobile,
+}) => {
   const { logoutHandler, loggedInUserDetails } = useContext(AuthContext);
 
-  // const { _id, firstName, lastName, username } = loggedInUserDetails;
   const getStyle = ({ isActive }) => {
     return {
       fontWeight: isActive ? "bold" : "normal",
@@ -38,19 +34,6 @@ export const Navbar = () => {
 
   return (
     <>
-      <NewPostModal
-        show={showNewPostModal}
-        onClose={() => setShowNewPostModal(false)}
-        displayName="New"
-      />
-      <SearchCardLaptop
-        show={showSearchCardLaptop}
-        onClose={() => setShowSearchCardLaptop(false)}
-      />
-      <SearchCardMobile
-        show={showSearchCardMobile}
-        onClose={() => setShowSearchCardMobile(false)}
-      />
       <aside>
         <p className="nav-heading-primary">Mygram</p>
         <p className="nav-heading-secondary">

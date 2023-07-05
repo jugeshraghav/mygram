@@ -4,6 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 10;
 }
 .search-card-mobile-container {
   width: 100%;
@@ -13,7 +14,6 @@
   border-radius-bottom: 8px;
   margin: 0.5rem 0;
   padding: 0.5rem;
-  z-index: 10;
 }
 
 .search-card-mobile-content {
