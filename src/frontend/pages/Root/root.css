@@ -20,7 +20,7 @@
   position: sticky;
   top: 0;
   height: 100dvh;
-  z-index: 100;
+  z-index: 90;
 }
 .main-content-sidebar {
   position: sticky;
