@@ -1,16 +1,25 @@
+//react hooks imports
 import { useContext } from "react";
-import { BookmarksContext, PostContext } from "../../../index";
-import { PostCard } from "../../components/postCard/PostCard";
-import "./bookmarks.css";
 import { useNavigate } from "react-router-dom";
+
+//context imports
+import { BookmarksContext, PostContext } from "../../../index";
+
+//components import
+import { PostCard } from "../../components/postCard/PostCard";
+
+//style imports
+import "./bookmarks.css";
 
 export const Bookmarks = () => {
   const { bookmarks } = useContext(BookmarksContext);
   const { allPosts } = useContext(PostContext);
+  const navigate = useNavigate();
+
+  //utilities
   const bookmarkedPosts = allPosts.filter(({ _id }) =>
     bookmarks.some((bookmarkId) => bookmarkId === _id)
   );
-  const navigate = useNavigate();
 
   return (
     <>

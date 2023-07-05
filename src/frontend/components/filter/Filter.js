@@ -1,12 +1,23 @@
-import { FaFilter } from "react-icons/fa";
+//style imports
 import "./filter.css";
+
+//icon imports
+import { FaFilter } from "react-icons/fa";
+
+//react hook imports
 import { useContext, useState } from "react";
+
+//context imports
 import { PostContext } from "../../../index";
+
+//Filter component
 export const Filter = () => {
+  const { filtersHandler } = useContext(PostContext);
+  //State variables
   const [appliedFilter, setAppliedFilter] = useState("Latest");
   const [showFilterOptions, setShowFilterOptions] = useState(false);
-  const { filtersHandler } = useContext(PostContext);
 
+  //event handlers
   const handleCurrentFilterClick = (currentFilter) => {
     setAppliedFilter(currentFilter);
     filtersHandler(currentFilter);
@@ -35,27 +46,9 @@ export const Filter = () => {
               >
                 Trending
               </p>
-              {/* <p
-                className="filter-option"
-                onClick={() => handleCurrentFilterClick("All")}
-              >
-                All Posts
-              </p> */}
             </div>
           )}
         </div>
-        {/* <p
-          className="current-applied-filter"
-          onClick={() => filtersHandler("Latest")}
-        >
-          <FaKiwiBird /> Latest Posts
-        </p>
-        <p
-          className="current-applied-filter"
-          onClick={() => filtersHandler("Trending")}
-        >
-          <FaFire /> Trending Posts
-        </p> */}
       </div>
     </>
   );

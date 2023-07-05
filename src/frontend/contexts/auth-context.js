@@ -1,8 +1,13 @@
+//react hooks imports
 import { createContext, useState } from "react";
-import { loginService } from "../services/auth-services/loginService";
 import { useNavigate } from "react-router-dom";
+
+//toast imports
 import { toast } from "react-toastify";
+
+//services imports
 import { signUpService } from "../services/auth-services/signupService";
+import { loginService } from "../services/auth-services/loginService";
 
 export const AuthContext = createContext();
 
@@ -14,6 +19,8 @@ export const AuthProvider = ({ children }) => {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState(
     JSON.parse(localStorage.getItem("userDetails"))
   );
+
+  ////////////////////state variables//////////////////////////////////////
   const [loading, setLoading] = useState(false);
 
   ////////////////////// Auth Handlers /////////////////////////////////////
@@ -55,13 +62,7 @@ export const AuthProvider = ({ children }) => {
       toast.error("Password fileds are not matching!");
     } else {
       try {
-        const response = await signUpService(
-          firstname,
-          lastname,
-          password,
-          username
-        );
-        // const { createdUser, encodedToken } = response.data;
+        await signUpService(firstname, lastname, password, username);
         toast.success("Successfully signed up! Kindly login to continue.");
         navigate("/");
       } catch (e) {

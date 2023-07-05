@@ -1,4 +1,7 @@
+//react hook imports
 import { createContext, useContext, useEffect, useReducer } from "react";
+
+//services imports
 import {
   allUsersService,
   editUserService,
@@ -8,13 +11,16 @@ import {
   followService,
   unfollowService,
 } from "../services/follow-services/followServices";
+//reducers
 import { dataReducer, initial_state } from "../reducers/dataReducer";
-import { AuthContext, PostContext } from "../../index";
+
+//context imports
+import { AuthContext } from "../../index";
+//toast imports
 import { toast } from "react-toastify";
 
 export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
-  const { allPosts } = useContext(PostContext);
   const { setLoggedInUserDetails } = useContext(AuthContext);
   ///////////////////// User Reducer //////////////////////////////////
   const [state, dispatch] = useReducer(dataReducer, initial_state);
@@ -70,16 +76,13 @@ export const UserProvider = ({ children }) => {
   console.log(allUsers, "all users from user-context");
 
   const editUserHandler = async (token, user) => {
-    // console.log(user, "from edit user handler");
     const response = await editUserService(token, user);
     const updatedUserDetails = response?.data?.user;
-    // console.log(updatedUserDetails);
     setLoggedInUserDetails(updatedUserDetails);
     dispatch({ type: "edit_user", payLoad: updatedUserDetails });
   };
 
   const foundUserHandler = (searchText) => {
-    console.log(searchText, "from found-user-handler");
     dispatch({ type: "found_users_on_search", payLoad: searchText });
   };
   useEffect(() => {

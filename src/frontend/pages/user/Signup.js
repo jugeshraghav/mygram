@@ -1,11 +1,22 @@
+//assts imports
 import displayImage from "../../assets/signin-display-image.png";
-import { NavLink } from "react-router-dom";
-import "./user.css";
+
+//react hook imports
 import { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
+
+//style imports
+import "./user.css";
+
+//context imports
 import { AuthContext } from "../../../index";
+
+//icon imports
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 export const Signup = () => {
   const { signupHandler } = useContext(AuthContext);
+
+  //state variables
   const [userSignupDetails, setUserSignupDetails] = useState({
     firstname: "",
     lastname: "",
@@ -15,6 +26,8 @@ export const Signup = () => {
   });
   const [showSignUpPwd, setShowSignUpPwd] = useState(false);
   const [showSignUpConfirmPwd, setShowSignUpConfirmPwd] = useState(false);
+
+  //handlers
   const handleSignupInput = (e) => {
     setUserSignupDetails({
       ...userSignupDetails,
@@ -26,6 +39,8 @@ export const Signup = () => {
     e.preventDefault();
     signupHandler(userSignupDetails);
   };
+
+  //component
   return (
     <>
       <article>

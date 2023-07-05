@@ -1,15 +1,23 @@
+//assets imports
 import displayImage from "../../assets/signin-display-image.png";
+
+//react-hooks imports
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
+//style imports
 import "./user.css";
-import { useContext, useState } from "react";
+
+//context imports
 import { AuthContext } from "../../../index";
 
+//icon imports
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 export const Login = () => {
   const { loginHandler } = useContext(AuthContext);
 
+  //state variables
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
@@ -19,6 +27,8 @@ export const Login = () => {
     username: "jugeshRaghav01",
     password: "jugesh15",
   };
+
+  //handlers
   const handleInput = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
@@ -26,6 +36,8 @@ export const Login = () => {
     e.preventDefault();
     loginHandler(userDetails);
   };
+
+  //component
   return (
     <>
       <article>

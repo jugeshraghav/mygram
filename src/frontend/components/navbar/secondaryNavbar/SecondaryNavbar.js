@@ -1,19 +1,26 @@
-import { NavLink } from "react-router-dom";
-import { FaBookmark, FaCompass, FaHome, FaPlus, FaUser } from "react-icons/fa";
+//style imports
 import "./secondaryNavbar.css";
 import "../../../../App.css";
-import { useContext, useState } from "react";
-import { AuthContext, PostContext } from "../../../../index";
-import { NewPostModal } from "../../../modals/createPost/newPostModal";
+
+//icon imports
+import { FaBookmark, FaCompass, FaHome, FaPlus, FaUser } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 
-export const SecondaryNavbar = ({ setShowNewPostModal }) => {
-  // const [showNewPostModal, setShowNewPostModal] = useState(false);
+//react hook imports
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
+//context imports
+import { AuthContext, PostContext } from "../../../../index";
+
+//Component
+export const SecondaryNavbar = ({ setShowNewPostModal }) => {
+  //handlers from contexts
   const { getUserPosts } = useContext(PostContext);
   const { logoutHandler } = useContext(AuthContext);
   const { loggedInUserDetails } = useContext(AuthContext);
 
+  //Navlink style
   const getStyle = ({ isActive }) => {
     return {
       fontWeight: isActive ? "bold" : "normal",
@@ -25,11 +32,6 @@ export const SecondaryNavbar = ({ setShowNewPostModal }) => {
 
   return (
     <>
-      {/* <NewPostModal
-        show={showNewPostModal}
-        onClose={() => setShowNewPostModal(false)}
-        displayName="New"
-      /> */}
       <section className="secondary-navbar-container">
         <nav className="secondary-navbar">
           <NavLink to="/mygram/home" style={getStyle} className="nav-link">

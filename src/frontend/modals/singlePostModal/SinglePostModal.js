@@ -1,21 +1,32 @@
+//react hooks imports
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import "./singlePostModal.css";
 import { useContext } from "react";
+
+//style imports
+import "./singlePostModal.css";
+
+//context imports
 import { PostContext } from "../../contexts/post-context";
 import { UserContext } from "../../contexts/user-context";
+
+//component imports
 import { CommentInput } from "../../components/commentInput/CommentInput";
+
+//icon imports
 import { FaArrowLeft } from "react-icons/fa";
 
 export const SinglePostModal = ({ show, onClose }) => {
   const { postId } = useParams();
   const { allPosts } = useContext(PostContext);
   const { allUsers } = useContext(UserContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  //utilities
   const postToBeDisplayed = allPosts?.find((post) => post?._id === postId);
   const currentUser = allUsers?.find(
     ({ username }) => username === postToBeDisplayed?.username
   );
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const singlePostModalHandler = () => {
     onClose();

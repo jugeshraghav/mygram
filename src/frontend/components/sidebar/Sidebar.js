@@ -1,14 +1,19 @@
+//style imports
 import "./sidebar.css";
+
+//react hooks imports
 import { useContext } from "react";
-import { AuthContext, PostContext, UserContext } from "../../../index";
 import { NavLink } from "react-router-dom";
 
+//context imports
+import { AuthContext, UserContext } from "../../../index";
+
 export const Sidebar = () => {
-  const { allUsers, getSingleUserHandler, followHandler, unfollowHandler } =
-    useContext(UserContext);
-  const { getUserPosts } = useContext(PostContext);
+  //handlers from context
+  const { allUsers, followHandler, unfollowHandler } = useContext(UserContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
 
+  //utilities
   const usersToBeDisplayed = allUsers
     .filter((user) => user?.username !== loggedInUserDetails?.username)
     .slice(0, 5);
@@ -16,6 +21,7 @@ export const Sidebar = () => {
     return { textDecoration: "none" };
   };
 
+  //component
   return (
     <>
       <div className="sidebar">

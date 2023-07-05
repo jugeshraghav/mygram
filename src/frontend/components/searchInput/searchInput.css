@@ -7,8 +7,6 @@
 
 .search-input-container {
   position: relative;
-  /* border-bottom: 1px solid var(--mg-border-color);
-  padding-bottom: 1.5rem; */
 }
 .navbar-search-input {
   border: 1px solid var(--mg-border-color);

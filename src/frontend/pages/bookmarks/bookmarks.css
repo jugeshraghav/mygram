@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* padding: 2rem 0 0 10rem; */
 }
 .bookmarks-page-heading {
   font-size: 20px;
@@ -24,25 +23,3 @@
   background-color: var(--mg-primary-color);
   color: var(--mg-secondary-color);
 }
-/******Responsive Screens***********/
-/********* small Screen **********/
-/* @media (max-width: 768px) {
-  .explore-category-btn-container button {
-    padding: 0.5rem;
-  }
-}
-
-@media (max-width: 525px) {
-  .explore-category-btn-container {
-    padding: 0 0.3rem;
-  }
-  .explore-category-btn-container button {
-    padding: 0.2rem 0.3rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .explore-category-btn-container button {
-    padding: 0.2rem;
-  }
-} */

@@ -1,9 +1,14 @@
+//react hooks imports
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+//context imports
 import { AuthContext, PostContext, UserContext } from "../../../index";
 
+//style imports
 import "./profile.css";
+
+//component and modal imports
 import { PostCard } from "../../components/postCard/PostCard";
 import { EditUserModal } from "../../modals/editUser/editUserModal";
 
@@ -19,10 +24,8 @@ export const Profile = () => {
     followHandler,
     unfollowHandler,
   } = useContext(UserContext);
-  const { allPosts, userPosts, getUserPosts, dispatch } =
-    useContext(PostContext);
+  const { allPosts, userPosts, getUserPosts } = useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
-  // console.log(loggedInUserDetails);
 
   //state variables
   const [showEditModal, setShowEditModal] = useState(false);
@@ -31,6 +34,7 @@ export const Profile = () => {
   useEffect(() => {
     getSingleUserHandler(username);
     getUserPosts(username);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username, allPosts, allUsers]);
 
   const {
@@ -44,8 +48,7 @@ export const Profile = () => {
     following,
     website,
   } = selectedUser;
-  console.log(selectedUser, "from profile");
-  console.log(allUsers, "from profile");
+
   return (
     <>
       <EditUserModal

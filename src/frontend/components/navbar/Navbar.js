@@ -1,4 +1,8 @@
-import { NavLink } from "react-router-dom";
+//style imports
+import "./navbar.css";
+import "../../../App.css";
+
+//icon imports
 import {
   FaBookmark,
   FaCompass,
@@ -9,10 +13,13 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import "./navbar.css";
-import "../../../App.css";
-import { useContext, useState } from "react";
-import { AuthContext, PostContext } from "../../../index";
+
+//react hooks imports
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+
+//context imports
+import { AuthContext } from "../../../index";
 import { SearchInput } from "../searchInput/SearchInput";
 
 export const Navbar = ({
@@ -24,6 +31,7 @@ export const Navbar = ({
 }) => {
   const { logoutHandler, loggedInUserDetails } = useContext(AuthContext);
 
+  //Navlink style
   const getStyle = ({ isActive }) => {
     return {
       fontWeight: isActive ? "bold" : "normal",

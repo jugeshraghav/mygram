@@ -1,14 +1,23 @@
+//react hooks imports
 import { useContext } from "react";
-import { UserContext } from "../../../../index";
-
-import "./searchCardLaptop.css";
-import { SearchInput } from "../../searchInput/SearchInput";
 import { useNavigate } from "react-router-dom";
 
+//context imports
+import { UserContext } from "../../../../index";
+
+//style imports
+import "./searchCardLaptop.css";
+
+//component imports
+import { SearchInput } from "../../searchInput/SearchInput";
+
 export const SearchCardLaptop = ({ onClose, show }) => {
+  //state variables from context
   const { foundUsers } = useContext(UserContext);
+
   const navigate = useNavigate();
-  console.log(foundUsers, "found-user");
+
+  //component
   return (
     <>
       {show && (

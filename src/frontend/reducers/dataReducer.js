@@ -11,10 +11,7 @@ export const initial_state = {
 };
 
 export const dataReducer = (state, action) => {
-  console.log(state);
-
   const { type, payLoad } = action;
-  console.log(type, payLoad);
   switch (type) {
     //////Post Reducer///////
     case "get_all_posts":

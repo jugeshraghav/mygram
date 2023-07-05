@@ -1,15 +1,22 @@
+//react hook imports
 import { useContext } from "react";
+
+//context imports
 import { AuthContext, PostContext } from "../../../index";
-import { PostCard } from "../../components/postCard/PostCard";
-// import ClipLoader from "react-spinners/ClipLoader";
+
+//style imports
 import "./home.css";
+
+//components imports
+import { PostCard } from "../../components/postCard/PostCard";
 import { Stories } from "../../components/stories/Stories";
 import { Filter } from "../../components/filter/Filter";
+
 export const Home = () => {
-  const { allPosts, isLoading } = useContext(PostContext);
+  const { allPosts } = useContext(PostContext);
   const { loggedInUserDetails } = useContext(AuthContext);
 
-  console.log(loggedInUserDetails, "logged in user details from home");
+  //utilities
   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
     (post) =>
       loggedInUserDetails?.following.some(
@@ -17,7 +24,7 @@ export const Home = () => {
       ) || loggedInUserDetails?.username === post?.username
   );
 
-  console.log(isLoading, "loading state from post context");
+  //component
   return (
     <>
       <div className="home-posts-container">

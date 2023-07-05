@@ -1,5 +1,9 @@
+// style imports
 import "./commentInput.css";
+//icon imports
 import { FaRegSmile } from "react-icons/fa";
+
+//comment input component
 export const CommentInput = () => {
   return (
     <>

@@ -1,22 +1,32 @@
+//style imports
 import "./postCard.css";
+
+//icon-imports
 import {
   FaBookmark,
   FaHeart,
   FaRegBookmark,
   FaRegComment,
   FaRegHeart,
-  FaRegSmile,
   FaShare,
 } from "react-icons/fa";
+
+//react-hook imports
 import { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+//context imports
 import {
   AuthContext,
   BookmarksContext,
   PostContext,
   UserContext,
 } from "../../../index";
+
+//modal and component imports
 import { NewPostModal } from "../../modals/createPost/newPostModal";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { CommentInput } from "../commentInput/CommentInput";
+
 export const PostCard = ({ postData }) => {
   const {
     _id,
@@ -27,23 +37,27 @@ export const PostCard = ({ postData }) => {
     comments,
   } = postData;
 
+  //state variables
   const [showPostAlterOptions, setShowAlterOptions] = useState(false);
   const [showEditPostModal, setShowEditPostModal] = useState(false);
+
+  //handlers from contexts
   const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
     useContext(BookmarksContext);
-  const { likeHandler, unlikeHandler, deletePostHandler, postCommentHandler } =
+  const { likeHandler, unlikeHandler, deletePostHandler } =
     useContext(PostContext);
   const { token, loggedInUserDetails } = useContext(AuthContext);
   const { allUsers, unfollowHandler, followHandler } = useContext(UserContext);
 
+  //utilities
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
 
-  const [commentData, setCommentData] = useState("");
-  console.log(commentData);
   const location = useLocation();
   const navigate = useNavigate();
 
   const currentPostUser = allUsers?.find((user) => user?.username === username);
+
+  //component
   return (
     <>
       <NewPostModal
@@ -177,23 +191,8 @@ export const PostCard = ({ postData }) => {
               </p>
             )}
           </div>
-          <div className="comment-input-container">
-            <div>
-              <FaRegSmile className="post-card-icon post-comment-smile" />
-              <input
-                value={commentData}
-                placeholder="Add a comment..."
-                className="post-comment-input"
-                onChange={(e) => setCommentData(e.target.value)}
-              ></input>
-            </div>
-            <p
-              className="post-comment-btn"
-              onClick={() => postCommentHandler(_id, commentData, token)}
-            >
-              Post
-            </p>
-          </div>
+
+          <CommentInput />
         </div>
       </div>
     </>

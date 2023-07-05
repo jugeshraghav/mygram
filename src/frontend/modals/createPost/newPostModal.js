@@ -1,13 +1,24 @@
+//react hook imports
 import { useContext, useState } from "react";
 import Picker from "emoji-picker-react";
+
+//style imports
 import "./newPostModal.css";
+
+//icon imports
 import { FaCamera, FaSmile } from "react-icons/fa";
+
+//context imports
 import { AuthContext, PostContext } from "../../../index";
+
+//toast imports
 import { toast } from "react-toastify";
 
 export const NewPostModal = ({ show, onClose, displayName, post }) => {
   const { token, loggedInUserDetails } = useContext(AuthContext);
   const { createPostHandler, editPostHandler } = useContext(PostContext);
+
+  //state variables
   const [newPostContent, setNewPostContent] = useState(
     post ? post.content : ""
   );
@@ -18,6 +29,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
 
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
+  //handlers
   const handleNewPostClick = () => {
     if (newPostContent.length === 0) {
       toast.error("Please write something to post");
@@ -49,7 +61,6 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
     const emoji = emojiObj.emoji;
     const updatedContent = newPostContent + emoji;
     setNewPostContent(updatedContent);
-    // setShowEmojiPicker(false);
   };
 
   const handleImageChange = () => {
@@ -67,6 +78,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
     input.click();
   };
 
+  //component
   if (!show) {
     return null;
   } else {
@@ -118,7 +130,6 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
                       className="new-post-modal-icon"
                       onClick={handleImageChange}
                     />
-                    {/* <input type="file" onChange={handleImageChange} /> */}
                     <FaSmile
                       className="new-post-modal-icon"
                       onClick={() => setShowEmojiPicker(!showEmojiPicker)}

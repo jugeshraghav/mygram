@@ -15,7 +15,6 @@
   height: 90%;
   background-color: black;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   border-radius: 0 8px 8px 0;
 }
@@ -65,7 +64,6 @@
 .single-post-modal-user-caption-content {
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   text-align: left;
   gap: 0.5rem;
 }
@@ -102,7 +100,6 @@
 }
 .single-post-content-text {
   font-size: 14px;
-  /* color: grey; */
 }
 
 .single-post-modal-comment-input-container {

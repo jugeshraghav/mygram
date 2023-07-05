@@ -1,23 +1,31 @@
+//react hook imports
+import { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+
+//components and modal imports
 import { Navbar } from "../../components/navbar/Navbar";
 import "./root.css";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { SecondaryNavbar } from "../../components/navbar/secondaryNavbar/SecondaryNavbar";
-import { useContext, CSSProperties, useState } from "react";
-import { AuthContext } from "../../contexts/auth-context";
-import ClipLoader from "react-spinners/ClipLoader";
-import { PostContext } from "../../contexts/post-context";
 import { NewPostModal } from "../../modals/createPost/newPostModal";
 import { SearchCardMobile } from "../../components/searchCard/searchCardMobile/searchCardMobile";
 import { SearchCardLaptop } from "../../components/searchCard/searchCardLaptop/searchCardLaptop";
 
+//context imports
+import { AuthContext } from "../../contexts/auth-context";
+import { PostContext } from "../../contexts/post-context";
+
 export const Root = () => {
   const { loading } = useContext(AuthContext);
   const { isLoading } = useContext(PostContext);
+
+  //state variables
   const [showNewPostModal, setShowNewPostModal] = useState(false);
   const [showSearchCardLaptop, setShowSearchCardLaptop] = useState(false);
   const [showSearchCardMobile, setShowSearchCardMobile] = useState(false);
 
+  //component
   return (
     <>
       <NewPostModal

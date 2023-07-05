@@ -1,23 +1,29 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+//react hooks imports
+import { createContext, useReducer } from "react";
+
+//services imports
 import {
   addToBookmarkService,
-  allBookmarkService,
   removeFromBookmarkService,
 } from "../services/bookmark-services/bookmarkServices";
+//toast import
 import { toast } from "react-toastify";
+//reducer
 import { dataReducer, initial_state } from "../reducers/dataReducer";
 
 export const BookmarksContext = createContext();
+
 export const BookmarksProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial_state);
 
   const { bookmarks } = state;
 
-  const getAllBookmarksHandler = async (token) => {
-    console.log(token);
-    const response = await allBookmarkService(token);
-    console.log(response?.data?.bookmarks);
-  };
+  ///////////////////////////////Handlers//////////////////////////////////
+  // const getAllBookmarksHandler = async (token) => {
+  //   console.log(token);
+  //   const response = await allBookmarkService(token);
+  //   console.log(response?.data?.bookmarks);
+  // };
   const addToBookmarkHandler = async (postId, token) => {
     const response = await addToBookmarkService(postId, token);
     const bookmarks = response?.data?.bookmarks;
@@ -32,9 +38,6 @@ export const BookmarksProvider = ({ children }) => {
     toast.info("post removed from bookmarks!");
   };
 
-  //   useEffect(() => {
-  //     getAllBookmarksHandler(token);
-  //   });
   return (
     <BookmarksContext.Provider
       value={{ bookmarks, addToBookmarkHandler, removeFromBookmarkHandler }}

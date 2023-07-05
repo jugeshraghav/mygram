@@ -1,20 +1,23 @@
+//react-hooks imports
 import { useContext, useState } from "react";
+
+//style imports
 import "./editUserModal.css";
+
+//context imports
 import { AuthContext, UserContext } from "../../../index";
+
 export const EditUserModal = ({ user, show, onClose }) => {
-  // console.log(user);
-  //Contexts
+  //handlers and variables from Contexts
   const { editUserHandler } = useContext(UserContext);
   const { token } = useContext(AuthContext);
 
   //state variable
   const [updatedUser, setUpdatedUser] = useState(user);
-  console.log(updatedUser, "user details from edit modal initial");
 
-  // const token = localStorage.getItem("token");
+  //handlers
   const handleUpdateUserOnSubmit = (e, token, updatedUser) => {
     e.preventDefault();
-    console.log(updatedUser, "inside handle update user");
     editUserHandler(token, updatedUser);
     onClose();
   };
@@ -24,7 +27,6 @@ export const EditUserModal = ({ user, show, onClose }) => {
     input.accept = "iamge/*";
     input.onchange = (e) => {
       const image = e.target.files[0];
-      const imageName = e.target.files[0].name;
       const imageURL = URL.createObjectURL(image);
 
       setUpdatedUser((pre) => ({

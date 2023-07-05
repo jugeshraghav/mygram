@@ -1,11 +1,21 @@
+//react hooks imports
 import { useContext, useState } from "react";
+
+//context imports
 import { UserContext } from "../../../index";
+
+//icon imports
 import { FaSearch } from "react-icons/fa";
 
+//style imports
 import "./searchInput.css";
 
+//component
 export const SearchInput = ({ from, showSearchCardMobile }) => {
+  //state variables from context
   const { foundUserHandler } = useContext(UserContext);
+
+  //state variables
   const [searchText, setSearchText] = useState("");
   return (
     <>

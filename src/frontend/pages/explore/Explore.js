@@ -1,11 +1,19 @@
+//react hooks imports
 import { useContext } from "react";
+
+//context imports
 import { PostContext } from "../../../index";
+
+//components imports
 import { PostCard } from "../../components/postCard/PostCard";
+
+//style imports
 import "./explore.css";
 
 export const Explore = () => {
   const { allPosts } = useContext(PostContext);
 
+  //component
   return (
     <>
       <div className="explore-posts-container">

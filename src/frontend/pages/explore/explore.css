@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* padding: 2rem 0 0 10rem; */
 }
 .explore-page-heading {
   font-size: 20px;

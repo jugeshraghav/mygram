@@ -1,10 +1,7 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+//react hooks imports
+import { createContext, useEffect, useReducer, useState } from "react";
+
+//services imports
 import {
   allPostService,
   createPostService,
@@ -16,23 +13,27 @@ import {
   likeService,
   unlikeService,
 } from "../services/like-services/likeServices";
-import { toast } from "react-toastify";
-import { dataReducer, initial_state } from "../reducers/dataReducer";
-import { AuthContext, UserContext } from "../../index";
 import {
   getCommentsServices,
   addPostCommentsServices,
 } from "../services/comments-services/commentsServices";
 
+//toast imports
+import { toast } from "react-toastify";
+
+//reducer
+import { dataReducer, initial_state } from "../reducers/dataReducer";
+
 export const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial_state);
+
+  /////////////////////////////State Variable////////////////////////
   const { allPosts, userPosts, postsOfUsersFollowed } = state;
   const [isLoading, setIsLoading] = useState(false);
-  // const { loggedInUserDetails } = useContext(AuthContext);
-  // const { followHandler, unfollowHandler } = useContext(UserContext);
 
+  //////////////////////////handlers//////////////////////////////////
   const getAllPostsHandler = async () => {
     setIsLoading(true);
     try {
@@ -56,27 +57,11 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  // const getPostsOfUsersFollowedByLoggedInUser = (loggedInUserDetails) => {
-  //   console.log(loggedInUserDetails, "from getPostsOfUser function");
-  //   console.log(allPosts, "from getPostsOfUser function");
-  //   const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
-  //     (post) =>
-  //       loggedInUserDetails?.following.some(
-  //         (followingUser) => followingUser.username === post.username
-  //       ) || loggedInUserDetails.username === post.username
-  //   );
-  //   dispatch({
-  //     type: "get_posts_of_users_followed_by_logged_in_user",
-  //     payLoad: postsOfFollowedUsersByLoggedInUser,
-  //   });
-  // };
-
   const likeHandler = async (postId, username, token) => {
     try {
       const response = await likeService(postId, token);
       const postsArray = response?.data?.posts;
       dispatch({ type: "like_post", payLoad: postsArray });
-      // getUserPosts(username);
       toast.success("Post liked successfully!");
     } catch (e) {
       console.log(e);
@@ -86,7 +71,6 @@ export const PostProvider = ({ children }) => {
     const response = await unlikeService(postId, token);
     const postsArray = response?.data?.posts;
     dispatch({ type: "unlike_post", payLoad: postsArray });
-    // getUserPosts(username);
     toast.info("Post unliked!");
   };
 
@@ -151,7 +135,6 @@ export const PostProvider = ({ children }) => {
 
   useEffect(() => {
     getAllPostsHandler();
-    // getPostsOfUsersFollowedByLoggedInUser(loggedInUserDetails);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
