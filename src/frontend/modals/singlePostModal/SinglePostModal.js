@@ -14,6 +14,7 @@ import { CommentInput } from "../../components/commentInput/CommentInput";
 
 //icon imports
 import { FaArrowLeft } from "react-icons/fa";
+import { default_img } from "../../constants/constants";
 
 export const SinglePostModal = ({ show, onClose }) => {
   const { postId } = useParams();
@@ -60,7 +61,7 @@ export const SinglePostModal = ({ show, onClose }) => {
               </div>
               <div className="single-post-modal-user">
                 <img
-                  src={currentUser?.avatar}
+                  src={currentUser?.avatar || default_img}
                   alt={currentUser?.username}
                   className="single-post-modal-user-image"
                 />
@@ -70,7 +71,7 @@ export const SinglePostModal = ({ show, onClose }) => {
               </div>
               <div className="single-post-modal-user-caption">
                 <img
-                  src={currentUser?.avatar}
+                  src={currentUser?.avatar || default_img}
                   alt={currentUser?.username}
                   className="single-post-modal-user-image"
                 />
@@ -85,7 +86,7 @@ export const SinglePostModal = ({ show, onClose }) => {
                 </div>
               </div>
               <div className="single-post-modal-comment-container">
-                {postToBeDisplayed?.comments.length > 0 ? (
+                {postToBeDisplayed?.comments?.length > 0 ? (
                   postToBeDisplayed?.comments?.map(
                     ({ _id, username, avatarURL, text }) => (
                       <div className="single-post-comment" key={_id}>

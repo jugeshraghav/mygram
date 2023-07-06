@@ -110,7 +110,6 @@ export const PostProvider = ({ children }) => {
   };
 
   const filtersHandler = (currentFilter) => {
-    console.log(currentFilter);
     const filteredPosts =
       currentFilter === "Trending"
         ? allPosts.sort((a, b) => b.likes.likeCount - a.likes.likeCount)

@@ -22,6 +22,9 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../index";
 import { SearchInput } from "../searchInput/SearchInput";
 
+//constant imports
+import { default_img } from "../../constants/constants";
+
 export const Navbar = ({
   showSearchCardLaptop,
   showSearchCardMobile,
@@ -142,7 +145,10 @@ export const Navbar = ({
             >
               <div className="navbar-my-profile">
                 {" "}
-                <img src={loggedInUserDetails?.avatar} alt="my-profile" />
+                <img
+                  src={loggedInUserDetails?.avatar || default_img}
+                  alt="my-profile"
+                />
                 <div className="navbar-my-profile-content">
                   <p className="navbar-my-profile-fullname">
                     {loggedInUserDetails?.firstName}{" "}

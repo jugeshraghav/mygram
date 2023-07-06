@@ -11,6 +11,7 @@ import "./profile.css";
 //component and modal imports
 import { PostCard } from "../../components/postCard/PostCard";
 import { EditUserModal } from "../../modals/editUser/editUserModal";
+import { default_img } from "../../constants/constants";
 
 export const Profile = () => {
   //get username from useParams
@@ -58,7 +59,7 @@ export const Profile = () => {
       />
       <div className="profile-page-container">
         <div className="user-profile-card">
-          <img src={avatar} alt={userName}></img>
+          <img src={avatar || default_img} alt={userName}></img>
           <div>
             <p className="user-profile-name">
               {firstName} {lastName}

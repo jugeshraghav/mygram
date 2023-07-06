@@ -13,6 +13,7 @@ import { AuthContext, PostContext } from "../../../index";
 
 //toast imports
 import { toast } from "react-toastify";
+import { default_img } from "../../constants/constants";
 
 export const NewPostModal = ({ show, onClose, displayName, post }) => {
   const { token, loggedInUserDetails } = useContext(AuthContext);
@@ -89,7 +90,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
             <p className="new-post-modal-heading">{displayName} Post</p>
             <div className="new-post-modal-content">
               <img
-                src={loggedInUserDetails?.avatar}
+                src={loggedInUserDetails?.avatar || default_img}
                 alt={loggedInUserDetails?.username}
               ></img>
               <div className="new-post-input-area">
@@ -109,7 +110,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
                   }
                 ></textarea>
 
-                {newPostImageName.length > 0 ? (
+                {newPostImageName?.length > 0 ? (
                   <p
                     style={{
                       color: "green",
@@ -146,7 +147,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
                   ) : (
                     <button
                       className="new-post-btn"
-                      disabled={newPostContent.length === 0}
+                      disabled={newPostContent?.length === 0}
                       onClick={handleUpdatePostClick}
                     >
                       Update

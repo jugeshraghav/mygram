@@ -14,7 +14,7 @@ export const posts = [
       "https://images.pexels.com/photos/8944892/pexels-photo-8944892.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "laughter",
     likes: {
-      likeCount: 0,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
@@ -52,7 +52,7 @@ export const posts = [
       "https://images.pexels.com/photos/625644/pexels-photo-625644.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Concert ",
     likes: {
-      likeCount: 0,
+      likeCount: 8,
       likedBy: [],
       dislikedBy: [],
     },
@@ -69,7 +69,7 @@ export const posts = [
       "https://images.pexels.com/photos/4050301/pexels-photo-4050301.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Laptop",
     likes: {
-      likeCount: 0,
+      likeCount: 3,
       likedBy: [],
       dislikedBy: [],
     },
@@ -85,7 +85,7 @@ export const posts = [
       "https://images.pexels.com/photos/1834407/pexels-photo-1834407.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Nature",
     likes: {
-      likeCount: 0,
+      likeCount: 1,
       likedBy: [],
       dislikedBy: [],
     },
@@ -118,7 +118,7 @@ export const posts = [
       "https://images.pexels.com/photos/17310920/pexels-photo-17310920/free-photo-of-close-up-of-daisies.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Plant",
     likes: {
-      likeCount: 0,
+      likeCount: 10,
       likedBy: [],
       dislikedBy: [],
     },
@@ -216,7 +216,7 @@ export const posts = [
       "https://images.pexels.com/photos/848573/pexels-photo-848573.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "sunset",
     likes: {
-      likeCount: 0,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
@@ -232,7 +232,7 @@ export const posts = [
       "https://images.pexels.com/photos/1770310/pexels-photo-1770310.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Beach",
     likes: {
-      likeCount: 0,
+      likeCount: 3,
       likedBy: [],
       dislikedBy: [],
     },
@@ -248,7 +248,7 @@ export const posts = [
       "https://images.pexels.com/photos/4132301/pexels-photo-4132301.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "workout of mind",
     likes: {
-      likeCount: 0,
+      likeCount: 13,
       likedBy: [],
       dislikedBy: [],
     },
@@ -265,7 +265,7 @@ export const posts = [
       "https://images.pexels.com/photos/6231847/pexels-photo-6231847.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Flower",
     likes: {
-      likeCount: 0,
+      likeCount: 10,
       likedBy: [],
       dislikedBy: [],
     },
@@ -282,7 +282,7 @@ export const posts = [
       "https://images.pexels.com/photos/1010519/pexels-photo-1010519.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Guitar",
     likes: {
-      likeCount: 0,
+      likeCount: 7,
       likedBy: [],
       dislikedBy: [],
     },
@@ -299,7 +299,7 @@ export const posts = [
       "https://images.pexels.com/photos/12673974/pexels-photo-12673974.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "Blogging",
     likes: {
-      likeCount: 0,
+      likeCount: 9,
       likedBy: [],
       dislikedBy: [],
     },
@@ -315,7 +315,7 @@ export const posts = [
       "https://images.pexels.com/photos/4936213/pexels-photo-4936213.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "cute Doggy",
     likes: {
-      likeCount: 0,
+      likeCount: 2,
       likedBy: [],
       dislikedBy: [],
     },
@@ -332,7 +332,7 @@ export const posts = [
       "https://images.pexels.com/photos/814822/pexels-photo-814822.jpeg?auto=compress&cs=tinysrgb&w=400",
     mediaAlt: "camera",
     likes: {
-      likeCount: 0,
+      likeCount: 6,
       likedBy: [],
       dislikedBy: [],
     },

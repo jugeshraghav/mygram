@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 //services imports
 import { signUpService } from "../services/auth-services/signupService";
 import { loginService } from "../services/auth-services/loginService";
+import { default_img } from "../constants/constants";
 
 export const AuthContext = createContext();
 
@@ -33,9 +34,7 @@ export const AuthProvider = ({ children }) => {
       const { foundUser, encodedToken } = response?.data;
       const updatedFoundUser = {
         ...foundUser,
-        avatar: !foundUser.avatar
-          ? "https://img.freepik.com/free-icon/user_318-644324.jpg?size=626&ext=jpg&ga=GA1.2.1704512721.1672676438&semt=sph"
-          : foundUser?.avatar,
+        avatar: !foundUser.avatar ? default_img : foundUser?.avatar,
       };
       localStorage.setItem("token", encodedToken);
       localStorage.setItem("userDetails", JSON.stringify(updatedFoundUser));
@@ -63,6 +62,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       try {
         await signUpService(firstname, lastname, password, username);
+
         toast.success("Successfully signed up! Kindly login to continue.");
         navigate("/");
       } catch (e) {

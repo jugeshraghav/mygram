@@ -26,6 +26,7 @@ import {
 //modal and component imports
 import { NewPostModal } from "../../modals/createPost/newPostModal";
 import { CommentInput } from "../commentInput/CommentInput";
+import { default_img } from "../../constants/constants";
 
 export const PostCard = ({ postData }) => {
   const {
@@ -70,10 +71,15 @@ export const PostCard = ({ postData }) => {
         <div className="post-card-header">
           <div className="post-card-user">
             <div className="post-card-user-img">
-              <img src={currentPostUser?.avatar} alt={username} />
+              <img
+                src={currentPostUser?.avatar || default_img}
+                alt={username}
+              />
             </div>
             <div className="post-card-user-details">
-              <p className="user-name">{username}</p>
+              <p className="user-name">
+                {currentPostUser?.firstName} {currentPostUser?.lastName}
+              </p>
               <p className="at-user-name">@{username}</p>
             </div>
           </div>

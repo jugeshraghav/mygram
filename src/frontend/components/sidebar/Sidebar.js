@@ -8,6 +8,9 @@ import { NavLink } from "react-router-dom";
 //context imports
 import { AuthContext, UserContext } from "../../../index";
 
+//constant imports
+import { default_img } from "../../constants/constants";
+
 export const Sidebar = () => {
   //handlers from context
   const { allUsers, followHandler, unfollowHandler } = useContext(UserContext);
@@ -32,7 +35,7 @@ export const Sidebar = () => {
           <div className="my-profile">
             {" "}
             <img
-              src={loggedInUserDetails?.avatar}
+              src={loggedInUserDetails?.avatar || default_img}
               alt={loggedInUserDetails?.username}
             />
             <div className="my-profile-content">
