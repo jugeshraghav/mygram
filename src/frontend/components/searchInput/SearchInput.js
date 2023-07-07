@@ -1,5 +1,5 @@
 //react hooks imports
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 //context imports
 import { UserContext } from "../../../index";
@@ -11,12 +11,24 @@ import { FaSearch } from "react-icons/fa";
 import "./searchInput.css";
 
 //component
-export const SearchInput = ({ from, showSearchCardMobile }) => {
+export const SearchInput = ({ from, setShowSearchCardMobile }) => {
   //state variables from context
   const { foundUserHandler } = useContext(UserContext);
 
   //state variables
   const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    if (from === "top-nav") {
+      if (searchText) {
+        setShowSearchCardMobile(true);
+      } else {
+        setShowSearchCardMobile(false);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText]);
   return (
     <>
       {from !== "top-nav" && (
@@ -33,7 +45,6 @@ export const SearchInput = ({ from, showSearchCardMobile }) => {
             foundUserHandler(e.target.value);
             setSearchText(e.target.value);
           }}
-          onClick={showSearchCardMobile}
         />
         <FaSearch className="navbar-search-icon" />
       </div>

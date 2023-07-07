@@ -168,9 +168,7 @@ export const Navbar = ({
         <div className="navbar-search-container">
           <SearchInput
             from="top-nav"
-            showSearchCardMobile={() =>
-              setShowSearchCardMobile(!showSearchCardMobile)
-            }
+            setShowSearchCardMobile={setShowSearchCardMobile}
           />
         </div>
       </aside>

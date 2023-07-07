@@ -40,6 +40,7 @@ export const Root = () => {
       <SearchCardMobile
         show={showSearchCardMobile}
         onClose={() => setShowSearchCardMobile(false)}
+        setShowSearchCardMobile={setShowSearchCardMobile}
       />
       {loading ? (
         <div

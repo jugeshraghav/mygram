@@ -38,7 +38,7 @@ export const Stories = () => {
             <div>
               {" "}
               <img src={avatar} alt={username} className="user-story" />
-              <p className="user-story-name">{username}</p>
+              <p className="user-story-name">{username.slice(0, 10)}</p>
             </div>
           </NavLink>
         ))}

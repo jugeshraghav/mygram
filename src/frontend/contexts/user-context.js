@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 
 export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
-  const { setLoggedInUserDetails } = useContext(AuthContext);
+  const { setLoggedInUserDetails, token } = useContext(AuthContext);
   ///////////////////// User Reducer //////////////////////////////////
   const [state, dispatch] = useReducer(dataReducer, initial_state);
 
@@ -87,7 +87,7 @@ export const UserProvider = ({ children }) => {
   };
   useEffect(() => {
     getAllUserHandler();
-  }, []);
+  }, [token]);
   return (
     <UserContext.Provider
       value={{
