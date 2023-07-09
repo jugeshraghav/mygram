@@ -25,9 +25,13 @@ export const Explore = () => {
           <button>Sports</button>
           <button>News</button>
         </div>
-        {allPosts.map((postData) => (
-          <PostCard postData={postData} key={postData._id} />
-        ))}
+        <div className="posts">
+          {allPosts.map(({ image, _id, likes: { likeCount } }) => (
+            <div className="post-image-container" key={_id}>
+              <img src={image} />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

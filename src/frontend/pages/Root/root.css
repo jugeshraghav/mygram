@@ -1,7 +1,5 @@
 .root {
-  display: grid;
-  grid-template-columns: 0.5fr auto;
-  align-items: start;
+  display: flex;
 }
 .main-content-container {
   display: grid;

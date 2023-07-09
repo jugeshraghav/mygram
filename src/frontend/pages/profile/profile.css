@@ -1,30 +1,55 @@
 .profile-page-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
+  width: 100%;
+  padding: 1rem 0rem;
 }
 /********* User-profile-card*********/
 .user-profile-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3rem;
   align-items: center;
   margin: 0 2rem;
 }
-.user-profile-card img {
-  width: 100px;
-  height: 100px;
+.user-profile-img-container {
+  display: flex;
+  gap: 5rem;
+  text-align: left;
+  align-items: center;
+}
+.user-profile-img-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+.user-profile-name-container {
+  display: flex;
+  gap: 4rem;
+  text-align: left;
+  align-items: center;
+}
+.profile-edit-btn-container {
+  display: flex;
+  align-items: center;
+}
+.user-profile-card > div > img {
+  width: 150px;
+  height: 150px;
   border-radius: 100%;
 }
 /*********user profile name and edit button********/
-.user-profile-name,
-.user-posts-heading {
+.user-profile-name {
   font-size: 20px;
   font-weight: bold;
-  padding: 0 0.5rem;
 }
-.user-posts-heading {
-  text-align: left;
+.profile-page-navigation-btn {
+  display: flex;
+  gap: 2rem;
 }
 /****** user stats*********/
 .user-stats {
@@ -52,18 +77,55 @@
   color: var(--mg-primary-color);
 }
 .profile-edit-btn,
-.follow-btn,
-.unfollow-btn {
+.follow-btn {
   color: var(--mg-secondary-color);
   background-color: var(--mg-primary-color);
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   border: 0;
   border-radius: 8px;
-  width: 120px;
+  cursor: pointer;
+}
+.profile-edit-btn:hover,
+.follow-btn:hover {
+  color: var(--mg-primary-color);
+  background-color: var(--mg-secondary-color);
+  border: 1px solid var(--mg-primary-color);
 }
 .unfollow-btn {
   color: var(--mg-primary-color);
   background-color: white;
-  border: 2px solid var(--mg-primary-color);
+  border: 1px solid var(--mg-primary-color);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.unfollow-btn:hover {
+  color: var(--mg-secondary-color);
+  background-color: var(--mg-primary-color);
+}
+.profile-logout-btn {
+  cursor: pointer;
+  font-size: 25px;
+}
+/******* User Posts******/
+.user-posts,
+.bookmarks-posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 70%;
+  margin: auto;
+  align-items: flex-start;
+}
+.user-post-image-container {
+  width: 260px;
+  height: 260px;
+  cursor: pointer;
+}
+.user-post-image-container img {
+  width: 100%;
+  height: 100%;
 }

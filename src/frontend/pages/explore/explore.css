@@ -1,5 +1,9 @@
 .explore-posts-container {
   display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
   flex-direction: column;
   gap: 2rem;
 }
@@ -11,10 +15,12 @@
 }
 .explore-category-btn-container {
   display: flex;
+  width: 60%;
   justify-content: space-between;
 }
 .explore-category-btn-container button {
   border: 2px solid var(--mg-primary-color);
+  width: 120px;
   padding: 0.5rem 1rem;
   background-color: white;
   color: var(--mg-primary-color);
@@ -24,6 +30,24 @@
 .explore-category-btn-container button:hover {
   background-color: var(--mg-primary-color);
   color: white;
+}
+/*******  Posts******/
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 70%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.post-image-container {
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+}
+.post-image-container img {
+  width: 100%;
+  height: 100%;
 }
 
 /******Responsive Screens***********/

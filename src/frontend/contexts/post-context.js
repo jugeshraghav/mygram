@@ -31,11 +31,12 @@ export const PostProvider = ({ children }) => {
 
   /////////////////////////////State Variable////////////////////////
   const { allPosts, userPosts, postsOfUsersFollowed } = state;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isAllPostsLoaded, setIsAllPostsLoaded] = useState(false);
+  const [isUserPostsLoaded, setIsUserPostsLoaded] = useState(false);
 
   //////////////////////////handlers//////////////////////////////////
   const getAllPostsHandler = async () => {
-    setIsLoading(true);
+    setIsAllPostsLoaded(true);
     try {
       const response = await allPostService();
       const postsArray = response?.data?.posts;
@@ -43,21 +44,23 @@ export const PostProvider = ({ children }) => {
     } catch (e) {
       console.log(e);
     } finally {
-      setIsLoading(false);
+      setIsAllPostsLoaded(false);
     }
   };
   const getUserPosts = async (username) => {
-    // setIsLoading(true);
+    setIsUserPostsLoaded(true);
     try {
       const response = await userPostsService(username);
       const userPostsArray = response?.data?.posts;
       dispatch({ type: "get_all_user_posts", payLoad: userPostsArray });
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsUserPostsLoaded(false);
     }
   };
 
-  const likeHandler = async (postId, username, token) => {
+  const likeHandler = async (postId, token) => {
     try {
       const response = await likeService(postId, token);
       const postsArray = response?.data?.posts;
@@ -67,7 +70,7 @@ export const PostProvider = ({ children }) => {
       console.log(e);
     }
   };
-  const unlikeHandler = async (postId, username, token) => {
+  const unlikeHandler = async (postId, token) => {
     const response = await unlikeService(postId, token);
     const postsArray = response?.data?.posts;
     dispatch({ type: "unlike_post", payLoad: postsArray });
@@ -75,14 +78,21 @@ export const PostProvider = ({ children }) => {
   };
 
   const createPostHandler = async (post, token) => {
-    const response = await createPostService(post, token);
-    const newPostsArr = response?.data?.posts;
-    dispatch({ type: "add_new_post", payLoad: newPostsArr });
-    toast.success("New post created.");
+    setIsAllPostsLoaded(true);
+    try {
+      const response = await createPostService(post, token);
+      const newPostsArr = response?.data?.posts;
+      dispatch({ type: "add_new_post", payLoad: newPostsArr });
+      toast.success("New post created.");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsAllPostsLoaded(false);
+    }
   };
 
   const deletePostHandler = async (postId, token) => {
-    setIsLoading(true);
+    setIsAllPostsLoaded(true);
     try {
       const response = await deletePostService(postId, token);
       const newPostsArr = response?.data?.posts;
@@ -91,12 +101,12 @@ export const PostProvider = ({ children }) => {
     } catch (e) {
       console.log(e);
     } finally {
-      setIsLoading(false);
+      setIsAllPostsLoaded(false);
     }
   };
 
   const editPostHandler = async (postId, post, token) => {
-    setIsLoading(true);
+    setIsAllPostsLoaded(true);
     try {
       const response = await editPostService(postId, post, token);
       const newPostsArr = response?.data?.posts;
@@ -105,7 +115,7 @@ export const PostProvider = ({ children }) => {
     } catch (e) {
       console.log(e.message);
     } finally {
-      setIsLoading(false);
+      setIsAllPostsLoaded(false);
     }
   };
 
@@ -129,7 +139,8 @@ export const PostProvider = ({ children }) => {
   return (
     <PostContext.Provider
       value={{
-        isLoading,
+        isAllPostsLoaded,
+        isUserPostsLoaded,
         allPosts,
         getUserPosts,
         userPosts,

@@ -4,7 +4,6 @@ import "../../../../App.css";
 
 //icon imports
 import { FaBookmark, FaCompass, FaHome, FaPlus, FaUser } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
 
 //react hook imports
 import { useContext } from "react";
@@ -67,11 +66,6 @@ export const SecondaryNavbar = ({ setShowNewPostModal }) => {
               <FaUser />
             </span>
           </NavLink>
-          <IoLogOut
-            className="nav-icon"
-            style={{ fontSize: "32px" }}
-            onClick={() => logoutHandler()}
-          />
         </nav>
       </section>
     </>

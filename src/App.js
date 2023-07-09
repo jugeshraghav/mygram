@@ -6,10 +6,12 @@ import { Login } from "./frontend/pages/user/Login";
 import { Home } from "./frontend/pages/home/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Root } from "./frontend/pages/Root/Root";
+import {
+  LayoutWithSideBar,
+  LayoutWithoutSideBar,
+} from "./frontend/pages/Root/Root";
 import { Profile } from "./frontend/pages/profile/Profile";
 import { Explore } from "./frontend/pages/explore/Explore";
-import { Bookmarks } from "./frontend/pages/bookmarks/Bookmarks";
 import { SinglePost } from "./frontend/pages/singlePost/SinglePost";
 import { RequiresAuth } from "./frontend/auth/RequiresAuth";
 
@@ -24,7 +26,7 @@ function App() {
         <Route
           element={
             <RequiresAuth>
-              <Root />
+              <LayoutWithSideBar />
             </RequiresAuth>
           }
         >
@@ -36,6 +38,14 @@ function App() {
               </RequiresAuth>
             }
           />
+        </Route>
+        <Route
+          element={
+            <RequiresAuth>
+              <LayoutWithoutSideBar />
+            </RequiresAuth>
+          }
+        >
           <Route
             path="/explore"
             element={
@@ -48,7 +58,7 @@ function App() {
             path="/bookmarks"
             element={
               <RequiresAuth>
-                <Bookmarks />
+                <Profile />
               </RequiresAuth>
             }
           />

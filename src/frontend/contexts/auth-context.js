@@ -21,15 +21,10 @@ export const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("userDetails"))
   );
 
-  ////////////////////state variables//////////////////////////////////////
-  const [loading, setLoading] = useState(false);
-
   ////////////////////// Auth Handlers /////////////////////////////////////
 
   const loginHandler = async ({ username, password }) => {
-    setLoading(true);
     try {
-      setLoading(true);
       const response = await loginService(username, password);
       const { foundUser, encodedToken } = response?.data;
       const updatedFoundUser = {
@@ -44,8 +39,6 @@ export const AuthProvider = ({ children }) => {
       toast.success("successfully logged in!");
     } catch (e) {
       toast.error(e.response.data.errors[0]);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -56,7 +49,6 @@ export const AuthProvider = ({ children }) => {
     password,
     confirmPassword,
   }) => {
-    setLoading(true);
     if (password !== confirmPassword) {
       toast.error("Password fileds are not matching!");
     } else {
@@ -67,8 +59,6 @@ export const AuthProvider = ({ children }) => {
         navigate("/");
       } catch (e) {
         toast.error(e.response.data.errors[0]);
-      } finally {
-        setLoading(false);
       }
     }
   };
@@ -88,7 +78,6 @@ export const AuthProvider = ({ children }) => {
         signupHandler,
         logoutHandler,
         token,
-        loading,
         loggedInUserDetails,
         setLoggedInUserDetails,
       }}

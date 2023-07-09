@@ -1,17 +1,24 @@
 //react hooks imports
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //context imports
-import { AuthContext, PostContext, UserContext } from "../../../index";
+import {
+  AuthContext,
+  BookmarksContext,
+  PostContext,
+  UserContext,
+} from "../../../index";
 
 //style imports
 import "./profile.css";
 
 //component and modal imports
-import { PostCard } from "../../components/postCard/PostCard";
 import { EditUserModal } from "../../modals/editUser/editUserModal";
 import { default_img } from "../../constants/constants";
+
+import ClipLoader from "react-spinners/ClipLoader";
+import { FiLogOut } from "react-icons/fi";
 
 export const Profile = () => {
   //get username from useParams
@@ -25,11 +32,19 @@ export const Profile = () => {
     followHandler,
     unfollowHandler,
   } = useContext(UserContext);
-  const { allPosts, userPosts, getUserPosts } = useContext(PostContext);
-  const { token, loggedInUserDetails } = useContext(AuthContext);
+  const { allPosts, userPosts, getUserPosts, isUserPostsLoaded } =
+    useContext(PostContext);
+  const { bookmarks } = useContext(BookmarksContext);
+  const { token, loggedInUserDetails, logoutHandler } = useContext(AuthContext);
 
   //state variables
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showBookmarks, setShowBookmarks] = useState(false);
+  const navigate = useNavigate();
+  //utilities
+  const bookmarkedPosts = allPosts.filter(({ _id }) =>
+    bookmarks.some((bookmarkId) => bookmarkId === _id)
+  );
 
   // calculated values and variables
   useEffect(() => {
@@ -57,70 +72,146 @@ export const Profile = () => {
         show={showEditModal}
         onClose={() => setShowEditModal(false)}
       />
-      <div className="profile-page-container">
-        <div className="user-profile-card">
-          <img src={avatar || default_img} alt={userName}></img>
-          <div>
-            <p className="user-profile-name">
-              {firstName} {lastName}
-            </p>
-            <p className="profile-username">@{userName}</p>
-            {loggedInUserDetails.username === username ? (
-              <button
-                className="profile-edit-btn"
-                onClick={() => {
-                  setShowEditModal(true);
-                }}
-              >
-                Edit Profile
-              </button>
-            ) : followers?.length === 0 ? (
-              <button
-                className="follow-btn"
-                onClick={() => followHandler(_id, token)}
-              >
-                Follow
-              </button>
-            ) : (
-              <button
-                className="unfollow-btn"
-                onClick={() => unfollowHandler(_id, token)}
-              >
-                Following
-              </button>
-            )}
-          </div>
-          <p className="user-bio">{bio}</p>
-          <p className="user-website">{website}</p>
-          <div className="user-stats">
-            <div>
-              <p className="user-stats-number">{followers?.length}</p>
-              <p>Followers</p>
-            </div>
-            <div>
-              <p className="user-stats-number">{userPosts?.length}</p>
-              <p>Posts</p>
-            </div>
-            <div>
-              <p className="user-stats-number">{following?.length}</p>
-              <p>Following</p>
-            </div>
-          </div>
+      {isUserPostsLoaded ? (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            // backgroundColor: "black",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ClipLoader
+            color="black"
+            loading={isUserPostsLoaded}
+            // cssOverride={override}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
         </div>
-        <p className="user-posts-heading">Your Posts</p>
-        <div className="user-posts">
-          {userPosts.length > 0 ? (
-            userPosts.map((postData) => (
-              <PostCard postData={postData} key={postData._id} />
-            ))
-          ) : (
-            <>
-              <h2>No Posts to be displayed...</h2>
-              <h4>Start Posting</h4>
-            </>
+      ) : (
+        <div className="profile-page-container">
+          <div className="user-profile-card">
+            <div className="user-profile-img-container">
+              <img src={avatar || default_img} alt={userName}></img>
+              <div>
+                <div className="user-profile-name-container">
+                  <div>
+                    <p className="user-profile-name">
+                      {firstName} {lastName}
+                    </p>
+                    <p className="profile-username">@{userName}</p>
+                  </div>
+                  <div className="profile-edit-btn-container">
+                    {loggedInUserDetails.username === username ? (
+                      <button
+                        className="profile-edit-btn"
+                        onClick={() => {
+                          setShowEditModal(true);
+                        }}
+                      >
+                        Edit Profile
+                      </button>
+                    ) : followers?.length === 0 ? (
+                      <button
+                        className="follow-btn"
+                        onClick={() => followHandler(_id, token)}
+                      >
+                        Follow
+                      </button>
+                    ) : (
+                      <button
+                        className="unfollow-btn"
+                        onClick={() => unfollowHandler(_id, token)}
+                      >
+                        Following
+                      </button>
+                    )}
+                    {loggedInUserDetails?.username === userName && (
+                      <FiLogOut
+                        className="profile-logout-btn"
+                        onClick={() => logoutHandler()}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="user-bio-container">
+                  <p className="user-bio">{bio}</p>
+                  <p className="user-website">{website}</p>
+                </div>
+              </div>
+            </div>
+            <div className="user-stats">
+              <div>
+                <p>
+                  <span className="user-stats-number">{followers?.length}</span>{" "}
+                  Followers
+                </p>
+              </div>
+              <div>
+                <p>
+                  <span className="user-stats-number">{userPosts?.length}</span>{" "}
+                  Posts
+                </p>
+              </div>
+              <div>
+                <p>
+                  <span className="user-stats-number">{following?.length}</span>{" "}
+                  Following
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr style={{ width: "70%" }}></hr>
+          <div className="profile-page-navigation-btn">
+            <p onClick={() => setShowBookmarks(false)}>POSTS</p>
+            <p onClick={() => setShowBookmarks(true)}>BOOKMARKS</p>
+          </div>
+          {!showBookmarks && (
+            <div className="user-posts">
+              {userPosts.length > 0 ? (
+                userPosts.map(({ image, _id, likes: { likeCount } }) => (
+                  <div className="user-post-image-container" key={_id}>
+                    <img src={image} />
+                  </div>
+                ))
+              ) : (
+                <>
+                  <h2>No Posts to be displayed...</h2>
+                  <h4>Start Posting</h4>
+                </>
+              )}
+            </div>
+          )}
+          {showBookmarks && (
+            <div className="bookmarks-posts-container">
+              {bookmarkedPosts.length > 0 ? (
+                bookmarkedPosts.map(({ image, _id, likes: { likeCount } }) => (
+                  <div className="user-post-image-container" key={_id}>
+                    <img src={image} />
+                  </div>
+                ))
+              ) : (
+                <>
+                  <h2>No Bookmarked Posts...</h2>
+                  <button
+                    onClick={() => navigate("/explore")}
+                    className="bookmark-page-btn"
+                  >
+                    Explore
+                  </button>
+                </>
+              )}
+            </div>
           )}
         </div>
-      </div>
+      )}
     </>
   );
 };
