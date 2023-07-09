@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("userDetails", JSON.stringify(updatedFoundUser));
       setToken(encodedToken);
       setLoggedInUserDetails(updatedFoundUser);
-      navigate("/mygram/home");
+      navigate("/home");
       toast.success("successfully logged in!");
     } catch (e) {
       toast.error(e.response.data.errors[0]);

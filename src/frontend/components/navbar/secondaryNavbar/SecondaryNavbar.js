@@ -34,12 +34,12 @@ export const SecondaryNavbar = ({ setShowNewPostModal }) => {
     <>
       <section className="secondary-navbar-container">
         <nav className="secondary-navbar">
-          <NavLink to="/mygram/home" style={getStyle} className="nav-link">
+          <NavLink to="/home" style={getStyle} className="nav-link">
             <span className="nav-icon">
               <FaHome />
             </span>
           </NavLink>
-          <NavLink to="/mygram/explore" style={getStyle} className="nav-link">
+          <NavLink to="/explore" style={getStyle} className="nav-link">
             <span className="nav-icon">
               <FaCompass />
             </span>
@@ -52,13 +52,13 @@ export const SecondaryNavbar = ({ setShowNewPostModal }) => {
               <FaPlus />
             </span>
           </div>
-          <NavLink to="/mygram/bookmarks" style={getStyle} className="nav-link">
+          <NavLink to="/bookmarks" style={getStyle} className="nav-link">
             <span className="nav-icon">
               <FaBookmark />
             </span>
           </NavLink>
           <NavLink
-            to={`/mygram/profile/${username}`}
+            to={`/profile/${username}`}
             onClick={() => getUserPosts(username)}
             style={getStyle}
             className="nav-link"

@@ -36,7 +36,7 @@ export const SearchCardLaptop = ({ onClose, show }) => {
                         key={_id}
                         className="search-card-laptop-found-user"
                         onClick={() => {
-                          navigate(`/mygram/profile/${username}`);
+                          navigate(`/profile/${username}`);
                           onClose();
                         }}
                       >

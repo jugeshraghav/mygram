@@ -53,7 +53,7 @@ export const Navbar = ({
         <nav>
           <div className="navbar -links">
             <NavLink
-              to="/mygram/home"
+              to="/home"
               style={getStyle}
               className="nav-link"
               onClick={() => {
@@ -67,7 +67,7 @@ export const Navbar = ({
               <span className="nav-link-text">Home</span>
             </NavLink>
             <NavLink
-              to="/mygram/explore"
+              to="/explore"
               style={getStyle}
               className="nav-link"
               onClick={() => {
@@ -81,7 +81,7 @@ export const Navbar = ({
               <span className="nav-link-text">Explore</span>
             </NavLink>
             <NavLink
-              to="/mygram/bookmarks"
+              to="/bookmarks"
               style={getStyle}
               className="nav-link"
               onClick={() => {
@@ -104,7 +104,7 @@ export const Navbar = ({
               <span className="nav-link-text">Search</span>
             </div>
             <NavLink
-              to={`/mygram/profile/${loggedInUserDetails?.username}`}
+              to={`/profile/${loggedInUserDetails?.username}`}
               onClick={() => {
                 // getUserPosts(username);
                 setShowSearchCardLaptop(false);
@@ -135,7 +135,7 @@ export const Navbar = ({
           </div>
           <div className="navbar-user-profile">
             <NavLink
-              to={`/mygram/profile/${loggedInUserDetails?.username}`}
+              to={`/profile/${loggedInUserDetails?.username}`}
               onClick={() => {
                 // getUserPosts(username);
                 setShowSearchCardLaptop(false);

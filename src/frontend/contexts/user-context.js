@@ -73,8 +73,6 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: "update_followed_by_user_details", payLoad: followedBy });
   };
 
-  console.log(allUsers, "all users from user-context");
-
   const editUserHandler = async (token, user) => {
     const response = await editUserService(token, user);
     const updatedUserDetails = response?.data?.user;

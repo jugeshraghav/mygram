@@ -29,7 +29,7 @@ export const Sidebar = () => {
     <>
       <div className="sidebar">
         <NavLink
-          to={`/mygram/profile/${loggedInUserDetails?.username}`}
+          to={`/profile/${loggedInUserDetails?.username}`}
           style={getStyle}
         >
           <div className="my-profile">
@@ -57,7 +57,7 @@ export const Sidebar = () => {
           {usersToBeDisplayed?.map(
             ({ _id, avatar, firstName, lastName, username, followers }) => (
               <div key={_id} className="user">
-                <NavLink to={`/mygram/profile/${username}`} style={getStyle}>
+                <NavLink to={`/profile/${username}`} style={getStyle}>
                   <div className="user-details-container">
                     <img src={avatar} alt={username}></img>
                     <div className="user-details">

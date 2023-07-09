@@ -160,7 +160,7 @@ export const PostCard = ({ postData }) => {
             <span>
               <div
                 onClick={() =>
-                  navigate(`/mygram/post/${_id}`, { state: { from: location } })
+                  navigate(`/post/${_id}`, { state: { from: location } })
                 }
               >
                 <FaRegComment className="post-card-icon" />

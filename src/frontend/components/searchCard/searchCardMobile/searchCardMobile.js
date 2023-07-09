@@ -32,7 +32,7 @@ export const SearchCardMobile = ({ onClose, show }) => {
                       key={_id}
                       className="search-card-mobile-found-user"
                       onClick={() => {
-                        navigate(`/mygram/profile/${username}`);
+                        navigate(`/profile/${username}`);
                         onClose();
                       }}
                     >

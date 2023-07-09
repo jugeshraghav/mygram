@@ -1,5 +1,5 @@
 //react hook imports
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 //context imports
 import { AuthContext, PostContext } from "../../../index";
@@ -16,13 +16,21 @@ export const Home = () => {
   const { allPosts } = useContext(PostContext);
   const { loggedInUserDetails } = useContext(AuthContext);
 
+  //State variables
+  const [appliedFilter, setAppliedFilter] = useState("Latest");
+  const [showFilterOptions, setShowFilterOptions] = useState(false);
   //utilities
-  const postsOfFollowedUsersByLoggedInUser = allPosts?.filter(
+  const homePosts = allPosts?.filter(
     (post) =>
       loggedInUserDetails?.following.some(
         (followingUser) => followingUser?.username === post?.username
       ) || loggedInUserDetails?.username === post?.username
   );
+
+  const filteredPosts =
+    appliedFilter === "Trending"
+      ? homePosts.sort((a, b) => b.likes.likeCount - a.likes.likeCount)
+      : homePosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   //component
   return (
@@ -30,9 +38,14 @@ export const Home = () => {
       <div className="home-posts-container">
         <>
           <Stories />
-          <Filter />
-          {postsOfFollowedUsersByLoggedInUser.length > 0 ? (
-            postsOfFollowedUsersByLoggedInUser?.map((postData) => (
+          <Filter
+            appliedFilter={appliedFilter}
+            setAppliedFilter={setAppliedFilter}
+            showFilterOptions={showFilterOptions}
+            setShowFilterOptions={setShowFilterOptions}
+          />
+          {filteredPosts.length > 0 ? (
+            filteredPosts?.map((postData) => (
               <PostCard postData={postData} key={postData._id} />
             ))
           ) : (

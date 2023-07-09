@@ -62,6 +62,7 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
     const emoji = emojiObj.emoji;
     const updatedContent = newPostContent + emoji;
     setNewPostContent(updatedContent);
+    setShowEmojiPicker(false);
   };
 
   const handleImageChange = () => {

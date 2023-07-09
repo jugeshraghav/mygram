@@ -30,11 +30,7 @@ export const Stories = () => {
     <>
       <div className="stories-container">
         {usersToBeDisplayed?.map(({ _id, avatar, username }) => (
-          <NavLink
-            key={_id}
-            to={`/mygram/profile/${username}`}
-            style={getStyle}
-          >
+          <NavLink key={_id} to={`/profile/${username}`} style={getStyle}>
             <div>
               {" "}
               <img src={avatar} alt={username} className="user-story" />

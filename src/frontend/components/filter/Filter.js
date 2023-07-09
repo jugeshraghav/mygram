@@ -4,25 +4,13 @@ import "./filter.css";
 //icon imports
 import { FaFilter } from "react-icons/fa";
 
-//react hook imports
-import { useContext, useState } from "react";
-
-//context imports
-import { PostContext } from "../../../index";
-
 //Filter component
-export const Filter = () => {
-  const { filtersHandler } = useContext(PostContext);
-  //State variables
-  const [appliedFilter, setAppliedFilter] = useState("Latest");
-  const [showFilterOptions, setShowFilterOptions] = useState(false);
-
-  //event handlers
-  const handleCurrentFilterClick = (currentFilter) => {
-    setAppliedFilter(currentFilter);
-    filtersHandler(currentFilter);
-    setShowFilterOptions(false);
-  };
+export const Filter = ({
+  appliedFilter,
+  setAppliedFilter,
+  showFilterOptions,
+  setShowFilterOptions,
+}) => {
   return (
     <>
       <div className="filter-box">
@@ -36,13 +24,13 @@ export const Filter = () => {
             <div className="filter-options-container">
               <p
                 className="filter-option"
-                onClick={() => handleCurrentFilterClick("Latest")}
+                onClick={() => setAppliedFilter("Latest")}
               >
                 Latest
               </p>
               <p
                 className="filter-option"
-                onClick={() => handleCurrentFilterClick("Trending")}
+                onClick={() => setAppliedFilter("Trending")}
               >
                 Trending
               </p>

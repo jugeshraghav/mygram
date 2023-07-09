@@ -22,7 +22,6 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
 
         <Route
-          path="/mygram"
           element={
             <RequiresAuth>
               <Root />
@@ -30,7 +29,7 @@ function App() {
           }
         >
           <Route
-            path="/mygram/home"
+            path="/home"
             element={
               <RequiresAuth>
                 <Home />
@@ -38,7 +37,7 @@ function App() {
             }
           />
           <Route
-            path="/mygram/explore"
+            path="/explore"
             element={
               <RequiresAuth>
                 <Explore />
@@ -46,7 +45,7 @@ function App() {
             }
           />
           <Route
-            path="/mygram/bookmarks"
+            path="/bookmarks"
             element={
               <RequiresAuth>
                 <Bookmarks />
@@ -54,7 +53,7 @@ function App() {
             }
           />
           <Route
-            path="/mygram/profile/:username"
+            path="/profile/:username"
             element={
               <RequiresAuth>
                 <Profile />
@@ -62,7 +61,7 @@ function App() {
             }
           />
           <Route
-            path="/mygram/post/:postId"
+            path="/post/:postId"
             element={
               <RequiresAuth>
                 <SinglePost />

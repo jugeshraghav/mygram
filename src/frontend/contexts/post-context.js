@@ -109,17 +109,6 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  const filtersHandler = (currentFilter) => {
-    const filteredPosts =
-      currentFilter === "Trending"
-        ? allPosts.sort((a, b) => b.likes.likeCount - a.likes.likeCount)
-        : allPosts.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-          );
-
-    dispatch({ type: "apply_filter", payLoad: filteredPosts });
-  };
-
   //////Comments Handler//////////////////////////////
   const getAllPostCommentsHandler = async (postId, token) => {
     const response = await getCommentsServices(postId, token);
@@ -150,7 +139,6 @@ export const PostProvider = ({ children }) => {
         createPostHandler,
         deletePostHandler,
         editPostHandler,
-        filtersHandler,
         getAllPostCommentsHandler,
         postCommentHandler,
       }}
