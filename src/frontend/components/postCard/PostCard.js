@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 
 //react-hook imports
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 //context imports

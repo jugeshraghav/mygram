@@ -120,7 +120,6 @@ export const PostProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("hello");
     getAllPostsHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
