@@ -128,7 +128,9 @@ export const LayoutWithoutSideBar = () => {
           />
         </div>
         <div className="main-content-container">
-          <Outlet />
+          <div className="main-content-center">
+            <Outlet />
+          </div>
         </div>
 
         <div className="secondary-navbar">
