@@ -1,0 +1,42 @@
+.post-image-container {
+  width: 260px;
+  height: 260px;
+  cursor: pointer;
+}
+.post-image-container img {
+  width: 100%;
+  height: 100%;
+}
+
+/*********************Responsive Screens*********/
+@media (max-width: 1235px) {
+  .post-image-container {
+    width: 250px;
+    height: 250px;
+  }
+}
+@media (max-width: 1192px) {
+  .post-image-container {
+    width: 240px;
+    height: 240px;
+  }
+}
+@media (max-width: 900px) {
+  .post-image-container {
+    width: 200px;
+    height: 200px;
+  }
+}
+@media (max-width: 768px) {
+  .post-image-container {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 550px) {
+  .post-image-container {
+    width: 120px;
+    height: 120px;
+  }
+}

@@ -9,6 +9,7 @@ import { PostCard } from "../../components/postCard/PostCard";
 
 //style imports
 import "./explore.css";
+import { PostImageCard } from "../../components/postImageCard/PostImageCard";
 
 export const Explore = () => {
   const { allPosts } = useContext(PostContext);
@@ -25,11 +26,14 @@ export const Explore = () => {
           <button>Sports</button>
           <button>News</button>
         </div>
-        <div className="posts">
-          {allPosts.map(({ image, _id, likes: { likeCount } }) => (
-            <div className="post-image-container" key={_id}>
-              <img src={image} />
-            </div>
+        <div className="explore-post-card-container">
+          {allPosts.map(({ username, image, _id, likes: { likeCount } }) => (
+            <PostImageCard
+              key={_id}
+              likeCount={likeCount}
+              image={image}
+              alt={username}
+            />
           ))}
         </div>
       </div>

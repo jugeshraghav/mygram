@@ -18,7 +18,7 @@ import { PostContext } from "../../contexts/post-context";
 
 export const LayoutWithSideBar = () => {
   const { isUserLoggedIn } = useContext(AuthContext);
-  const {} = useContext(PostContext);
+  // const {} = useContext(PostContext);
 
   //state variables
   const [showNewPostModal, setShowNewPostModal] = useState(false);
@@ -104,6 +104,20 @@ export const LayoutWithoutSideBar = () => {
 
   return (
     <>
+      <NewPostModal
+        show={showNewPostModal}
+        onClose={() => setShowNewPostModal(false)}
+        displayName="New"
+      />
+      <SearchCardLaptop
+        show={showSearchCardLaptop}
+        onClose={() => setShowSearchCardLaptop(false)}
+      />
+      <SearchCardMobile
+        show={showSearchCardMobile}
+        onClose={() => setShowSearchCardMobile(false)}
+        setShowSearchCardMobile={setShowSearchCardMobile}
+      />
       <div className="root">
         <div className="primary-navbar">
           <Navbar

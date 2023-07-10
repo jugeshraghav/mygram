@@ -188,7 +188,7 @@ export const PostCard = ({ postData }) => {
         <div className="post-card-comments-container">
           <div
             onClick={() =>
-              navigate(`/mygram/post/${_id}`, { state: { from: location } })
+              navigate(`/post/${_id}`, { state: { from: location } })
             }
           >
             {comments?.length > 0 && (

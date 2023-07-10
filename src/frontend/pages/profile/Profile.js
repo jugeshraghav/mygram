@@ -1,6 +1,6 @@
 //react hooks imports
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 //context imports
 import {
@@ -19,6 +19,7 @@ import { default_img } from "../../constants/constants";
 
 import ClipLoader from "react-spinners/ClipLoader";
 import { FiLogOut } from "react-icons/fi";
+import { PostImageCard } from "../../components/postImageCard/PostImageCard";
 
 export const Profile = () => {
   //get username from useParams
@@ -41,6 +42,7 @@ export const Profile = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showBookmarks, setShowBookmarks] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   //utilities
   const bookmarkedPosts = allPosts.filter(({ _id }) =>
     bookmarks.some((bookmarkId) => bookmarkId === _id)
@@ -51,7 +53,7 @@ export const Profile = () => {
     getSingleUserHandler(username);
     getUserPosts(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, allPosts, allUsers]);
+  }, [username, allPosts, allUsers, !showBookmarks]);
 
   const {
     _id,
@@ -98,116 +100,150 @@ export const Profile = () => {
       ) : (
         <div className="profile-page-container">
           <div className="user-profile-card">
-            <div className="user-profile-img-container">
-              <img src={avatar || default_img} alt={userName}></img>
-              <div>
-                <div className="user-profile-name-container">
-                  <div>
-                    <p className="user-profile-name">
-                      {firstName} {lastName}
-                    </p>
-                    <p className="profile-username">@{userName}</p>
-                  </div>
-                  <div className="profile-edit-btn-container">
-                    {loggedInUserDetails.username === username ? (
-                      <button
-                        className="profile-edit-btn"
-                        onClick={() => {
-                          setShowEditModal(true);
-                        }}
-                      >
-                        Edit Profile
-                      </button>
-                    ) : followers?.length === 0 ? (
-                      <button
-                        className="follow-btn"
-                        onClick={() => followHandler(_id, token)}
-                      >
-                        Follow
-                      </button>
-                    ) : (
-                      <button
-                        className="unfollow-btn"
-                        onClick={() => unfollowHandler(_id, token)}
-                      >
-                        Following
-                      </button>
-                    )}
-                    {loggedInUserDetails?.username === userName && (
-                      <FiLogOut
-                        className="profile-logout-btn"
-                        onClick={() => logoutHandler()}
-                      />
-                    )}
-                  </div>
+            <img src={avatar || default_img} alt={userName}></img>
+
+            <div>
+              <div className="user-profile-name-container">
+                <div>
+                  <p className="user-profile-name">
+                    {firstName} {lastName}
+                  </p>
+                  <p className="profile-username">@{userName}</p>
                 </div>
-                <div className="user-bio-container">
-                  <p className="user-bio">{bio}</p>
-                  <p className="user-website">{website}</p>
+                <div className="profile-edit-btn-container">
+                  {loggedInUserDetails.username === username ? (
+                    <button
+                      className="profile-edit-btn"
+                      onClick={() => {
+                        setShowEditModal(true);
+                      }}
+                    >
+                      Edit Profile
+                    </button>
+                  ) : followers?.length === 0 ? (
+                    <button
+                      className="follow-btn"
+                      onClick={() => followHandler(_id, token)}
+                    >
+                      Follow
+                    </button>
+                  ) : (
+                    <button
+                      className="unfollow-btn"
+                      onClick={() => unfollowHandler(_id, token)}
+                    >
+                      Following
+                    </button>
+                  )}
                 </div>
               </div>
-            </div>
-            <div className="user-stats">
-              <div>
-                <p>
-                  <span className="user-stats-number">{followers?.length}</span>{" "}
-                  Followers
-                </p>
+              <div className="user-bio-container">
+                <p className="user-bio">{bio}</p>
+                <p className="user-website">{website}</p>
               </div>
-              <div>
-                <p>
-                  <span className="user-stats-number">{userPosts?.length}</span>{" "}
-                  Posts
-                </p>
-              </div>
-              <div>
-                <p>
-                  <span className="user-stats-number">{following?.length}</span>{" "}
-                  Following
-                </p>
+              <div className="user-stats">
+                <div>
+                  <p>
+                    <span className="user-stats-number">
+                      {followers?.length}
+                    </span>{" "}
+                    Followers
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <span className="user-stats-number">
+                      {userPosts?.length}
+                    </span>{" "}
+                    Posts
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <span className="user-stats-number">
+                      {following?.length}
+                    </span>{" "}
+                    Following
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          <hr style={{ width: "70%" }}></hr>
+
           <div className="profile-page-navigation-btn">
-            <p onClick={() => setShowBookmarks(false)}>POSTS</p>
-            <p onClick={() => setShowBookmarks(true)}>BOOKMARKS</p>
+            <p
+              onClick={() => setShowBookmarks(false)}
+              className={!showBookmarks && "current-visible-post"}
+            >
+              {" "}
+              POSTS
+            </p>
+            {loggedInUserDetails?.username === userName && (
+              <p
+                onClick={() => setShowBookmarks(true)}
+                className={showBookmarks && "current-visible-post"}
+              >
+                BOOKMARKS
+              </p>
+            )}
           </div>
-          {!showBookmarks && (
-            <div className="user-posts">
-              {userPosts.length > 0 ? (
-                userPosts.map(({ image, _id, likes: { likeCount } }) => (
-                  <div className="user-post-image-container" key={_id}>
-                    <img src={image} />
-                  </div>
-                ))
-              ) : (
-                <>
-                  <h2>No Posts to be displayed...</h2>
-                  <h4>Start Posting</h4>
-                </>
-              )}
-            </div>
-          )}
-          {showBookmarks && (
+
+          {!showBookmarks ? (
+            userPosts.length > 0 ? (
+              <div className="user-posts">
+                {userPosts.map(
+                  ({ username, image, _id, likes: { likeCount } }) => (
+                    <div
+                      onClick={() =>
+                        navigate(`/post/${_id}`, {
+                          state: { from: location },
+                        })
+                      }
+                    >
+                      <PostImageCard
+                        key={_id}
+                        likeCount={likeCount}
+                        image={image}
+                        alt={username}
+                      />
+                    </div>
+                  )
+                )}
+              </div>
+            ) : (
+              <div className="no-posts-container">
+                <h2>No Posts to be displayed...</h2>
+                <h4>Start Posting</h4>
+              </div>
+            )
+          ) : bookmarkedPosts.length > 0 ? (
             <div className="bookmarks-posts-container">
-              {bookmarkedPosts.length > 0 ? (
-                bookmarkedPosts.map(({ image, _id, likes: { likeCount } }) => (
-                  <div className="user-post-image-container" key={_id}>
-                    <img src={image} />
-                  </div>
-                ))
-              ) : (
-                <>
-                  <h2>No Bookmarked Posts...</h2>
-                  <button
-                    onClick={() => navigate("/explore")}
-                    className="bookmark-page-btn"
-                  >
-                    Explore
-                  </button>
-                </>
-              )}
+              {bookmarkedPosts.map(({ image, _id, likes: { likeCount } }) => (
+                <div
+                  onClick={() =>
+                    navigate(`/post/${_id}`, {
+                      state: { from: location },
+                    })
+                  }
+                >
+                  <PostImageCard
+                    key={_id}
+                    likeCount={likeCount}
+                    image={image}
+                    alt={username}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="no-posts-container">
+              <h2>No Bookmarked Posts...</h2>
+              <button
+                onClick={() => navigate("/explore")}
+                className="bookmark-page-btn"
+              >
+                Explore
+              </button>
             </div>
           )}
         </div>
