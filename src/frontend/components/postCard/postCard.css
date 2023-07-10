@@ -71,6 +71,7 @@
 .post-card-content-image {
   width: 100%;
   height: 500px;
+  object-fit: content;
 }
 .post-card-content-text {
   font-size: 14px;

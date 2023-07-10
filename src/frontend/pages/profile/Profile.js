@@ -39,21 +39,15 @@ export const Profile = () => {
   const { token, loggedInUserDetails, logoutHandler } = useContext(AuthContext);
 
   //state variables
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showBookmarks, setShowBookmarks] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [from, setFrom] = useState(location?.pathname);
+
   //utilities
   const bookmarkedPosts = allPosts.filter(({ _id }) =>
     bookmarks.some((bookmarkId) => bookmarkId === _id)
   );
-
-  // calculated values and variables
-  useEffect(() => {
-    getSingleUserHandler(username);
-    getUserPosts(username);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, allPosts, allUsers, !showBookmarks]);
 
   const {
     _id,
@@ -66,6 +60,13 @@ export const Profile = () => {
     following,
     website,
   } = selectedUser;
+
+  useEffect(() => {
+    getSingleUserHandler(username || loggedInUserDetails?.username);
+    getUserPosts(username);
+    setFrom(location?.pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [username, allPosts, allUsers]);
 
   return (
     <>
@@ -172,28 +173,43 @@ export const Profile = () => {
 
           <div className="profile-page-navigation-btn">
             <p
-              onClick={() => setShowBookmarks(false)}
-              className={!showBookmarks && "current-visible-post"}
+              onClick={() => {
+                navigate(`/profile/${userName}`, { state: { from: location } });
+                setFrom(`/profile/${userName}`);
+              }}
+              className={from !== "/bookmarks" ? "current-visible-post" : null}
             >
               {" "}
               POSTS
             </p>
             {loggedInUserDetails?.username === userName && (
               <p
-                onClick={() => setShowBookmarks(true)}
-                className={showBookmarks && "current-visible-post"}
+                onClick={() => {
+                  navigate("/bookmarks", { state: { from: location } });
+                  setFrom("/bookmarks");
+                }}
+                className={
+                  from === "/bookmarks" ? "current-visible-post" : null
+                }
               >
                 BOOKMARKS
               </p>
             )}
           </div>
 
-          {!showBookmarks ? (
+          {from !== "/bookmarks" ? (
             userPosts.length > 0 ? (
               <div className="user-posts">
                 {userPosts.map(
-                  ({ username, image, _id, likes: { likeCount } }) => (
+                  ({
+                    username,
+                    image,
+                    _id,
+                    comments,
+                    likes: { likeCount },
+                  }) => (
                     <div
+                      key={_id}
                       onClick={() =>
                         navigate(`/post/${_id}`, {
                           state: { from: location },
@@ -201,8 +217,8 @@ export const Profile = () => {
                       }
                     >
                       <PostImageCard
-                        key={_id}
                         likeCount={likeCount}
+                        commentCount={comments?.length}
                         image={image}
                         alt={username}
                       />
@@ -218,22 +234,25 @@ export const Profile = () => {
             )
           ) : bookmarkedPosts.length > 0 ? (
             <div className="bookmarks-posts-container">
-              {bookmarkedPosts.map(({ image, _id, likes: { likeCount } }) => (
-                <div
-                  onClick={() =>
-                    navigate(`/post/${_id}`, {
-                      state: { from: location },
-                    })
-                  }
-                >
-                  <PostImageCard
+              {bookmarkedPosts.map(
+                ({ comments, image, _id, likes: { likeCount } }) => (
+                  <div
                     key={_id}
-                    likeCount={likeCount}
-                    image={image}
-                    alt={username}
-                  />
-                </div>
-              ))}
+                    onClick={() =>
+                      navigate(`/post/${_id}`, {
+                        state: { from: location },
+                      })
+                    }
+                  >
+                    <PostImageCard
+                      likeCount={likeCount}
+                      commentCount={comments?.length}
+                      image={image}
+                      alt={username}
+                    />
+                  </div>
+                )
+              )}
             </div>
           ) : (
             <div className="no-posts-container">

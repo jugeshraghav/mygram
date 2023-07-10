@@ -130,10 +130,15 @@ export const PostCard = ({ postData }) => {
           </div>
         </div>
 
-        {image && (
-          <img src={image} alt={username} className="post-card-content-image" />
-        )}
-
+        <div className="post-card-content-image-container">
+          {image && (
+            <img
+              src={image}
+              alt={username}
+              className="post-card-content-image"
+            />
+          )}
+        </div>
         <div className="post-card-content-text">
           {content.length > 100 ? `${content.substring(0, 100)}...` : content}
         </div>

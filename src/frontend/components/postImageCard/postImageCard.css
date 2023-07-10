@@ -2,12 +2,40 @@
   width: 260px;
   height: 260px;
   cursor: pointer;
+  position: relative;
 }
 .post-image-container img {
   width: 100%;
   height: 100%;
+  object-fint: content;
+}
+.post-image-card-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(1, 1, 1, 0.6);
+  visibility: hidden;
+}
+.post-image-card-icons-container,
+.post-image-card-icon {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--mg-secondary-color);
+}
+.post-image-card-icon {
+  gap: 0.5rem;
 }
 
+.post-image-container:hover .post-image-card-overlay {
+  visibility: visible;
+}
 /*********************Responsive Screens*********/
 @media (max-width: 1235px) {
   .post-image-container {

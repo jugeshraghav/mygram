@@ -10,10 +10,12 @@ import { PostCard } from "../../components/postCard/PostCard";
 //style imports
 import "./explore.css";
 import { PostImageCard } from "../../components/postImageCard/PostImageCard";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Explore = () => {
   const { allPosts } = useContext(PostContext);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   //component
   return (
     <>
@@ -27,14 +29,25 @@ export const Explore = () => {
           <button>News</button>
         </div>
         <div className="explore-post-card-container">
-          {allPosts.map(({ username, image, _id, likes: { likeCount } }) => (
-            <PostImageCard
-              key={_id}
-              likeCount={likeCount}
-              image={image}
-              alt={username}
-            />
-          ))}
+          {allPosts.map(
+            ({ username, image, _id, likes: { likeCount }, comments }) => (
+              <div
+                key={_id}
+                onClick={() =>
+                  navigate(`/post/${_id}`, {
+                    state: { from: location },
+                  })
+                }
+              >
+                <PostImageCard
+                  likeCount={likeCount}
+                  commentCount={comments?.length}
+                  image={image}
+                  alt={username}
+                />
+              </div>
+            )
+          )}
         </div>
       </div>
     </>
