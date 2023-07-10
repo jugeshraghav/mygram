@@ -13,10 +13,6 @@ import {
   likeService,
   unlikeService,
 } from "../services/like-services/likeServices";
-import {
-  getCommentsServices,
-  addPostCommentsServices,
-} from "../services/comments-services/commentsServices";
 
 //toast imports
 import { toast } from "react-toastify";
@@ -71,10 +67,14 @@ export const PostProvider = ({ children }) => {
     }
   };
   const unlikeHandler = async (postId, token) => {
-    const response = await unlikeService(postId, token);
-    const postsArray = response?.data?.posts;
-    dispatch({ type: "unlike_post", payLoad: postsArray });
-    toast.info("Post unliked!");
+    try {
+      const response = await unlikeService(postId, token);
+      const postsArray = response?.data?.posts;
+      dispatch({ type: "unlike_post", payLoad: postsArray });
+      toast.info("Post unliked!");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const createPostHandler = async (post, token) => {
@@ -119,19 +119,8 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  //////Comments Handler//////////////////////////////
-  const getAllPostCommentsHandler = async (postId, token) => {
-    const response = await getCommentsServices(postId, token);
-    console.log(response);
-  };
-
-  const postCommentHandler = async (postId, commentData, token) => {
-    console.log(postId, commentData, token);
-    const response = await addPostCommentsServices(postId, commentData, token);
-    console.log(response);
-  };
-
   useEffect(() => {
+    console.log("hello");
     getAllPostsHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -150,8 +139,6 @@ export const PostProvider = ({ children }) => {
         createPostHandler,
         deletePostHandler,
         editPostHandler,
-        getAllPostCommentsHandler,
-        postCommentHandler,
       }}
     >
       {children}

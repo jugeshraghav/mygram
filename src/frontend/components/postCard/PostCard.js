@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 
 //react-hook imports
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 //context imports
@@ -40,20 +40,18 @@ export const PostCard = ({ postData }) => {
   //ID from useParams
   const { pId } = useParams();
   const currentPost = allPosts?.find(({ _id }) => _id === pId);
-  console.log(allPosts);
-  console.log(pId);
-  console.log(currentPost);
+
   //state variables
   const [showPostAlterOptions, setShowAlterOptions] = useState(false);
   const [showEditPostModal, setShowEditPostModal] = useState(false);
-  const [currentPostData, setCurrentPostData] = useState({
+  const currentPostData = {
     _id: postData?._id || currentPost?._id,
     content: postData?.content || currentPost?.content,
     image: postData?.image || currentPost?.image,
     username: postData?.username || currentPost?.username,
     likes: postData?.likes || currentPost?.likes,
     comments: postData?.comments || currentPost?.comments,
-  });
+  };
 
   //utilities
   const {
@@ -160,7 +158,7 @@ export const PostCard = ({ postData }) => {
             {likedBy.length > 0 ? (
               <span
                 onClick={() => {
-                  unlikeHandler(_id, username, token);
+                  unlikeHandler(_id, token);
                 }}
               >
                 <FaHeart style={{ color: "red" }} className="post-card-icon" />
@@ -168,7 +166,7 @@ export const PostCard = ({ postData }) => {
             ) : (
               <span
                 onClick={() => {
-                  likeHandler(_id, username, token);
+                  likeHandler(_id, token);
                 }}
               >
                 <FaRegHeart className="post-card-icon" />
