@@ -54,14 +54,7 @@ export const PostCard = ({ postData }) => {
   };
 
   //utilities
-  const {
-    _id,
-    content,
-    image,
-    username,
-    likes: { likeCount, likedBy },
-    comments,
-  } = currentPostData;
+  const { _id, content, image, username, likes, comments } = currentPostData;
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
   const currentPostUser = allUsers?.find((user) => user?.username === username);
 
@@ -75,7 +68,7 @@ export const PostCard = ({ postData }) => {
         show={showEditPostModal}
         onClose={() => setShowEditPostModal(false)}
         displayName="Edit"
-        post={postData}
+        post={currentPostData}
       />
       <div className="post-card">
         <div className="post-card-header">
@@ -150,12 +143,12 @@ export const PostCard = ({ postData }) => {
           )}
         </div>
         <div className="post-card-content-text">
-          {content.length > 100 ? `${content.substring(0, 100)}...` : content}
+          {content?.length > 100 ? `${content.substring(0, 100)}...` : content}
         </div>
 
         <div className="post-card-icons">
           <div className="post-card-icons-leftgroup">
-            {likedBy.length > 0 ? (
+            {likes?.likedBy.length > 0 ? (
               <span
                 onClick={() => {
                   unlikeHandler(_id, token);
@@ -197,7 +190,7 @@ export const PostCard = ({ postData }) => {
           )}
         </div>
         <p className="post-card-like-count-container">
-          <span className="post-card-like-count">{likeCount}</span> likes
+          <span className="post-card-like-count">{likes?.likeCount}</span> likes
         </p>
         {/* comments */}
         <div className="post-card-comments-container">
