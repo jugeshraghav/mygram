@@ -16,7 +16,7 @@ import { FiLogOut } from "react-icons/fi";
 
 //react hooks imports
 import { useContext } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 //context imports
 import { AuthContext } from "../../../index";
@@ -27,15 +27,12 @@ import { default_img } from "../../constants/constants";
 
 export const Navbar = ({
   showSearchCardLaptop,
-  showSearchCardMobile,
   setShowNewPostModal,
   setShowSearchCardLaptop,
   setShowSearchCardMobile,
 }) => {
   const { logoutHandler, loggedInUserDetails } = useContext(AuthContext);
 
-  const navigate = useNavigate();
-  const location = useLocation();
   //Navlink style
   const getStyle = ({ isActive }) => {
     return {
@@ -89,7 +86,6 @@ export const Navbar = ({
               onClick={() => {
                 setShowSearchCardLaptop(false);
                 setShowSearchCardMobile(false);
-                // navigate("/bookmarks", { state: { from: location } });
               }}
             >
               <span className="nav-icon">

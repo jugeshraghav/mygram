@@ -14,7 +14,6 @@ import { SearchCardLaptop } from "../../components/searchCard/searchCardLaptop/s
 
 //context imports
 import { AuthContext } from "../../contexts/auth-context";
-import { PostContext } from "../../contexts/post-context";
 
 export const LayoutWithSideBar = () => {
   const { isUserLoggedIn } = useContext(AuthContext);

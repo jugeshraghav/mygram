@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { PostContext } from "../../../index";
 
 //components imports
-import { PostCard } from "../../components/postCard/PostCard";
 
 //style imports
 import "./explore.css";

@@ -18,7 +18,6 @@ import { EditUserModal } from "../../modals/editUser/editUserModal";
 import { default_img } from "../../constants/constants";
 
 import ClipLoader from "react-spinners/ClipLoader";
-import { FiLogOut } from "react-icons/fi";
 import { PostImageCard } from "../../components/postImageCard/PostImageCard";
 
 export const Profile = () => {
@@ -36,7 +35,7 @@ export const Profile = () => {
   const { allPosts, userPosts, getUserPosts, isUserPostsLoaded } =
     useContext(PostContext);
   const { bookmarks } = useContext(BookmarksContext);
-  const { token, loggedInUserDetails, logoutHandler } = useContext(AuthContext);
+  const { token, loggedInUserDetails } = useContext(AuthContext);
 
   //state variables
   const navigate = useNavigate();
@@ -112,7 +111,7 @@ export const Profile = () => {
                   <p className="profile-username">@{userName}</p>
                 </div>
                 <div className="profile-edit-btn-container">
-                  {loggedInUserDetails.username === username ? (
+                  {loggedInUserDetails.username === userName ? (
                     <button
                       className="profile-edit-btn"
                       onClick={() => {
