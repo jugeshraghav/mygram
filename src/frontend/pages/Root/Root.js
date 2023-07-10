@@ -127,8 +127,10 @@ export const LayoutWithoutSideBar = () => {
             setShowSearchCardMobile={setShowSearchCardMobile}
           />
         </div>
-
-        <Outlet />
+        <div className="main-content-container">
+          {" "}
+          <Outlet />
+        </div>
 
         <div className="secondary-navbar">
           <SecondaryNavbar setShowNewPostModal={setShowNewPostModal} />

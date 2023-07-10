@@ -14,6 +14,7 @@ import { Profile } from "./frontend/pages/profile/Profile";
 import { Explore } from "./frontend/pages/explore/Explore";
 import { SinglePost } from "./frontend/pages/singlePost/SinglePost";
 import { RequiresAuth } from "./frontend/auth/RequiresAuth";
+import { PostCard } from "./frontend/components/postCard/PostCard";
 
 function App() {
   return (
@@ -71,10 +72,18 @@ function App() {
             }
           />
           <Route
-            path="/post/:postId"
+            path="/comments/:postId"
             element={
               <RequiresAuth>
                 <SinglePost />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/post/:pId"
+            element={
+              <RequiresAuth>
+                <PostCard />
               </RequiresAuth>
             }
           />

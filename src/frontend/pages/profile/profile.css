@@ -59,6 +59,7 @@
 .profile-page-navigation-btn {
   display: flex;
   gap: 2rem;
+  cursor: pointer;
 }
 .profile-edit-btn,
 .follow-btn {

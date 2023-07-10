@@ -2,14 +2,15 @@
   display: flex;
 }
 .main-content-container {
-  display: grid;
-  grid-template-columns: 1fr 0.7fr;
-  align-items: start;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   gap: 2rem;
   margin: 0 12rem;
 }
 .main-content-center {
   margin: 2rem 0;
+  width: 60%;
 }
 .secondary-navbar {
   display: none;
@@ -24,6 +25,7 @@
   position: sticky;
   top: 0;
   height: 100dvh;
+  width: 40%;
 }
 
 /********* Responsive Screens **********/
@@ -53,6 +55,9 @@
   .main-content-container {
     grid-template-columns: auto;
     margin: 2rem 15rem;
+  }
+  .main-content-center {
+    width: 100%;
   }
   .main-content-sidebar {
     display: none;

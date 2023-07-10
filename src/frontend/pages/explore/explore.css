@@ -3,7 +3,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding: 5rem 0;
+  padding: 0.5rem 0 0 0;
   flex-direction: column;
   gap: 2rem;
 }

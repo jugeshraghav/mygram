@@ -13,7 +13,7 @@ import {
 
 //react-hook imports
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 //context imports
 import {
@@ -29,6 +29,33 @@ import { CommentInput } from "../commentInput/CommentInput";
 import { default_img } from "../../constants/constants";
 
 export const PostCard = ({ postData }) => {
+  //handlers from contexts
+  const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
+    useContext(BookmarksContext);
+  const { allPosts, likeHandler, unlikeHandler, deletePostHandler } =
+    useContext(PostContext);
+  const { token, loggedInUserDetails } = useContext(AuthContext);
+  const { allUsers, unfollowHandler, followHandler } = useContext(UserContext);
+
+  //ID from useParams
+  const { pId } = useParams();
+  const currentPost = allPosts?.find(({ _id }) => _id === pId);
+  console.log(allPosts);
+  console.log(pId);
+  console.log(currentPost);
+  //state variables
+  const [showPostAlterOptions, setShowAlterOptions] = useState(false);
+  const [showEditPostModal, setShowEditPostModal] = useState(false);
+  const [currentPostData, setCurrentPostData] = useState({
+    _id: postData?._id || currentPost?._id,
+    content: postData?.content || currentPost?.content,
+    image: postData?.image || currentPost?.image,
+    username: postData?.username || currentPost?.username,
+    likes: postData?.likes || currentPost?.likes,
+    comments: postData?.comments || currentPost?.comments,
+  });
+
+  //utilities
   const {
     _id,
     content,
@@ -36,27 +63,12 @@ export const PostCard = ({ postData }) => {
     username,
     likes: { likeCount, likedBy },
     comments,
-  } = postData;
-
-  //state variables
-  const [showPostAlterOptions, setShowAlterOptions] = useState(false);
-  const [showEditPostModal, setShowEditPostModal] = useState(false);
-
-  //handlers from contexts
-  const { bookmarks, addToBookmarkHandler, removeFromBookmarkHandler } =
-    useContext(BookmarksContext);
-  const { likeHandler, unlikeHandler, deletePostHandler } =
-    useContext(PostContext);
-  const { token, loggedInUserDetails } = useContext(AuthContext);
-  const { allUsers, unfollowHandler, followHandler } = useContext(UserContext);
-
-  //utilities
+  } = currentPostData;
   const isInBookmarks = bookmarks.filter((bookmarkId) => bookmarkId === _id);
+  const currentPostUser = allUsers?.find((user) => user?.username === username);
 
   const location = useLocation();
   const navigate = useNavigate();
-
-  const currentPostUser = allUsers?.find((user) => user?.username === username);
 
   //component
   return (
@@ -165,7 +177,7 @@ export const PostCard = ({ postData }) => {
             <span>
               <div
                 onClick={() =>
-                  navigate(`/post/${_id}`, { state: { from: location } })
+                  navigate(`/comments/${_id}`, { state: { from: location } })
                 }
               >
                 <FaRegComment className="post-card-icon" />
@@ -193,7 +205,7 @@ export const PostCard = ({ postData }) => {
         <div className="post-card-comments-container">
           <div
             onClick={() =>
-              navigate(`/post/${_id}`, { state: { from: location } })
+              navigate(`/comments/${_id}`, { state: { from: location } })
             }
           >
             {comments?.length > 0 && (
