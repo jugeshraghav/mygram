@@ -11,7 +11,7 @@
   display: flex;
   gap: 5rem;
   align-items: center;
-  margin: 0 2rem;
+  /* margin: 0 2rem; */
   padding: 0 0 3rem 0;
   border-bottom: 1px solid var(--mg-border-color);
 }
@@ -31,7 +31,9 @@
   gap: 4rem;
   align-items: center;
 }
-
+.user-profile-name-container > div {
+  width: max-content;
+}
 /*user profile name and edit button*/
 .user-profile-name {
   font-size: 20px;
@@ -142,7 +144,11 @@
 }
 
 /******************** Responsive Screens ********************/
-
+@media (max-width: 1000px) {
+  .profile-page-container {
+    margin-left: -20%;
+  }
+}
 @media (max-width: 900px) {
   .user-profile-card > img {
     width: 100px;
@@ -154,8 +160,9 @@
 }
 @media (max-width: 768px) {
   .profile-page-container {
-    padding: 6rem 0 0 0rem;
+    margin-left: 0%;
   }
+
   .user-posts,
   .bookmarks-posts-container {
     gap: 0.2rem;
