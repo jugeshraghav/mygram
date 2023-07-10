@@ -1,18 +1,14 @@
 .root {
   display: flex;
+  width: 100%;
+  /* align-items: center; */
 }
 .main-content-container {
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 4rem;
-  margin: 0 12rem;
-}
-.main-content-center {
-  width: 55%;
-}
-.secondary-navbar {
-  display: none;
+  padding: 1rem 0 0 0;
 }
 .primary-navbar {
   position: sticky;
@@ -20,43 +16,36 @@
   height: 100dvh;
   z-index: 90;
 }
+.main-content-center {
+  width: 40%;
+}
+
 .main-content-sidebar {
   position: sticky;
   top: 0;
   height: 100dvh;
-  width: 40%;
+  width: 30%;
+}
+.secondary-navbar {
+  display: none;
 }
 
 /********* Responsive Screens **********/
-@media (max-width: 1360px) {
-  .main-content-container {
-    margin: 2rem 8rem;
-  }
-}
+
 @media (max-width: 1264px) {
-  .main-content-container {
-    margin: 2rem 8rem;
+  .main-content-center {
+    width: 45%;
   }
-}
-@media (max-width: 1160px) {
-  .main-content-container {
-    margin: 2rem 4rem;
-  }
-}
-@media (max-width: 1100px) {
-  .main-content-container {
-    margin: 2rem;
+
+  .main-content-sidebar {
+    width: 35%;
   }
 }
 
 /****** medium screen ***********/
 @media (max-width: 1000px) {
-  .main-content-container {
-    grid-template-columns: auto;
-    margin: 2rem 15rem;
-  }
   .main-content-center {
-    width: 100%;
+    width: 50%;
   }
   .main-content-sidebar {
     display: none;
@@ -64,62 +53,42 @@
 }
 
 @media (max-width: 950px) {
-  .main-content-container {
-    margin: 2rem 14rem;
+  .main-content-center {
+    width: 55%;
   }
 }
 
-@media (max-width: 900px) {
-  .main-content-container {
-    margin: 2rem 12rem;
-  }
-}
 @media (max-width: 850px) {
-  .main-content-container {
-    margin: 2rem 10rem;
-  }
-}
-@media (max-width: 800px) {
-  .main-content-container {
-    margin: 2rem 10rem;
+  .main-content-center {
+    width: 60%;
   }
 }
 
 /********* small Screen **********/
 @media (max-width: 768px) {
-  .root {
-    display: flex;
-  }
-  .main-content-container {
-    margin: 5rem 8rem;
-  }
   .secondary-navbar {
     display: block;
     position: fixed;
     bottom: 0;
     left: 0;
   }
-}
-
-@media (max-width: 700px) {
   .main-content-container {
-    margin: 5rem 6rem;
+    padding: 4rem 0 0 0;
   }
 }
 
 @media (max-width: 600px) {
-  .main-content-container {
-    margin: 5rem 4rem;
+  .main-content-center {
+    width: 65%;
   }
 }
 @media (max-width: 525px) {
-  .main-content-container {
-    margin: 5rem 2rem;
+  .main-content-center {
+    width: 75%;
   }
 }
-@media (max-width: 400px) {
-  .main-content-container {
-    margin: 5rem 0rem;
-    width: 500px;
+@media (max-width: 500px) {
+  .main-content-center {
+    width: 100%;
   }
 }
