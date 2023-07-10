@@ -5,12 +5,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
   margin: 0 12rem;
 }
 .main-content-center {
   margin: 2rem 0;
-  width: 60%;
+  width: 55%;
 }
 .secondary-navbar {
   display: none;

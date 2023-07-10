@@ -128,7 +128,6 @@ export const LayoutWithoutSideBar = () => {
           />
         </div>
         <div className="main-content-container">
-          {" "}
           <Outlet />
         </div>
 
