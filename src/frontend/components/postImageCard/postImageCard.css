@@ -7,7 +7,7 @@
 .post-image-container img {
   width: 100%;
   height: 100%;
-  object-fint: content;
+  object-fnt: content;
 }
 .post-image-card-overlay {
   position: absolute;
@@ -64,7 +64,7 @@
 
 @media (max-width: 550px) {
   .post-image-container {
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
   }
 }

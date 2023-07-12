@@ -20,10 +20,11 @@ export const AuthProvider = ({ children }) => {
   const [loggedInUserDetails, setLoggedInUserDetails] = useState(
     JSON.parse(localStorage.getItem("userDetails"))
   );
-
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   ////////////////////// Auth Handlers /////////////////////////////////////
 
   const loginHandler = async ({ username, password }) => {
+    setIsUserLoggedIn(true);
     try {
       const response = await loginService(username, password);
       const { foundUser, encodedToken } = response?.data;
@@ -39,6 +40,8 @@ export const AuthProvider = ({ children }) => {
       toast.success("successfully logged in!");
     } catch (e) {
       toast.error(e.response.data.errors[0]);
+    } finally {
+      setIsUserLoggedIn(false);
     }
   };
 
@@ -80,6 +83,7 @@ export const AuthProvider = ({ children }) => {
         token,
         loggedInUserDetails,
         setLoggedInUserDetails,
+        isUserLoggedIn,
       }}
     >
       {children}

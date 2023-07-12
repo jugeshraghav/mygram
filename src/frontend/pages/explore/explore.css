@@ -24,6 +24,7 @@
   color: var(--mg-primary-color);
   font-weight: bold;
   cursor: pointer;
+  width: max-content;
 }
 .explore-category-btn-container button:hover {
   background-color: var(--mg-primary-color);
