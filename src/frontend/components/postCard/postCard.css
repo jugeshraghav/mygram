@@ -5,6 +5,7 @@
   border: 1px solid var(--mg-border-color);
   border-radius: 8px;
   margin: 0.5rem 0 1rem 0;
+  width: 460px;
 }
 
 /************ post card header ********/
@@ -109,7 +110,11 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 470px) {
+  .post-card {
+    width: 100%;
+    border-radius: 0;
+  }
   .post-card-content-image {
     height: 400px;
   }

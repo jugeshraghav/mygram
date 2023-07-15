@@ -27,19 +27,33 @@ export const AuthProvider = ({ children }) => {
     setIsUserLoggedIn(true);
     try {
       const response = await loginService(username, password);
-      const { foundUser, encodedToken } = response?.data;
-      const updatedFoundUser = {
-        ...foundUser,
-        avatar: !foundUser.avatar ? default_img : foundUser?.avatar,
-      };
-      localStorage.setItem("token", encodedToken);
-      localStorage.setItem("userDetails", JSON.stringify(updatedFoundUser));
-      setToken(encodedToken);
-      setLoggedInUserDetails(updatedFoundUser);
-      navigate("/home");
-      toast.success("successfully logged in!");
-    } catch (e) {
-      toast.error(e.response.data.errors[0]);
+      if (response.status === 200) {
+        const { foundUser, encodedToken } = response?.data;
+        const updatedFoundUser = {
+          ...foundUser,
+          avatar: !foundUser.avatar ? default_img : foundUser?.avatar,
+        };
+        localStorage.setItem("token", encodedToken);
+        localStorage.setItem("userDetails", JSON.stringify(updatedFoundUser));
+        setToken(encodedToken);
+        setLoggedInUserDetails(updatedFoundUser);
+        navigate("/home");
+        toast.success(`Welcome Back! ${foundUser?.username} 👋`);
+      }
+    } catch (error) {
+      const {
+        response: { status },
+      } = error;
+      if (status === 404) {
+        toast.error("The username you entered is not registered.");
+      } else if (status === 401) {
+        toast.error(
+          "The credentials you entered are invalid. Please try again."
+        );
+      } else {
+        toast.error("Something went wrong");
+      }
+      console.error(error);
     } finally {
       setIsUserLoggedIn(false);
     }
@@ -56,12 +70,23 @@ export const AuthProvider = ({ children }) => {
       toast.error("Password fileds are not matching!");
     } else {
       try {
-        await signUpService(firstname, lastname, password, username);
-
-        toast.success("Successfully signed up! Kindly login to continue.");
-        navigate("/");
-      } catch (e) {
-        toast.error(e.response.data.errors[0]);
+        const {
+          response: { status },
+        } = await signUpService(firstname, lastname, password, username);
+        if (status === 201) {
+          toast.success("Successfully signed up! Kindly login to continue.");
+          navigate("/");
+        }
+      } catch (error) {
+        const {
+          response: { status },
+        } = error;
+        if (status === 422) {
+          toast.error("Username Already Exists. Please choose another one.");
+        } else {
+          toast.error("Something went wrong");
+        }
+        console.error(error);
       }
     }
   };

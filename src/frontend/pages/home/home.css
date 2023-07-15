@@ -1,5 +1,25 @@
+.home-page-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  width: 100%;
+  padding-top: 1rem;
+}
 .home-posts-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+/************ Responsive Screens *********/
+@media (max-width: 1000px) {
+  .home-page-container {
+    gap: 0;
+  }
+}
+@media (max-width: 470px) {
+  .home-posts-container {
+    width: 100%;
+  }
 }

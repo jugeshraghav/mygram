@@ -33,7 +33,6 @@ export const Signup = () => {
       ...userSignupDetails,
       [e.target.name]: e.target.value,
     });
-    console.log(userSignupDetails);
   };
   const handleSignupSubmit = (e) => {
     e.preventDefault();

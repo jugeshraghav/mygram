@@ -92,7 +92,6 @@ export const PostProvider = ({ children }) => {
   };
 
   const deletePostHandler = async (postId, token) => {
-    setIsAllPostsLoaded(true);
     try {
       const response = await deletePostService(postId, token);
       const newPostsArr = response?.data?.posts;
@@ -100,8 +99,6 @@ export const PostProvider = ({ children }) => {
       toast.info("Post successfully deleted.");
     } catch (e) {
       console.log(e);
-    } finally {
-      setIsAllPostsLoaded(false);
     }
   };
 
@@ -119,17 +116,13 @@ export const PostProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getAllPostsHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <PostContext.Provider
       value={{
         isAllPostsLoaded,
         isUserPostsLoaded,
         allPosts,
+        getAllPostsHandler,
         getUserPosts,
         userPosts,
         postsOfUsersFollowed,

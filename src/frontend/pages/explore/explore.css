@@ -1,11 +1,13 @@
 .explore-posts-container {
   display: flex;
   width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   padding: 0.5rem 0 0 0;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
 }
 .explore-page-heading {
   font-size: 20px;

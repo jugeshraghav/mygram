@@ -1,4 +1,5 @@
 .stories-container {
+  width: 460px;
   background-color: white;
   display: flex;
   justify-content: space-around;
@@ -26,5 +27,11 @@
   .user-story {
     width: 50px;
     height: 50px;
+  }
+}
+@media (max-width: 470px) {
+  .stories-container {
+    border-radius: 0;
+    width: 100%;
   }
 }

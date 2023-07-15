@@ -1,5 +1,11 @@
 //react hook imports
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 //services imports
 import {
@@ -27,6 +33,7 @@ export const UserProvider = ({ children }) => {
 
   /////////////////// Values from State //////////////////////////////
   const { allUsers, selectedUser, foundUsers } = state;
+  const [isSingleUserLoaded, setIsSingleUserLoaded] = useState(false);
 
   ////////////////// Handlers //////////////////////////////////////
   const getAllUserHandler = async () => {
@@ -40,12 +47,15 @@ export const UserProvider = ({ children }) => {
   };
 
   const getSingleUserHandler = async (userId) => {
+    setIsSingleUserLoaded(true);
     try {
       const response = await singleUserService(userId);
       const singleUserData = response?.data?.user;
       dispatch({ type: "set_single_user", payLoad: singleUserData });
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsSingleUserLoaded(false);
     }
   };
 
@@ -92,6 +102,7 @@ export const UserProvider = ({ children }) => {
         allUsers,
         selectedUser,
         foundUsers,
+        isSingleUserLoaded,
         followHandler,
         unfollowHandler,
         editUserHandler,

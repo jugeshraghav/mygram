@@ -1,4 +1,5 @@
 .filter-box {
+  width: 428px;
   background-color: white;
   padding: 1rem;
   display: flex;
@@ -36,4 +37,12 @@
 .filter-option:hover {
   background-color: lightgrey;
   border-radius: 8px;
+}
+
+/**********Responsive Screens***********/
+@media (max-width: 470px) {
+  .filter-box {
+    border-radius: 0;
+    width: 92%;
+  }
 }

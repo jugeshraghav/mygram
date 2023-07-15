@@ -1,4 +1,5 @@
 .sidebar {
+  width: 390px;
   margin: 3.5rem 0 0 0;
 }
 .my-profile,
@@ -69,4 +70,11 @@
 .sidebar-central-heading {
   font-weight: bold;
   color: var(--mg-primary-text);
+}
+
+/************ Responsive Screens **********/
+@media (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
 }

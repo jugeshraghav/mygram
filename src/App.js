@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
 
-        <Route
+        {/* <Route
           element={
             <RequiresAuth>
               <LayoutWithSideBar />
@@ -39,7 +39,7 @@ function App() {
               </RequiresAuth>
             }
           />
-        </Route>
+        </Route> */}
         <Route
           element={
             <RequiresAuth>
@@ -47,6 +47,14 @@ function App() {
             </RequiresAuth>
           }
         >
+          <Route
+            path="/home"
+            element={
+              <RequiresAuth>
+                <Home />
+              </RequiresAuth>
+            }
+          />
           <Route
             path="/explore"
             element={

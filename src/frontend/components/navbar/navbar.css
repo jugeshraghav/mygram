@@ -11,7 +11,6 @@ aside {
   font-size: 24px;
   font-weight: bold;
   font-family: cursive;
-  padding: 12px 10px;
 }
 .nav-heading-secondary {
   color: black;
@@ -24,6 +23,7 @@ nav {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  margin-top: 2rem;
   justify-content: space-between;
 }
 .nav-link {
@@ -125,8 +125,6 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    height: 6vh;
-    padding: 12px;
     border-bottom: 1px solid var(--mg-border-color);
     z-index: 10;
     position: fixed;
@@ -140,7 +138,7 @@ nav {
   }
   .nav-heading-primary {
     display: block;
-    padding: 0 0.5rem;
+    width: 100%;
   }
   .nav-heading-secondary {
     display: none;
@@ -148,6 +146,7 @@ nav {
 
   .navbar-search-container {
     display: block;
+    width: 100%;
   }
 }
 
