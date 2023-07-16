@@ -70,7 +70,10 @@ export const PostCard = ({ postData }) => {
         displayName="Edit"
         post={currentPostData}
       />
-      <div className="post-card">
+      <div
+        className="post-card"
+        onClick={() => setShowAlterOptions(!showPostAlterOptions)}
+      >
         <div className="post-card-header">
           <div className="post-card-user">
             <div className="post-card-user-img">

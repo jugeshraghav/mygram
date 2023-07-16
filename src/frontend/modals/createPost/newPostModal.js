@@ -87,7 +87,13 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
     return (
       <>
         <div className="new-post-modal-container" onClick={onClose}>
-          <div className="new-post-modal" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="new-post-modal"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowEmojiPicker(!showEmojiPicker);
+            }}
+          >
             <p className="new-post-modal-heading">{displayName} Post</p>
             <div className="new-post-modal-content">
               <img
@@ -134,7 +140,10 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
                     />
                     <FaSmile
                       className="new-post-modal-icon"
-                      onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                      onClick={(e) => {
+                        setShowEmojiPicker(!showEmojiPicker);
+                        e.stopPropagation();
+                      }}
                     />
                   </div>
                   {displayName === "New" ? (

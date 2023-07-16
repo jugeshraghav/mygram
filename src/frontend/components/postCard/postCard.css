@@ -53,6 +53,7 @@
 }
 .post-alter-options {
   position: absolute;
+  left: -4.5rem;
   background-color: white;
   text-align: left;
   border: 1px solid var(--mg-border-color);
@@ -103,12 +104,6 @@
 }
 
 /********* Responsive Screens *********/
-
-@media (max-width: 600px) {
-  .post-alter-options {
-    left: -3rem;
-  }
-}
 
 @media (max-width: 470px) {
   .post-card {
