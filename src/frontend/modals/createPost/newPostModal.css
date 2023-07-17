@@ -52,7 +52,12 @@
 .new-post-modal-icon {
   cursor: pointer;
 }
-
+.smile-icon:hover {
+  color: rgb(255, 215, 0);
+}
+.camera-icon:hover {
+  color: var(--mg-primary-color);
+}
 .new-post-btn {
   padding: 0.3rem 1rem;
   border: 2px solid var(--mg-primary-color);

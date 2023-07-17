@@ -70,10 +70,7 @@ export const PostCard = ({ postData }) => {
         displayName="Edit"
         post={currentPostData}
       />
-      <div
-        className="post-card"
-        onClick={() => setShowAlterOptions(!showPostAlterOptions)}
-      >
+      <div className="post-card" onClick={() => setShowAlterOptions(false)}>
         <div className="post-card-header">
           <div className="post-card-user">
             <div className="post-card-user-img">
@@ -92,7 +89,10 @@ export const PostCard = ({ postData }) => {
           <div className="post-alter-link">
             <div
               className="three-dot-icon"
-              onClick={() => setShowAlterOptions(!showPostAlterOptions)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAlterOptions(!showPostAlterOptions);
+              }}
             >
               ...
             </div>

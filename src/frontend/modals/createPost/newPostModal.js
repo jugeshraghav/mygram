@@ -134,11 +134,11 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
                 <div className="new-post-modal-icon-button-container">
                   <div className="new-post-modal-icons">
                     <FaCamera
-                      className="new-post-modal-icon"
+                      className="new-post-modal-icon camera-icon"
                       onClick={handleImageChange}
                     />
                     <FaSmile
-                      className="new-post-modal-icon"
+                      className="new-post-modal-icon smile-icon"
                       onClick={(e) => {
                         setShowEmojiPicker(!showEmojiPicker);
                         e.stopPropagation();

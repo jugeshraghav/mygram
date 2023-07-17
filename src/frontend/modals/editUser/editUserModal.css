@@ -36,7 +36,7 @@
   display: block;
 }
 
-.edit-modal-profile img {
+.edit-modal-user-image {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -82,13 +82,77 @@
   font-size: 12px;
   color: grey;
 }
+.edit-modal-change-profile-pic {
+  position: relative;
+}
 .edit-modal-change-profile-pic-link {
   color: var(--mg-primary-color);
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
 }
-
+/***********Select image avatar options *********/
+.image-avatar-select-options-container {
+  background-color: var(--mg-secondary-color);
+  border: 1px solid var(--mg-border-color);
+  width: 150px;
+  border-radius: 8px;
+  position: absolute;
+  top: -10px;
+  left: 125px;
+}
+.select-image-slector,
+.select-avatar-selector {
+  padding: 0.2rem;
+  cursor: pointer;
+}
+.select-image-slector {
+  border-bottom: 1px solid var(--mg-border-color);
+  border-radius: 8px 8px 0 0;
+}
+.select-avatar-selector {
+  border-radius: 0 0 8px 8px;
+}
+.select-image-slector:hover,
+.select-avatar-selector:hover {
+  background-color: var(--mg-border-color);
+}
+/*************Avatar Modal***********/
+.avatar-modal {
+  width: 300px;
+  background-color: var(--mg-secondary-color);
+  border: 1px solid var(--mg-border-color);
+}
+.avatar-modal-header {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--mg-border-color);
+}
+.avatar-modal-close-icon {
+  padding: 0.2rem;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.avatar-modal-close-icon:hover {
+  background-color: var(--mg-border-color);
+}
+.avatar-container {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.avatar:hover {
+  width: 45px;
+  height: 45px;
+}
 /******** Responsive Screens ***********/
 
 @media (max-width: 768px) {
