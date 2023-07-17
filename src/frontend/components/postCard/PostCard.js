@@ -27,6 +27,7 @@ import {
 import { NewPostModal } from "../../modals/createPost/newPostModal";
 import { CommentInput } from "../commentInput/CommentInput";
 import { default_img } from "../../constants/constants";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 export const PostCard = ({ postData }) => {
   //handlers from contexts
@@ -105,9 +106,17 @@ export const PostCard = ({ postData }) => {
                       setShowAlterOptions(false);
                     }}
                   >
-                    Edit
+                    <span>
+                      <AiFillEdit />
+                    </span>
+                    <span> Edit</span>
                   </p>
-                  <p onClick={() => deletePostHandler(_id, token)}>Delete</p>
+                  <p onClick={() => deletePostHandler(_id, token)}>
+                    <span>
+                      <AiFillDelete />
+                    </span>
+                    <span> Delete</span>
+                  </p>
                 </div>
               ) : (
                 <div className="post-alter-options">

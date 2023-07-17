@@ -6,7 +6,7 @@ import "./editUserModal.css";
 
 //context imports
 import { AuthContext, UserContext } from "../../../index";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineUpload, AiFillEdit } from "react-icons/ai";
 import { Avatars } from "../../assets/Avatars";
 
 export const EditUserModal = ({ user, show, onClose }) => {
@@ -55,7 +55,14 @@ export const EditUserModal = ({ user, show, onClose }) => {
   } else {
     return (
       <>
-        <div className="edit-modal-container" onClick={onClose}>
+        <div
+          className="edit-modal-container"
+          onClick={() => {
+            onClose();
+            setShowAvatarModal(false);
+            setShowSelectContainer(false);
+          }}
+        >
           <div
             className="edit-modal-form-container"
             onClick={(e) => {
@@ -102,7 +109,10 @@ export const EditUserModal = ({ user, show, onClose }) => {
                           }}
                           className="select-image-slector"
                         >
-                          Upload Image
+                          <span>
+                            <AiOutlineUpload />
+                          </span>
+                          <span> Upload Image</span>
                         </p>
                         <p
                           onClick={(e) => {
@@ -112,7 +122,10 @@ export const EditUserModal = ({ user, show, onClose }) => {
                           }}
                           className="select-avatar-selector"
                         >
-                          Select Avatar
+                          <span>
+                            <AiFillEdit />
+                          </span>
+                          <span> Select Avatar</span>
                         </p>
                       </div>
                     )}
