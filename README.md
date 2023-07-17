@@ -2,7 +2,7 @@
 MyGram is a social media app, which replicates instagram(not fully). So, explore and engage with you friends on MyGram.
 
 ## How to install and run locally ?
-<hr>
+
 ```
 $ git clone https://github.com/jugeshraghav/mygram.git
 $ cd mygram
@@ -10,7 +10,6 @@ $ npm install
 $ npm start
 
 ## Features
-<hr>
 - User authentication
 - Create, edit, and delete posts with images and emojis
 - Can view single Post
@@ -23,7 +22,6 @@ $ npm start
 - Responsive design
 
 ## Built with
-<hr>
 - React
 -React Router v6
 -React Icons
