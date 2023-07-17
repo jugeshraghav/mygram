@@ -8,8 +8,11 @@ $ git clone https://github.com/jugeshraghav/mygram.git
 $ cd mygram
 $ npm install
 $ npm start
+```
+
 
 ## Features
+
 - User authentication
 - Create, edit, and delete posts with images and emojis
 - Can view single Post
