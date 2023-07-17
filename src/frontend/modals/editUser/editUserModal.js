@@ -108,39 +108,40 @@ export const EditUserModal = ({ user, show, onClose }) => {
                           onClick={(e) => {
                             setShowAvatarModal(true);
                             e.stopPropagation();
+                            setShowSelectContainer(false);
                           }}
                           className="select-avatar-selector"
                         >
                           Select Avatar
                         </p>
-                        {showAvatarModal && (
-                          <div className="avatar-modal">
-                            <div className="avatar-modal-header">
-                              <p>Choose Avatar</p>
-                              <p
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setShowAvatarModal(false);
-                                }}
-                              >
-                                <AiOutlineClose className="avatar-modal-close-icon" />
-                              </p>
-                            </div>
+                      </div>
+                    )}
+                    {showAvatarModal && (
+                      <div className="avatar-modal">
+                        <div className="avatar-modal-header">
+                          <p>Choose Avatar</p>
+                          <p
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setShowAvatarModal(false);
+                            }}
+                          >
+                            <AiOutlineClose className="avatar-modal-close-icon" />
+                          </p>
+                        </div>
 
-                            <div className="avatar-container">
-                              {Avatars?.map((avatar, index) => (
-                                <div key={index} className="avatar">
-                                  <img
-                                    src={avatar}
-                                    alt="avatar"
-                                    className="avatar"
-                                    onClick={(e) => handleSetAvatar(e, avatar)}
-                                  />
-                                </div>
-                              ))}
+                        <div className="avatar-container">
+                          {Avatars?.map((avatar, index) => (
+                            <div key={index} className="avatar">
+                              <img
+                                src={avatar}
+                                alt="avatar"
+                                className="avatar-img"
+                                onClick={(e) => handleSetAvatar(e, avatar)}
+                              />
                             </div>
-                          </div>
-                        )}
+                          ))}
+                        </div>
                       </div>
                     )}
                   </p>

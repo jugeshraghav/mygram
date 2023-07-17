@@ -14,6 +14,7 @@
 .edit-modal-form-container {
   background-color: white;
   padding: 2rem;
+  position: relative;
 }
 .edit-modal-heading {
   font-size: 24px;
@@ -98,8 +99,8 @@
   width: 150px;
   border-radius: 8px;
   position: absolute;
-  top: -10px;
-  left: 125px;
+  top: 30px;
+  left: 5px;
 }
 .select-image-slector,
 .select-avatar-selector {
@@ -122,9 +123,11 @@
   width: 300px;
   background-color: var(--mg-secondary-color);
   border: 1px solid var(--mg-border-color);
+  position: absolute;
 }
 .avatar-modal-header {
-  padding: 0.5rem;
+  background-color: rgba(1, 1, 1, 0.2);
+  padding: 0.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -139,19 +142,25 @@
   background-color: var(--mg-border-color);
 }
 .avatar-container {
-  padding: 0.5rem;
+  padding: 0.5rem 0.2rem;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 100%;
   cursor: pointer;
 }
-.avatar:hover {
-  width: 45px;
-  height: 45px;
+.avatar-img {
+  border-radius: 100%;
+  width: 90%;
+  height: 90%;
+}
+.avatar-img:hover {
+  width: 100%;
+  height: 100%;
 }
 /******** Responsive Screens ***********/
 
@@ -176,6 +185,9 @@
     margin: 1rem 0;
   }
   .edit-modal-input {
+    width: 250px;
+  }
+  .avatar-modal {
     width: 250px;
   }
 }
