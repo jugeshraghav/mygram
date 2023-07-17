@@ -31,6 +31,7 @@
 .search-card-laptop-found-user {
   display: flex;
   gap: 0.5rem;
+  cursor: pointer;
 }
 .search-card-laptop-found-user img {
   width: 40px;

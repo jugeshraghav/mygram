@@ -70,18 +70,18 @@ export const AuthProvider = ({ children }) => {
       toast.error("Password fileds are not matching!");
     } else {
       try {
-        const {
-          response: { status },
-        } = await signUpService(firstname, lastname, password, username);
-        if (status === 201) {
+        const response = await signUpService(
+          firstname,
+          lastname,
+          password,
+          username
+        );
+        if (response?.status === 201) {
           toast.success("Successfully signed up! Kindly login to continue.");
           navigate("/");
         }
       } catch (error) {
-        const {
-          response: { status },
-        } = error;
-        if (status === 422) {
+        if (error?.status === 422) {
           toast.error("Username Already Exists. Please choose another one.");
         } else {
           toast.error("Something went wrong");

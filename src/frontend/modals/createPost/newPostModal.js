@@ -91,7 +91,6 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
             className="new-post-modal"
             onClick={(e) => {
               e.stopPropagation();
-              setShowEmojiPicker(!showEmojiPicker);
             }}
           >
             <p className="new-post-modal-heading">{displayName} Post</p>
@@ -170,7 +169,10 @@ export const NewPostModal = ({ show, onClose, displayName, post }) => {
           {showEmojiPicker && (
             <div
               className="emoji-picker-container"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowEmojiPicker(false);
+              }}
             >
               <Picker onEmojiClick={handleEmojiClick} />
             </div>

@@ -10,6 +10,7 @@ import "./searchCardLaptop.css";
 
 //component imports
 import { SearchInput } from "../../searchInput/SearchInput";
+import { default_img } from "../../../constants/constants";
 
 export const SearchCardLaptop = ({ onClose, show }) => {
   //state variables from context
@@ -40,7 +41,7 @@ export const SearchCardLaptop = ({ onClose, show }) => {
                           onClose();
                         }}
                       >
-                        <img src={avatar} alt={username} />
+                        <img src={avatar || default_img} alt={username} />
                         <div>
                           <p className="search-card-laptop-fullname">
                             {firstName} {lastName}

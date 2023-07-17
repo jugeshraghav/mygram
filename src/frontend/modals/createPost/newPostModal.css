@@ -72,8 +72,15 @@
 }
 
 .emoji-picker-container {
-  position: absolute;
-  right: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(1, 1, 1, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /******** Responsive Screens ***********/
@@ -91,6 +98,9 @@
   .new-post-input-area textarea {
     padding: 0.5rem;
     width: 300px;
+  }
+  .emoji-picker-container {
+    padding: 0 3rem;
   }
 }
 @media (max-width: 450px) {
