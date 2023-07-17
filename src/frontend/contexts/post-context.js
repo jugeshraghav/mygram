@@ -1,5 +1,5 @@
 //react hooks imports
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 //services imports
 import {
@@ -19,16 +19,21 @@ import { toast } from "react-toastify";
 
 //reducer
 import { dataReducer, initial_state } from "../reducers/dataReducer";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "./auth-context";
 
 export const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial_state);
-
+  const { loggedInUserDetails } = useContext(AuthContext);
   /////////////////////////////State Variable////////////////////////
   const { allPosts, userPosts, postsOfUsersFollowed } = state;
   const [isAllPostsLoaded, setIsAllPostsLoaded] = useState(false);
   const [isUserPostsLoaded, setIsUserPostsLoaded] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   //////////////////////////handlers//////////////////////////////////
   const getAllPostsHandler = async () => {
@@ -97,6 +102,13 @@ export const PostProvider = ({ children }) => {
       const newPostsArr = response?.data?.posts;
       dispatch({ type: "delete_post", payLoad: newPostsArr });
       toast.info("Post successfully deleted.");
+      if (
+        location?.state?.from?.pathname === "/bookmarks" ||
+        "/explore" ||
+        `/profile/${loggedInUserDetails?.username}`
+      ) {
+        navigate(-1);
+      }
     } catch (e) {
       console.log(e);
     }
