@@ -64,7 +64,7 @@ export const Home = () => {
                 </>
               )}
             </div>
-            <div>
+            <div className="sidebar-container">
               <Sidebar />
             </div>
           </>

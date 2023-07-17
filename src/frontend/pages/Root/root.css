@@ -5,7 +5,7 @@
 .primary-navbar {
   position: sticky;
   top: 0;
-  height: 100dvh;
+  height: 90dvh;
   width: 16%;
   z-index: 90;
 }

@@ -11,6 +11,11 @@
   flex-direction: column;
   gap: 1rem;
 }
+.sidebar-container {
+  position: sticky;
+  top: 2rem;
+  height: 90dvh;
+}
 
 /************ Responsive Screens *********/
 @media (max-width: 1000px) {
