@@ -26,8 +26,8 @@ $ npm start
 
 ## Built with
 - React
--React Router v6
--React Icons
--React toast
--React Spinners
+- React Router v6
+- React Icons
+- React toast
+- React Spinners
 - mockBee (for backend)
